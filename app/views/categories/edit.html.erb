@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag category_path(@category), :class => "form-horizontal", :method => "put" do %>
+
+     <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">
+          Name
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'name', @category.name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for level -->
+      <div class="form-group">
+        <label for="level" class="col-sm-3 control-label">
+          level
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'level', @category.level, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for parent_id -->
+      <div class="form-group">
+        <label for="parent_id" class="col-sm-3 control-label">
+          parent_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'parent_id', @category.parent_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Update category", :class => "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-12">
+      <%= link_to "Go back", categories_path %>
+    </div>
+  </div>
+</div>
+
+
+

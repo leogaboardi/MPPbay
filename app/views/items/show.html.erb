@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3><%= @item.title %> data</h3>
+    <dl class="dl-horizontal">
+      <dt>Title</dt>
+      <dd><%= @item.title %></dd>
+      <dt>User</dt>
+      <dd><%= @item.user_id %></dd>
+      <dt>Status</dt>
+      <dd><%= @item.status_id %></dd>
+      <dt>Condition</dt>
+      <dd><%= @item.condition_id %></dd>
+      <dt>Details</dt>
+      <dd><%= @item.details %></dd>
+      <dt>Handling time</dt>
+      <dd><%= @item.handling_time %></dd>
+      <dt>Listing duration</dt>
+      <dd><%= @item.listing_duration %></dd>
+      <dt>Available at</dt>
+      <dd><%= @item.available_at %></dd>
+      <dt>Item URL</dt>
+      <dd><%= @item.item_url %></dd>
+      <dt>Item location</dt>
+      <dd><%= @item.address_id %></dd>
+      <dt>Category 1</dt>
+      <dd><%= @item.category_1_id %></dd>
+      <dt>Category 2</dt>
+      <dd><%= @item.category_2_id %></dd>
+      <dt>Category 3</dt>
+      <dd><%= @item.category_3_id %></dd>
+    </dl>
+    <%= link_to "Go back", items_path %>
+  </div>
+</div>

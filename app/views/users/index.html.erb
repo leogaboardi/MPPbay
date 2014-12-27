@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Manage users</h3>
+
+    <%= link_to "Add new user", new_user_path, :class => "btn btn-primary" %>
+    <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Admin?</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.admin %></td>
+        <td>
+         <%= link_to "View", user_path(user.id) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_user_path(user.id) %>
+        </td>
+
+        <td>
+          <%= link_to "Delete", user_path(user.id), :method => "delete", data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,158 @@
+<!-- Validation failure messages -->
+  <% if @item.errors.any? %>
+    <% @item.errors.full_messages.each do |message| %>
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <%= form_tag "/items", :class => "form-horizontal", :method => "post" do %>
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="col-sm-3 control-label">
+          Title
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'title', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="col-sm-3 control-label">
+          user_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'user_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for status_id -->
+      <div class="form-group">
+        <label for="status_id" class="col-sm-3 control-label">
+          status_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'status_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for condition -->
+      <div class="form-group">
+        <label for="condition" class="col-sm-3 control-label">
+          Condition
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'condition_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for details -->
+      <div class="form-group">
+        <label for="details" class="col-sm-3 control-label">
+          Details
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'details', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for handling_time -->
+      <div class="form-group">
+        <label for="handling_time" class="col-sm-3 control-label">
+          handling_time
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'handling_time', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for listing_duration -->
+      <div class="form-group">
+        <label for="listing_duration" class="col-sm-3 control-label">
+          Listing duration
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'listing_duration', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for available_at -->
+      <div class="form-group">
+        <label for="available_at" class="col-sm-3 control-label">
+          available_at
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'available_at', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for item_url -->
+      <div class="form-group">
+        <label for="item_url" class="col-sm-3 control-label">
+          item_url
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'item_url', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for address_id -->
+      <div class="form-group">
+        <label for="address_id" class="col-sm-3 control-label">
+          address_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'address_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for category_1_id -->
+      <div class="form-group">
+        <label for="category_1_id" class="col-sm-3 control-label">
+          category_1_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'category_1_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for category_2_id -->
+      <div class="form-group">
+        <label for="category_2_id" class="col-sm-3 control-label">
+          category_2_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'category_2_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for category_3_id -->
+      <div class="form-group">
+        <label for="category_3_id" class="col-sm-3 control-label">
+          category_3_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'category_3_id', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Create new item", :class => "btn btn-primary" %>
+        </div>
+      </div>
+
+    <% end %>
+    <div class="col-md-12">
+      <%= link_to "Go back", items_path %>
+    </div>
+  </div>
+</div>

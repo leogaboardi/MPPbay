@@ -1,0 +1,148 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag item_path(@item), :class => "form-horizontal", :method => "put" do %>
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="col-sm-3 control-label">
+          Title
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'title', @item.title, class: 'form-control' %>
+        </div>
+      </div>
+
+<!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="col-sm-3 control-label">
+          user_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'user_id', @item.user_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for status_id -->
+      <div class="form-group">
+        <label for="status_id" class="col-sm-3 control-label">
+          status_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'status_id', @item.status_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for condition -->
+      <div class="form-group">
+        <label for="condition" class="col-sm-3 control-label">
+          Condition
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'condition_id', @item.condition_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for details -->
+      <div class="form-group">
+        <label for="details" class="col-sm-3 control-label">
+          Details
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'details', @item.details, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for handling_time -->
+      <div class="form-group">
+        <label for="handling_time" class="col-sm-3 control-label">
+          handling_time
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'handling_time', @item.handling_time, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for listing_duration -->
+      <div class="form-group">
+        <label for="listing_duration" class="col-sm-3 control-label">
+          Listing duration
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'listing_duration', @item.listing_duration, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for available_at -->
+      <div class="form-group">
+        <label for="available_at" class="col-sm-3 control-label">
+          available_at
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'available_at', @item.available_at, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for item_url -->
+      <div class="form-group">
+        <label for="item_url" class="col-sm-3 control-label">
+          item_url
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'item_url', @item.item_url, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for address_id -->
+      <div class="form-group">
+        <label for="address_id" class="col-sm-3 control-label">
+          address_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'address_id', @item.address_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for category_1_id -->
+      <div class="form-group">
+        <label for="category_1_id" class="col-sm-3 control-label">
+          category_1_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'category_1_id', @item.category_1_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for category_2_id -->
+      <div class="form-group">
+        <label for="category_2_id" class="col-sm-3 control-label">
+          category_2_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'category_2_id', @item.category_2_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for category_3_id -->
+      <div class="form-group">
+        <label for="category_3_id" class="col-sm-3 control-label">
+          category_3_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'category_3_id', @item.category_3_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Update item", :class => "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-12">
+      <%= link_to "Go back", items_path %>
+    </div>
+  </div>
+</div>
+
+
+

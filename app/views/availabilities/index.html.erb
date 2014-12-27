@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Manage availabilities</h3>
+
+    <%= link_to "Add new availability", new_availability_path, :class => "btn btn-primary" %>
+    <p>&nbsp</p>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Email filter</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @availabilities.each do |availability| %>
+      <tr>
+        <td><%= availability.name %></td>
+        <td><%= availability.email_filter %></td>
+
+        <td>
+         <%= link_to "View", availability_path(availability.id) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_availability_path(availability.id) %>
+        </td>
+
+        <td>
+          <%= link_to "Delete", availability_path(availability.id), :method => "delete", data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Manage favorites</h3>
+
+    <%= link_to "Add new favorite", new_favorite_path, :class => "btn btn-primary" %>
+    <p>&nbsp</p>
+
+    <table class="table table-striped">
+      <tr>
+        <th>User</th>
+        <th>Item</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @favorites.each do |favorite| %>
+      <tr>
+        <td><%= favorite.user_id %></td>
+        <td><%= favorite.item_id %></td>
+        <td>
+         <%= link_to "View", favorite_path(favorite.id) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_favorite_path(favorite.id) %>
+        </td>
+
+        <td>
+          <%= link_to "Delete", favorite_path(favorite.id), :method => "delete", data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

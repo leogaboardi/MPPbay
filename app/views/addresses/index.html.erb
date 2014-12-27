@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Manage addresses</h3>
+
+    <%= link_to "Add new address", new_address_path, :class => "btn btn-primary" %>
+    <p>&nbsp</p>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Address name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.user_id %></td>
+        <td><%= address.full_name %></td>
+        <td><%= address.city %></td>
+        <td><%= address.state %></td>
+        <td><%= address.zip %></td>
+        <td>
+         <%= link_to "View", address_path(address.id) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_address_path(address.id) %>
+        </td>
+
+        <td>
+          <%= link_to "Delete", address_path(address.id), :method => "delete", data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

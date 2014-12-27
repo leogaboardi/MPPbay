@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag availability_path(@availability), :class => "form-horizontal", :method => "put" do %>
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">
+          Name
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'name', @availability.name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for email_filter -->
+      <div class="form-group">
+        <label for="email_filter" class="col-sm-3 control-label">
+          Email  filter
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'email_filter', @availability.email_filter, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Update availability", :class => "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-md-12">
+      <%= link_to "Go back", availabilities_path %>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  status_id: 1
+  title: MyString
+  condition_id: 1
+  details: MyString
+  handling_time: MyString
+  listing_duration: 2014-12-22
+  available_at: 2014-12-22
+  item_url: MyString
+  address_id: 1
+  category_1_id: 1
+  category_2_id: 1
+  category_3_id: 1
+
+two:
+  user_id: 1
+  status_id: 1
+  title: MyString
+  condition_id: 1
+  details: MyString
+  handling_time: MyString
+  listing_duration: 2014-12-22
+  available_at: 2014-12-22
+  item_url: MyString
+  address_id: 1
+  category_1_id: 1
+  category_2_id: 1
+  category_3_id: 1

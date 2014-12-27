@@ -1,0 +1,48 @@
+<!-- Validation failure messages -->
+  <% if @availability.errors.any? %>
+    <% @availability.errors.full_messages.each do |message| %>
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <%= form_tag "/availabilities", :class => "form-horizontal", :method => "post" do %>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">
+          Name
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'name', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for email_filter -->
+      <div class="form-group">
+        <label for="email_filter" class="col-sm-3 control-label">
+          Email  filter
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'email_filter', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Create new availability", :class => "btn btn-primary" %>
+        </div>
+      </div>
+
+    <% end %>
+    <div class="col-md-12">
+      <%= link_to "Go back", availabilities_path %>
+    </div>
+  </div>
+</div>
