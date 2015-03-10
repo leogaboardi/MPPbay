@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>Purchase #<%= @purchase.id %> data</h3>
+    <dl class="dl-horizontal">
+      <dt>Item ID</dt>
+      <dd><%= @purchase.item_id %></dd>
+      <dt>Buyer ID</dt>
+      <dd><%= @purchase.buyer_id %></dd>
+      <dt>Seller ID</dt>
+      <dd><%= @purchase.seller_id %></dd>
+    </dl>
+    <%= link_to "Go back", purchases_path %>
+    <br>
+    </div>
+  </div>
+</div>

@@ -70,16 +70,22 @@
   <ul class="list-inline text-center" >
     <li><a href="/about">About</a></li>
     <li><a href="">Blog</a></li>
-    <li><span>©2014 MPPbay</span></li>
+    <li><span>©<%= Time.now.year %> MPPbay</span></li>
   </ul>
   <% if current_user.present? and current_user.admin? %>
     <ul class="list-inline text-center" >
-      <li><a href="/users">Users</a></li>
-      <li><a href="/addresses">Addresses</a></li>
-      <li><a href="/items">Items</a></li>
-      <li><li><%= link_to "Favorites", favorites_path %></li></li>
+      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "Addresses", addresses_path %></li>
+      <li><%= link_to "Items", items_path %></li>
+      <li><%= link_to "Favorites", favorites_path %></li>
       <li><%= link_to "Categories", categories_path %></li>
       <li><%= link_to "Availabilities", availabilities_path %></li>
+      <li><%= link_to "Purchases", purchases_path %></li>
+      <li><%= link_to "Pictures", pictures_path %></li>
+      <li><%= link_to "Prices", prices_path %></li>
+      <li><%= link_to "Buildings", buildings_path %></li>
+      <li><%= link_to "Conditions", conditions_path %></li>
+      <li><%= link_to "Statuses", statuses_path %></li>
     </ul>
   <% end %>
 

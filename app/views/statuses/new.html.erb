@@ -1,0 +1,91 @@
+<!-- Validation failure messages -->
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |message| %>
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <%= form_tag "/users", :class => "form-horizontal", :method => "post" do %>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">
+          Name
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'name', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for email -->
+      <div class="form-group">
+        <label for="email" class="col-sm-3 control-label">
+          Email
+        </label>
+        <div class="col-sm-4">
+          <%= email_field_tag 'email', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for password -->
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label">
+          Password
+        </label>
+        <div class="col-sm-4">
+          <%= password_field_tag 'password', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for password_confirmation -->
+      <div class="form-group">
+        <label for="password_confirmation" class="col-sm-3 control-label">
+          Confirm password
+        </label>
+        <div class="col-sm-4">
+          <%= password_field_tag 'password_confirmation', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for phone number -->
+      <div class="form-group">
+        <label for="phone" class="col-sm-3 control-label">
+          Phone number
+        </label>
+        <div class="col-sm-4">
+          <%= phone_field_tag 'phone', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Admin checkbox -->
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag 'admin' %>
+              Admin rights?
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Create new user", :class => "btn btn-primary" %>
+        </div>
+      </div>
+
+    <% end %>
+    <div class="col-md-12">
+      <a href="/users">Go back</a>
+      <br>
+    </div>
+  </div>
+</div>

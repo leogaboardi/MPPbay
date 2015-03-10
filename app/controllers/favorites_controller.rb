@@ -1,5 +1,8 @@
 class FavoritesController < ApplicationController
 
+  # TODO: user association
+  # TODO: item association
+
   before_action :check_if_admin
 
   #Checks if current_user is admin, and therefore can play around with the venue table

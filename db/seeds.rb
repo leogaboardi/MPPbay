@@ -139,4 +139,28 @@ availabilities.each do |new_availability|
   availability.save
 end
 
+purchases = [
+  {
+    :item_id => 1,
+    :buyer_id => 1,
+    :seller_id => 2
+  },
+  {
+    :item_id => 2,
+    :buyer_id => 1,
+    :seller_id => 3
+  },
+  {
+    :item_id => 2,
+    :buyer_id => 3,
+    :seller_id => 4
+  }
+]
 
+purchases.each do |new_purchase|
+  purchase = Purchase.new
+  purchase.item_id = new_purchase[:item_id]
+  purchase.seller_id = new_purchase[:seller_id]
+  purchase.buyer_id = new_purchase[:buyer_id]
+  purchase.save
+end

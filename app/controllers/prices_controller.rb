@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
 
-
-  # TODO:
-  # TODO: make a admin user non deleatable
-  # FIXME: In user update, when admin is false, the value becomes NIL
-
-
   before_action :authenticate_user!
   before_action :check_if_admin #, only[:index, :create, :update]
 

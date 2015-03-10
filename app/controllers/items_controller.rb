@@ -1,5 +1,12 @@
 class ItemsController < ApplicationController
 
+  # TODO: user associaton table
+  # TODO: status associaton table
+  # TODO: category_1 associaton table
+  # TODO: category_2 associaton table
+  # TODO: category_3 associaton table
+  # TODO: user associaton table
+
   before_action :check_if_admin #, only[:index, :create, :update]
 
   #Checks if current_item is admin, and therefore can play around with the venue table

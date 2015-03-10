@@ -1,5 +1,12 @@
 class AddressesController < ApplicationController
 
+  # TODO: create form
+  # TODO: view
+  # TODO: edit form
+  # TODO: create / update controller
+  # TODO: user association
+
+
   before_action :check_if_admin #, only[:index, :create, :update]
 
   #Checks if current_address is admin, and therefore can play around with the venue table
@@ -20,10 +27,6 @@ class AddressesController < ApplicationController
     else
       render "new_form"
     end
-  end
-
-  def delete
-    @address = Address.find(params[:id])
   end
 
   def destroy

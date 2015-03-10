@@ -12,6 +12,8 @@ class AvailabilitiesController < ApplicationController
   def create
     #FIXME: This is not working. It is not saving somehow
     #  Maybe it has to do with the password stuff?
+
+    # TODO:
     @availability = Availability.new
     @availability.name = params[:name]
     @availability.email_filter = params[:email_filter]

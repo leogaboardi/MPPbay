@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 
+  # TODO: parent_id association
+
   before_action :check_if_admin #, only[:index, :create, :update]
 
   #Checks if current_user is admin, and therefore can play around with the venue table

@@ -1,0 +1,54 @@
+<!-- Validation failure messages -->
+<!--  -->
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_tag purchase_path(@purchase), :class => "form-horizontal", :method => "put" do %>
+
+      <!-- Label and input for item_id -->
+      <div class="form-group">
+        <label for="item_id" class="col-sm-3 control-label">
+          item_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'item_id', @purchase.item_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for buyer_id -->
+      <div class="form-group">
+        <label for="buyer_id" class="col-sm-3 control-label">
+          buyer_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'buyer_id', @purchase.buyer_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for seller_id -->
+      <div class="form-group">
+        <label for="seller_id" class="col-sm-3 control-label">
+          seller_id
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'seller_id', @purchase.seller_id, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "Update purchase", :class => "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="col-md-12">
+      <%= link_to "Go back", purchases_path %>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+

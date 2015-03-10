@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 
   get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
 
-  ##### Routes for the user resource:
+  resources :users, :items, :addresses, :favorites, :categories,
+  :availabilities, :purchases, :pictures, :prices, :buildings, :conditions,
+  :statuses
 
-  resources :users, :items, :addresses, :favorites, :categories, :availabilities
-  #bundle exec rake routes
   # CREATE
   #get('/users/new', { :controller => 'users', :action => 'new', :as => "new" })
   #post('/users', { :controller => 'users', :action => 'create', :as => "create"  })
