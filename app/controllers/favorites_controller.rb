@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
 
   before_action :check_if_admin
 
-  #Checks if current_user is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?
       redirect_to "/"
@@ -13,8 +12,6 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    #FIXME: This is not working. It is not saving somehow
-    #  Maybe it has to do with the password stuff?
     @favorite = Favorite.new
     @favorite.user_id = params[:user_id]
     @favorite.item_id = params[:item_id]
@@ -24,10 +21,6 @@ class FavoritesController < ApplicationController
     else
       render "new_form"
     end
-  end
-
-  def delete
-    @favorite = Favorite.find(params[:id])
   end
 
   def destroy

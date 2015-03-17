@@ -1,9 +1,8 @@
-class UsersController < ApplicationController
+class PricesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :check_if_admin #, only[:index, :create, :update]
+  before_action :check_if_admin
 
-  #Checks if current_user is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?
       redirect_to "/"
@@ -11,58 +10,46 @@ class UsersController < ApplicationController
   end
 
   def create
-    #FIXME: This is not working. It is not saving somehow
-    #  Maybe it has to do with the password stuff?
-    @user = User.new
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
-    @user.password = "password" #params[:password]
-    @user.password_confirmation = "password" #params[:password_confirmation]
+    @price = Price.new
+    @price.item_id = params[:item_id]
+    @price.price = params[:price]
 
-    if @user.save
-      redirect_to "/users", :notice => "User created successfully."
+    if @price.save
+      redirect_to "/prices", :notice => "Price created successfully."
     else
       render "new_form"
     end
   end
 
-  def delete
-    @user = User.find(params[:id])
-  end
-
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to "/users", :notice => "User deleted successfully."
+    @price = Price.find(params[:id])
+    @price.destroy
+    redirect_to "/prices", :notice => "Price deleted successfully."
   end
 
   def edit
-    @user = User.find(params[:id])
+    @price = Price.find(params[:id])
   end
 
   def index
-    @users = User.all
+    @prices = Price.all
   end
 
   def new
-    @user = User.new
+    @price = Price.new
   end
 
   def show
-    @user = User.find(params[:id])
+    @price = Price.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
+    @price = Price.find(params[:id])
+    @price.item_id = params[:item_id]
+    @price.price = params[:price]
 
-    if @user.save
-      redirect_to "/users", :notice => "User updated successfully."
+    if @price.save
+      redirect_to "/prices", :notice => "Price updated successfully."
     else
       render "new_form"
     end

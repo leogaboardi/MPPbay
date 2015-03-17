@@ -1,90 +1,78 @@
-<!-- Validation failure messages -->
-  <% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do |message| %>
-      <div class="alert alert-dismissable alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <%= message %>
-      </div>
-    <% end %>
-  <% end %>
-
 <div class="row">
   <div class="col-md-12">
 
-    <%= form_tag "/users", :class => "form-horizontal", :method => "post" do %>
+    <%= form_tag "/buildings", :class => "form-horizontal", :method => "post" do %>
 
-      <!-- Label and input for name -->
+      <!-- Label and input for label -->
       <div class="form-group">
-        <label for="name" class="col-sm-3 control-label">
-          Name
+        <label for="label" class="col-sm-3 control-label">
+          Label
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'name', nil, class: 'form-control' %>
+          <%= text_field_tag 'label', nil, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for email -->
+      <!-- Label and input for address_line_1 -->
       <div class="form-group">
-        <label for="email" class="col-sm-3 control-label">
-          Email
+        <label for="address_line_1" class="col-sm-3 control-label">
+          Address
         </label>
         <div class="col-sm-4">
-          <%= email_field_tag 'email', nil, class: 'form-control' %>
+          <%= text_field_tag 'address_line_1', nil, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for password -->
+      <!-- Label and input for city -->
       <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">
-          Password
+        <label for="city" class="col-sm-3 control-label">
+          City
         </label>
         <div class="col-sm-4">
-          <%= password_field_tag 'password', nil, class: 'form-control' %>
+          <%= text_field_tag 'city', nil, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for password_confirmation -->
+      <!-- Label and input for state -->
       <div class="form-group">
-        <label for="password_confirmation" class="col-sm-3 control-label">
-          Confirm password
+        <label for="state" class="col-sm-3 control-label">
+          State
         </label>
         <div class="col-sm-4">
-          <%= password_field_tag 'password_confirmation', nil, class: 'form-control' %>
+          <%= text_field_tag 'state', nil, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for phone number -->
+      <!-- Label and input for zip -->
       <div class="form-group">
-        <label for="phone" class="col-sm-3 control-label">
-          Phone number
+        <label for="zip" class="col-sm-3 control-label">
+          Zip
         </label>
         <div class="col-sm-4">
-          <%= phone_field_tag 'phone', nil, class: 'form-control' %>
+          <%= text_field_tag 'zip', nil, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Admin checkbox -->
+      <!-- Label and input for country -->
       <div class="form-group">
-        <div class="col-sm-9 col-sm-offset-3">
-          <div class="checkbox">
-            <label>
-              <%= check_box_tag 'admin' %>
-              Admin rights?
-            </label>
-          </div>
+        <label for="country" class="col-sm-3 control-label">
+        Country
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'country', nil, class: 'form-control' %>
         </div>
       </div>
 
       <!-- CREATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">
-          <%= submit_tag "Create new user", :class => "btn btn-primary" %>
+          <%= submit_tag "Create new building", :class => "btn btn-primary" %>
         </div>
       </div>
 
     <% end %>
     <div class="col-md-12">
-      <a href="/users">Go back</a>
+      <%= link_to "Go back", buildings_path %>
       <br>
     </div>
   </div>

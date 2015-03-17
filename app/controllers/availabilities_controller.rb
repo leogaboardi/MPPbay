@@ -25,10 +25,6 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
-  def delete
-    @availability = Availability.find(params[:id])
-  end
-
   def destroy
     @availability = Availability.find(params[:id])
     @availability.destroy

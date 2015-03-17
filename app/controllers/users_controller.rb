@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_admin #, only[:index, :create, :update]
 
-  #Checks if current_user is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?
       redirect_to "/"
@@ -32,10 +31,6 @@ class UsersController < ApplicationController
     else
       render "new_form"
     end
-  end
-
-  def delete
-    @user = User.find(params[:id])
   end
 
   def destroy

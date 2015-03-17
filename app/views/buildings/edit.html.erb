@@ -1,61 +1,78 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_tag user_path(@user), :class => "form-horizontal", :method => "put" do %>
-      <!-- Label and input for name -->
+    <%= form_tag building_path(@building), :class => "form-horizontal", :method => "put" do %>
+
+      <!-- Label and input for label -->
       <div class="form-group">
-        <label for="name" class="col-sm-3 control-label">
-          Name
+        <label for="label" class="col-sm-3 control-label">
+          Label
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'name', @user.name, class: 'form-control' %>
+          <%= text_field_tag 'label', @building.label, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for email -->
+      <!-- Label and input for address_line_1 -->
       <div class="form-group">
-        <label for="email" class="col-sm-3 control-label">
-          Email
+        <label for="address_line_1" class="col-sm-3 control-label">
+          Address
         </label>
         <div class="col-sm-4">
-          <%= email_field_tag 'email', @user.email, class: 'form-control' %>
+          <%= text_field_tag 'address_line_1', @building.address_line_1, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for phone number -->
+      <!-- Label and input for city -->
       <div class="form-group">
-        <label for="phone" class="col-sm-3 control-label">
-          Phone number
+        <label for="city" class="col-sm-3 control-label">
+          City
         </label>
         <div class="col-sm-4">
-          <%= phone_field_tag 'phone', @user.phone, class: 'form-control' %>
+          <%= text_field_tag 'city', @building.city, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Admin checkbox -->
+      <!-- Label and input for state -->
       <div class="form-group">
-        <div class="col-sm-9 col-sm-offset-3">
-          <div class="checkbox">
-            <label>
-              <%= check_box_tag 'admin', true, @user.admin %>
-              Admin rights?
-            </label>
-          </div>
+        <label for="state" class="col-sm-3 control-label">
+          State
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'state', @building.state, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- CREATE BUTTON -->
+      <!-- Label and input for zip -->
+      <div class="form-group">
+        <label for="zip" class="col-sm-3 control-label">
+          Zip
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'zip', @building.zip, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for country -->
+      <div class="form-group">
+        <label for="country" class="col-sm-3 control-label">
+        Country
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'country', @building.country, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- UPDATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">
-          <%= submit_tag "Update user", :class => "btn btn-primary" %>
+          <%= submit_tag "Update building", :class => "btn btn-primary" %>
         </div>
       </div>
 
     <div class="col-md-12">
-      <a href="/users">Go back</a>
+      <%= link_to "Go back", buildings_path %>
       <br>
     </div>
-
-
     <% end %>
   </div>
 </div>

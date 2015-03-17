@@ -1,17 +1,21 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h3><%= @user.name %> data</h3>
+    <h3><%= @building.label %> data</h3>
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @user.name %></dd>
-      <dt>Email</dt>
-      <dd><%= @user.email %></dd>
-      <dt>Phone</dt>
-      <dd><%= @user.phone %></dd>
-      <dt>Admin?</dt>
-      <dd><%= @user.admin %></dd>
+      <dt>Label</dt>
+      <dd><%= @building.label %></dd>
+      <dt>Address</dt>
+      <dd><%= @building.address_line_1 %></dd>
+      <dt>City</dt>
+      <dd><%= @building.city %></dd>
+      <dt>State</dt>
+      <dd><%= @building.state %></dd>
+      <dt>Zip</dt>
+      <dd><%= @building.zip %></dd>
+      <dt>Country</dt>
+      <dd><%= @building.country %></dd>
     </dl>
-    <%= link_to "Go back", users_path %>
+    <%= link_to "Go back", buildings_path %>
     <br>
     </div>
   </div>

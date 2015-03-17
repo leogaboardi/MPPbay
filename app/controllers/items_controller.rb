@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
 
   before_action :check_if_admin #, only[:index, :create, :update]
 
-  #Checks if current_item is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?
       redirect_to "/"
@@ -17,8 +16,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    #FIXME: This is not working. It is not saving somehow
-    #  Maybe it has to do with the password stuff?
     @item = Item.new
     @item.title = params[:title]
     @item.user_id = params[:user_id]
@@ -39,10 +36,6 @@ class ItemsController < ApplicationController
     else
       render "new_form"
     end
-  end
-
-  def delete
-    @item = Item.find(params[:id])
   end
 
   def destroy

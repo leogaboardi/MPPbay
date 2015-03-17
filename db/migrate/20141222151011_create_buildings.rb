@@ -1,6 +1,7 @@
 class CreateBuildings < ActiveRecord::Migration
   def change
     create_table :buildings do |t|
+      t.string :label
       t.string :address_line_1
       t.string :city
       t.string :state

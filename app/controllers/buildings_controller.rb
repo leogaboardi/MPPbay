@@ -1,9 +1,8 @@
-class UsersController < ApplicationController
+class BuildingsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :check_if_admin #, only[:index, :create, :update]
+  before_action :check_if_admin
 
-  #Checks if current_user is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?
       redirect_to "/"
@@ -11,58 +10,53 @@ class UsersController < ApplicationController
   end
 
   def create
-    #FIXME: This is not working. It is not saving somehow
-    #  Maybe it has to do with the password stuff?
-    @user = User.new
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
-    @user.password = "password" #params[:password]
-    @user.password_confirmation = "password" #params[:password_confirmation]
-
-    if @user.save
-      redirect_to "/users", :notice => "User created successfully."
+    @building = Building.new
+    @building.label = params[:label]
+    @building.address_line_1 = params[:address_line_1]
+    @building.city = params[:city]
+    @building.state = params[:state]
+    @building.zip = params[:zip]
+    @building.country = params[:country]
+    if @building.save
+      redirect_to "/buildings", :notice => "Building created successfully."
     else
       render "new_form"
     end
   end
 
-  def delete
-    @user = User.find(params[:id])
-  end
-
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to "/users", :notice => "User deleted successfully."
+    @building = Building.find(params[:id])
+    @building.destroy
+    redirect_to "/buildings", :notice => "Building deleted successfully."
   end
 
   def edit
-    @user = User.find(params[:id])
+    @building = Building.find(params[:id])
   end
 
   def index
-    @users = User.all
+    @buildings = Building.all
   end
 
   def new
-    @user = User.new
+    @building = Building.new
   end
 
   def show
-    @user = User.find(params[:id])
+    @building = Building.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
+    @building = Building.find(params[:id])
+    @building.label = params[:label]
+    @building.address_line_1 = params[:address_line_1]
+    @building.city = params[:city]
+    @building.state = params[:state]
+    @building.zip = params[:zip]
+    @building.country = params[:country]
 
-    if @user.save
-      redirect_to "/users", :notice => "User updated successfully."
+    if @building.save
+      redirect_to "/buildings", :notice => "Building updated successfully."
     else
       render "new_form"
     end

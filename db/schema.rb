@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141224221451) do
   end
 
   create_table "buildings", force: true do |t|
+    t.string   "label"
     t.string   "address_line_1"
     t.string   "city"
     t.string   "state"

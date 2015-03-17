@@ -1,35 +1,31 @@
 <div class="row">
   <div class="col-md-12">
-    <h3>Manage users</h3>
+    <h3>Manage prices</h3>
 
-    <%= link_to "Add new user", new_user_path, :class => "btn btn-primary" %>
+    <%= link_to "Add new price", new_price_path, :class => "btn btn-primary" %>
     <p>&nbsp</p>
     <table class="table table-striped">
       <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Admin?</th>
+        <th>Item</th>
+        <th>Price</th>
         <th></th>
         <th></th>
         <th></th>
       </tr>
 
-      <% @users.each do |user| %>
+      <% @prices.each do |price| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.phone %></td>
-        <td><%= user.admin %></td>
+        <td><%= price.item_id %></td>
+        <td><%= price.price %></td>
         <td>
-         <%= link_to "View", user_path(user.id) %>
+         <%= link_to "View", price_path(price.id) %>
         </td>
         <td>
-          <%= link_to "Edit", edit_user_path(user.id) %>
+          <%= link_to "Edit", edit_price_path(price.id) %>
         </td>
 
         <td>
-          <%= link_to "Delete", user_path(user.id), :method => "delete", data: {confirm: "Are you sure?"} %>
+          <%= link_to "Delete", price_path(price.id), :method => "delete", data: {confirm: "Are you sure?"} %>
         </td>
       </tr>
       <% end %>

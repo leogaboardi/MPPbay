@@ -164,3 +164,49 @@ purchases.each do |new_purchase|
   purchase.buyer_id = new_purchase[:buyer_id]
   purchase.save
 end
+
+conditions = [
+  {:label => "Brand new"},
+  {:label => "Used, but like new"},
+  {:label => "Used, some wear"},
+  {:label => "Considerable wear / some damage"}
+]
+
+conditions.each do |new_condition|
+  condition = Condition.new
+  condition.label = new_condition[:label]
+  condition.save
+end
+
+buildings = [
+  {:label => "Millenium Park Plaza",
+    :address_line_1 => "151 N Michigan ave",
+    :city => "Chicago",
+    :state => "IL",
+    :zip => "60601",
+    :country => "United States"
+  }
+]
+
+buildings.each do |new_building|
+  building = Building.new
+  building.label = new_building[:label]
+  building.address_line_1 = new_building[:address_line_1]
+  building.city = new_building[:city]
+  building.state = new_building[:state]
+  building.zip = new_building[:zip]
+  building.country = new_building[:country]
+  building.save
+end
+
+statuses = [
+  {:label => "available"},
+  {:label => "sold"},
+  {:label => "disabled"}
+]
+
+statuses.each do |new_status|
+  status = Status.new
+  status.label = new_status[:label]
+  status.save
+end

@@ -1,9 +1,8 @@
-class UsersController < ApplicationController
+class StatusesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :check_if_admin #, only[:index, :create, :update]
+  before_action :check_if_admin
 
-  #Checks if current_user is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?
       redirect_to "/"
@@ -11,58 +10,43 @@ class UsersController < ApplicationController
   end
 
   def create
-    #FIXME: This is not working. It is not saving somehow
-    #  Maybe it has to do with the password stuff?
-    @user = User.new
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
-    @user.password = "password" #params[:password]
-    @user.password_confirmation = "password" #params[:password_confirmation]
-
-    if @user.save
-      redirect_to "/users", :notice => "User created successfully."
+    @status = Status.new
+    @status.label = params[:label]
+    if @status.save
+      redirect_to "/statuses", :notice => "Status created successfully."
     else
       render "new_form"
     end
   end
 
-  def delete
-    @user = User.find(params[:id])
-  end
-
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to "/users", :notice => "User deleted successfully."
+    @status = Status.find(params[:id])
+    @status.destroy
+    redirect_to "/statuses", :notice => "Status deleted successfully."
   end
 
   def edit
-    @user = User.find(params[:id])
+    @status = Status.find(params[:id])
   end
 
   def index
-    @users = User.all
+    @statuses = Status.all
   end
 
   def new
-    @user = User.new
+    @status = Status.new
   end
 
   def show
-    @user = User.find(params[:id])
+    @status = Status.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
+    @status = Status.find(params[:id])
+    @status.label = params[:label]
 
-    if @user.save
-      redirect_to "/users", :notice => "User updated successfully."
+    if @status.save
+      redirect_to "/statuses", :notice => "Status updated successfully."
     else
       render "new_form"
     end
