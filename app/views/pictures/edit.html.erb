@@ -1,39 +1,54 @@
+<!-- Validation failure messages -->
+<% if @picture.errors.any? %>
+  <% @picture.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
 <div class="row">
   <div class="col-md-12">
-    <%= form_tag picture_path(@picture), :class => "form-horizontal", :method => "put" do %>
+
+    <%= form_for @picture, :url=> picture_path, :html => { multipart: true, :class => "form-horizontal", :method => "patch" } do |f| %>
 
       <!-- Label and input for item_id -->
       <div class="form-group">
         <label for="item_id" class="col-sm-3 control-label">
-          Item_id
+          item_id
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'item_id', @picture.item_id, class: 'form-control' %>
+          <%= f.text_field :item_id, value: @picture.item_id ,class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for picture_address -->
+      <!-- Label and input for image -->
       <div class="form-group">
-        <label for="picture_address" class="col-sm-3 control-label">
-          Picture_address
+        <label for="item_id" class="col-sm-3 control-label">
+          Image location
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'picture_address', @picture.picture_address, class: 'form-control' %>
+          <em>Note: you cannot change your file - you will need to delete and submit a new one.</em>
+        </div>
+        <BR><BR>
+        <div class="col-sm-4 col-sm-offset-3">
+          <%= link_to image_tag(@picture.image.url(:med), align:"middle", style:"border: 1px solid black"), @picture.image.url, align:"center"  %>
         </div>
       </div>
-      <!-- UPDATE BUTTON -->
+
+      <!-- CREATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">
-          <%= submit_tag "Update picture", :class => "btn btn-primary" %>
+          <%= f.submit "Update picture", :class => "btn btn-primary" %>
         </div>
       </div>
+
     <% end %>
+
     <div class="col-md-12">
       <%= link_to "Go back", pictures_path %>
       <br>
     </div>
   </div>
 </div>
-
-
-

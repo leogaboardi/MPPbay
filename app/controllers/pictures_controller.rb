@@ -12,13 +12,13 @@ class PicturesController < ApplicationController
   def create
 
     @picture = Picture.new
-    @picture.item_id = params[:item_id]
-    @picture.picture_address = params[:picture_address]
+    @picture.item_id = params[:picture][:item_id]
+    @picture.image = params[:picture][:image]
 
     if @picture.save
       redirect_to "/pictures", :notice => "Picture created successfully."
     else
-      render "new_form"
+      render "new"
     end
   end
 
@@ -46,13 +46,12 @@ class PicturesController < ApplicationController
 
   def update
     @picture = Picture.find(params[:id])
-    @picture.item_id = params[:item_id]
-    @picture.picture_address = params[:picture_address]
+    @picture.item_id = params[:picture][:item_id]
 
     if @picture.save
       redirect_to "/pictures", :notice => "Picture updated successfully."
     else
-      render "new_form"
+      render "new"
     end
   end
 end

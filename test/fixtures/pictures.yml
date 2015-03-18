@@ -2,8 +2,8 @@
 
 one:
   item_id: 1
-  picture_address: MyString
+  image: 
 
 two:
   item_id: 1
-  picture_address: MyString
+  image: 
