@@ -68,10 +68,6 @@ users.each do |new_user|
 end
 
 items = [
-  {
-    :user_id => 1,
-    :title => "Old accounting book"
-  },
     {
     :user_id => 2,
     :title => "Batcar"
@@ -84,12 +80,24 @@ items = [
     :user_id => 2,
     :title => "Some smelly stuff"
   },
+  {
+    :user_id => 1,
+    :title => "Coffee table",
+    :details => "",
+    :description => "Used coffee table",
+    :item_url => "http://www.ikea.com/us/en/catalog/products/40104294/#/10104295"
+  }
 ]
 
 items.each do |new_item|
   item = Item.new
+
   item.user_id = new_item[:user_id]
   item.title = new_item[:title]
+  item.details = new_item[:details]
+  item.description = new_item[:description]
+  item.item_url = new_item[:item_url]
+
   item.save
 end
 
@@ -165,6 +173,32 @@ purchases.each do |new_purchase|
   purchase.save
 end
 
+categories = [
+  { :name => "Home Decor",
+    :level => 1
+  },
+  { :name => "Books",
+    :level => 1,
+  },
+  { :name => "Furniture",
+    :level => 2,
+    :parent_id => 1
+  },
+    { :name => "Living room",
+    :level => 3,
+    :parent_id => 3
+  }
+]
+
+categories.each do |new_category|
+  category = Category.new
+  category.name = new_category[:name]
+  category.level = new_category[:levell]
+  category.parent_id = new_category[:parent_id]
+
+  category.save
+end
+
 conditions = [
   {:label => "Brand new"},
   {:label => "Used, but like new"},
@@ -200,7 +234,8 @@ buildings.each do |new_building|
 end
 
 statuses = [
-  {:label => "available"},
+  {:label => "draft"},
+  {:label => "on sale"},
   {:label => "sold"},
   {:label => "disabled"}
 ]

@@ -12,6 +12,16 @@
         </div>
       </div>
 
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="col-sm-3 control-label">
+          Description
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'description', @condition.description, class: 'form-control' %>
+        </div>
+      </div>
+
       <!-- UPDATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">

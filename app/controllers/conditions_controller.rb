@@ -12,6 +12,7 @@ class ConditionsController < ApplicationController
   def create
     @condition = Condition.new
     @condition.label = params[:label]
+    @condition.description = params[:description]
 
     if @condition.save
       redirect_to "/conditions", :notice => "Condition created successfully."
@@ -45,6 +46,7 @@ class ConditionsController < ApplicationController
   def update
     @condition = Condition.find(params[:id])
     @condition.label = params[:label]
+    @condition.description = params[:description]
 
     if @condition.save
       redirect_to "/conditions", :notice => "Condition updated successfully."

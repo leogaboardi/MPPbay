@@ -47,7 +47,17 @@
           Details
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'details', @item.details, class: 'form-control' %>
+          <%= text_field_tag 'details', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="col-sm-3 control-label">
+          description
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'description', @item.description, class: 'form-control' %>
         </div>
       </div>
 

@@ -12,6 +12,11 @@
       <dd><%= @item.condition_id %></dd>
       <dt>Details</dt>
       <dd><%= @item.details %></dd>
+      <dt>Price</dt>
+      <dd>WIP</dd>
+
+      <dt>Description</dt>
+      <dd> <%= @item.description %> </dd>
       <dt>Handling time</dt>
       <dd><%= @item.handling_time %></dd>
       <dt>Listing duration</dt>
@@ -19,7 +24,7 @@
       <dt>Available at</dt>
       <dd><%= @item.available_at %></dd>
       <dt>Item URL</dt>
-      <dd><%= @item.item_url %></dd>
+      <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
       <dt>Item location</dt>
       <dd><%= @item.address_id %></dd>
       <dt>Category 1</dt>

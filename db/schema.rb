@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(version: 20150317211901) do
 
   create_table "conditions", force: true do |t|
     t.string   "label"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "favorites", force: true do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150317211901) do
     t.integer  "status_id"
     t.string   "title"
     t.integer  "condition_id"
+    t.string   "description"
     t.string   "details"
     t.string   "handling_time"
     t.date     "listing_duration"

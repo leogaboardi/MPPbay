@@ -7,24 +7,33 @@ In this project I am practising further app development skills to implement a si
 
   FIXME: Take out border from page navigator
 
-  TODO: P0: make product list page
+  FIXME: New product page: put the picture form
+
   TODO: P0: make product page
-  TODO: P0: user needs to create a new product
+
 
   TODO: P0: user needs to manage the products they have
 
+  TODO: P0: about page
+
   Favorite list
+
   TODO: P1: user can favorite a product
+
   TODO: P1: can see a list of favorite products
 
-  Purschase
+  Purchase process
 
 
 
-
+  Others
 
   TODO: P1: devise: format sign up page
+
   TODO: P1: devise: format sign in page
+
   TODO: P1: devise: format 'Forgot your password page' page
 
   TODO: P2: create SimilarItems model
+
+  TODO: P2: Put bootstrap, glyphcons.com contact

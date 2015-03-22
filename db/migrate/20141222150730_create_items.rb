@@ -5,6 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :status_id
       t.string :title
       t.integer :condition_id
+      t.string :description
       t.string :details
       t.string :handling_time
       t.date :listing_duration

@@ -3,11 +3,18 @@ Rails.application.routes.draw do
   devise_for :users
   root 'root#index'
 
-  get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
 
   resources :users, :items, :addresses, :favorites, :categories,
   :availabilities, :purchases, :pictures, :prices, :buildings, :conditions,
   :statuses
+
+  get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
+  get('/buy', { :controller => 'general', :action => 'buy', :as => "buy" })
+  get('/item_display/:id', { :controller => 'general', :action => 'item', :as => "item_display" })
+  get('/sell', { :controller => 'general', :action => 'sell', :as => "sell" })
+  post('/sell', { :controller => 'general', :action => 'create', :as => "create" })
+  get('/sell/new', { :controller => 'general', :action => 'item_new', :as => "item_new" })
+  get('/summary', { :controller => 'general', :action => 'summary', :as => "summary" })
 
   # CREATE
   #get('/users/new', { :controller => 'users', :action => 'new', :as => "new" })

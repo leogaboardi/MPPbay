@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <ol class="breadcrumb">
+      <li><%= link_to "Home", "/buy" %></li>
+      <li class="active"><%= @item.title %></li>
+    </ol>
+    <div class="row item-header">
+      <div class="item-name">
+        <h1><%= @item.title %></h1>
+      </div>
+      <div class="item-social">
+      <span style="font-size: 40px; float: right" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="row item-highlight">
+      <div class="col-md-8 item-picture-frame">
+        <img class="item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
+        <div class="item-thumblist">
+          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
+          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
+          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
+          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
+        </div>
+      </div>
+      <div class="col-md-4 item-data-frame">
+        <div class="row item-price" >$88.88</div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-lg btn-primary" type="button">Contact seller</button>
+          </div>
+        </div>
+
+        <div class="row item-description">
+          <p><%= @item.description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="row item-details">
+        <h3>Item Specifics</h3>
+        <dl class="dl-horizontal">
+          <dt>Condition</dt>
+          <dd><%= @item.condition_id %></dd>
+          <dt>Item URL</dt>
+          <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
+          <dt>Details</dt>
+          <dd><%= @item.details %></dd>
+        </dl>
+        <h3>Sale terms</h3>
+        <dl class="dl-horizontal">
+          <dt>Listing duration</dt>
+          <dd>Static</dd>
+          <dt>Available at</dt>
+          <dd><%= @item.available_at %></dd>
+          <dt>Handling time</dt>
+          <dd>Static</dd>
+          <dt>Item location</dt>
+          <dd>Static</dd>
+
+        </dl>
+    </div>
+  </div>
+</div>

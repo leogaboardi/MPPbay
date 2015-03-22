@@ -1,4 +1,7 @@
 class Picture < ActiveRecord::Base
+
+  belongs_to :item
+
   validates :image, attachment_presence: true
   validates :item_id, presence: true
 

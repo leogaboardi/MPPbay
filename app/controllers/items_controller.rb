@@ -7,6 +7,9 @@ class ItemsController < ApplicationController
   # TODO: category_3 associaton table
   # TODO: user associaton table
 
+  # TODO: details: put placeholder 'anything else worth of saying'
+  # TODO: think about specific properties for some categories (e.g. color for furniture)
+
   before_action :check_if_admin #, only[:index, :create, :update]
 
   def check_if_admin
@@ -22,6 +25,7 @@ class ItemsController < ApplicationController
     @item.status_id = params[:status_id]
     @item.condition_id = params[:condition_id]
     @item.details = params[:details]
+    @item.description = params[:description]
     @item.handling_time = params[:handling_time]
     @item.listing_duration = params[:listing_duration]
     @item.available_at = params[:available_at]
@@ -67,6 +71,7 @@ class ItemsController < ApplicationController
     @item.status_id = params[:status_id]
     @item.condition_id = params[:condition_id]
     @item.details = params[:details]
+    @item.description = params[:description]
     @item.handling_time = params[:handling_time]
     @item.listing_duration = params[:listing_duration]
     @item.available_at = params[:available_at]
