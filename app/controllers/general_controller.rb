@@ -11,7 +11,9 @@ class GeneralController < ApplicationController
     # TODO: P0: browser is static, make it dynamic
     # TODO: P1: put pagination, if needed
 
-    @items = Item.all
+    @prices = Price.all
+    @items = Item.where(:status => 2)
+    @pictures = Picture.all
     render "browse"
   end
 
@@ -51,8 +53,8 @@ class GeneralController < ApplicationController
   def item
     # TODO: P0: clickable heart (creates a favorite)
     # TODO: P0: item page is static, make it dynamic
-    # TODO: P0: create static page
-
+    @pictures = Picture.where(:item_id => params[:id])
+    @price = Price.where(:item_id => params[:id]).last
     @item = Item.find(params[:id])
   end
 
@@ -69,12 +71,28 @@ class GeneralController < ApplicationController
 
     @sell=true
 
-    @items = Item.all
+    @prices = Price.all
+    @pictures = Picture.all
+    @items = Item.where(:status => 2, :user_id => current_user.id)
     render "browse"
   end
 
 
   def summary
-    # TODO: P0: create static page
+    # TODO: P0: create dynamic page for "bought" tab
+    # TODO: P0: on "sale" tab, separate the items that require activation
+    # TODO: P0: on "sale" tab, make edit / delete / activate buttons work
+    # TODO: P0: on "sale" tab, make edit / delete / activate buttons work
+
+    # TODO: P0: on "profile" tab, make address edit / delete buttons work
+
+
+    @prices = Price.all
+    @addresses = Address.where(:user_id => current_user.id)
+    @favorites = Favorite.all
+    @selling = Item.where(:user_id => current_user.id, :status_id => 2)
+    @draft = Item.where(:user_id => current_user.id, :status_id => 1)
+    @sold = Item.where(:user_id => current_user.id, :status_id => 3)
+    @disabled = Item.where(:user_id => current_user.id, :status_id => 4)
   end
 end

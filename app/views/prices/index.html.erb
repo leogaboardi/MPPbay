@@ -7,7 +7,7 @@
     <table class="table table-striped">
       <tr>
         <th>Item</th>
-        <th>Price</th>
+        <th>Value</th>
         <th></th>
         <th></th>
         <th></th>
@@ -16,7 +16,7 @@
       <% @prices.each do |price| %>
       <tr>
         <td><%= price.item_id %></td>
-        <td><%= price.price %></td>
+        <td><%= price.value %></td>
         <td>
          <%= link_to "View", price_path(price.id) %>
         </td>

@@ -2,17 +2,20 @@
 
 In this project I am practising further app development skills to implement a simple e-commerce website.
 
+# Todo for 3/23/2015:
+  FIXME: New product page: put the picture form
+
+  TODO: P0: Users can edit their items
+
+  TODO: P0: user needs to manage the products they have
+
+
 
 # Todo list:
 
   FIXME: Take out border from page navigator
 
-  FIXME: New product page: put the picture form
-
   TODO: P0: make product page
-
-
-  TODO: P0: user needs to manage the products they have
 
   TODO: P0: about page
 

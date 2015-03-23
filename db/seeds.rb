@@ -69,23 +69,60 @@ end
 
 items = [
     {
-    :user_id => 2,
-    :title => "Batcar"
+    :user_id => 1,
+    :title => "2x2 Shelving unit",
+    :description => "Kallax 2x2 shelving unit from IKEA",
+    :item_url => "http://www.ikea.com/us/en/catalog/products/40275813/",
+    :details => "Birch effect. Shelf in good conditions. Link shows original product from ikea",
+    :category_1_id => 1,
+    :category_2_id => 3,
+    :category_3_id => 4,
+    :status_id => 2,
+    :condition_id => 2
+  },
+  {
+    :user_id => 1,
+    :title => "3 place fabric sofa",
+    :condition_id => 4,
+    :description => "3 place, L shaped fabric sofa. Blue color",
+    :status_id => 2,
+    :category_1_id => 1,
+    :category_2_id => 3,
+    :category_3_id => 4,
+    :details => "Sofa is worn, with stains and dirt in the textile (it is difficult to clean. No damage."
   },
   {
     :user_id => 2,
-    :title => "Batman Gadget"
-  },
-  {
-    :user_id => 2,
+    :status_id => 1,
     :title => "Some smelly stuff"
   },
   {
     :user_id => 1,
     :title => "Coffee table",
-    :details => "",
+    :status_id => 1,
     :description => "Used coffee table",
     :item_url => "http://www.ikea.com/us/en/catalog/products/40104294/#/10104295"
+  },
+    {
+    :user_id => 1,
+    :title => "Desk",
+    :status_id => 2,
+    :description => "Desk from Ikea",
+    :item_url => ""
+  },
+    {
+    :user_id => 1,
+    :title => "Swivel chair",
+    :status_id => 3,
+    :description => "Chair from IKEA",
+    :item_url => ""
+  },
+    {
+    :user_id => 1,
+    :title => "Desk lamp",
+    :status_id => 4,
+    :description => "Desk lamp from IKEA. Light bulb not included",
+    :item_url => ""
   }
 ]
 
@@ -97,6 +134,15 @@ items.each do |new_item|
   item.details = new_item[:details]
   item.description = new_item[:description]
   item.item_url = new_item[:item_url]
+  item.status_id = new_item[:status_id]
+  item.condition_id = new_item[:condition_id]
+  item.handling_time = new_item[:handling_time]
+  item.listing_duration = new_item[:listing_duration]
+  item.available_at = new_item[:available_at]
+  item.address_id = new_item[:address_id]
+  item.category_1_id = new_item[:category_1_id]
+  item.category_2_id = new_item[:category_2_id]
+  item.category_3_id = new_item[:category_3_id]
 
   item.save
 end
@@ -180,11 +226,15 @@ categories = [
   { :name => "Books",
     :level => 1,
   },
-  { :name => "Furniture",
+  { :name => "Furniture", # id 3
     :level => 2,
     :parent_id => 1
   },
-    { :name => "Living room",
+    { :name => "Living room", # id 4
+    :level => 3,
+    :parent_id => 3
+  },
+  { :name => "Bedroom",
     :level => 3,
     :parent_id => 3
   }
@@ -244,4 +294,22 @@ statuses.each do |new_status|
   status = Status.new
   status.label = new_status[:label]
   status.save
+end
+
+prices = [
+  {:item_id => 1,
+  :value => 12.99},
+  {:item_id => 2,
+  :value => 300},
+  {:item_id => 3,
+  :value => 10},
+  {:item_id => 4,
+  :value => 5.99}
+]
+
+prices.each do |new_price|
+  price = Price.new
+  price.value = new_price[:value]
+  price.item_id = new_price[:item_id]
+  price.save
 end

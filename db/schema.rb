@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20150317211901) do
 
   create_table "prices", force: true do |t|
     t.integer  "item_id"
-    t.float    "price"
+    t.float    "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

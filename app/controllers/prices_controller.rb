@@ -12,7 +12,7 @@ class PricesController < ApplicationController
   def create
     @price = Price.new
     @price.item_id = params[:item_id]
-    @price.price = params[:price]
+    @price.value = params[:value]
 
     if @price.save
       redirect_to "/prices", :notice => "Price created successfully."
@@ -46,7 +46,7 @@ class PricesController < ApplicationController
   def update
     @price = Price.find(params[:id])
     @price.item_id = params[:item_id]
-    @price.price = params[:price]
+    @price.value = params[:value]
 
     if @price.save
       redirect_to "/prices", :notice => "Price updated successfully."

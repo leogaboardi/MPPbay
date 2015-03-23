@@ -2,6 +2,7 @@
   <div class="col-md-8 col-md-offset-2">
     <ol class="breadcrumb">
       <li><%= link_to "Home", "/buy" %></li>
+      <li><%= link_to @item.category_1_id, "#" %></li>
       <li class="active"><%= @item.title %></li>
     </ol>
     <div class="row item-header">
@@ -15,16 +16,25 @@
 
     <div class="row item-highlight">
       <div class="col-md-8 item-picture-frame">
-        <img class="item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
-        <div class="item-thumblist">
-          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
-          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
-          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
-          <img class="item-thumbnail" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png">
-        </div>
+        <img class="item-picture"
+          <% if !@pictures.first.nil? %>
+              src="<%= @pictures.first.image.url %>"
+          <% else %>
+              src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"
+          <% end %>
+        >
+        <% if !@pictures.first.nil? %>
+          <div class="item-thumblist">
+          <% @pictures.each do |picture| %>
+            <img class="item-thumbnail" src="<%= picture.image.url %>">
+          <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="col-md-4 item-data-frame">
-        <div class="row item-price" >$88.88</div>
+        <% if !@price.nil? %>
+          <div class="row item-price" >$<%= "%.2f" % @price.value %></div>
+        <% end %>
         <div class="row">
           <div class="col-md-12">
             <button class="btn btn-lg btn-primary" type="button">Contact seller</button>

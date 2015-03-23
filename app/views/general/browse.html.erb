@@ -8,7 +8,13 @@
     <% @items.each do |item| %>
       <div class="col-md-6 browse-item">
         <div class="browse-item-picture-frame">
-          <a href="/item_display"><img class="browse-item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"></a>
+          <a href="/item_display/<%= item.id %>"><img class="browse-item-picture"
+            <% if !@pictures.where(:item_id => item.id).first.nil? %>
+              src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
+            <% else %>
+              src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"
+            <% end %>
+          ></a>
           <div class="browse-item-social">
             <span style="font-size: 40px" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
           </div>
@@ -18,7 +24,10 @@
             <a class="browse-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
           </div>
           <div class="browse-item-price-frame">
-            <a class="browse-item-price" href="/item_display">$88.88</a>
+            <% if !@prices.where(:item_id => item.id).last.nil? %>
+            <a class="browse-item-price" href="/item_display/<%= item.id %>">$<%= "%.2f" % @prices.where(:item_id => item.id).last.value %>
+            </a>
+            <% end %>
           </div>
         </div>
       </div>

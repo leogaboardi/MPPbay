@@ -1,5 +1,183 @@
 <div class="row">
   <div class="col-md-12">
+    <div role="tabpanel">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Your profile</a></li>
+        <li role="presentation" ><a href="#favorites" aria-controls="favorites" role="tab" data-toggle="tab">Your favorite items</a></li>
+        <li role="presentation"><a href="#sell" aria-controls="sell" role="tab" data-toggle="tab">Items you are selling</a></li>
+        <li role="presentation"><a href="#buy" aria-controls="buy" role="tab" data-toggle="tab">Items you bought</a></li>
+      </ul>
 
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="profile">
+          <h3>Your profile</h3>
+          <dl class="dl-horizontal">
+            <dt>Name</dt>
+            <dd><%= current_user.name %></dd>
+            <dd><%= current_user.email %></dd>
+            <dt>Phone</dt>
+            <dd><%= current_user.phone %></dd>
+          </dl>
+          <h3>Your addresses</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Main address</h3>
+            </div>
+            <div class="panel-body">
+              <p>1234 South Batman avenue</p>
+              <p>Chicago, IL</p>
+              <p>60601</p>
+              <p>United States</p>
+              <p>Phone: 555 123 4567 </p>
+              <button type="button" class="btn btn-default">Edit</button>
+              <button type="button" class="btn btn-default">Delete</button>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Additional addresses</h3>
+            </div>
+            <div class="panel-body">
+              <p>1234 South Batman avenue</p>
+              <p>Chicago, IL</p>
+              <p>60601</p>
+              <p>United States</p>
+              <p>Phone: 555 123 4567 </p>
+              <button type="button" class="btn btn-default">Edit</button>
+              <button type="button" class="btn btn-default">Delete</button>
+              <button type="button" class="btn btn-default">Make default</button>
+              <br><br>
+              <p>1234 South Batman avenue</p>
+              <p>Chicago, IL</p>
+              <p>60601</p>
+              <p>United States</p>
+              <p>Phone: 555 123 4567 </p>
+              <button type="button" class="btn btn-default">Edit</button>
+              <button type="button" class="btn btn-default">Delete</button>
+              <button type="button" class="btn btn-default">Make default</button>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="favorites">
+          <h3>Your favorite items</h3>
+          <% @favorites.each do |favorite| %>
+            <div class="row summary-item-frame">
+              <div class="col-md-3 summary-item-picture-frame">
+                <a href="/item_display/<%= favorite.item.id %>"><img class="summary-item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"></a>
+              </div>
+              <div class="col-md-9 summary-item-data">
+                <a class="summary-item-name" href="/item_display/<%= favorite.item.id %>"><%= favorite.item.title %></a>
+                <ul>
+                  <li>Price: <%= @prices.where(:item_id => favorite.item.id).last.value %></li>
+                  <li>On sale by Bruce Wayne</li>
+                  <li>Favorited on <%= favorite.created_at.strftime("%D") %></li>
+                </ul>
+              </div>
+            </div>
+            <br>
+          <% end %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="sell">
+          <h3>Items on draft</h3>
+          <% @draft.each do |item| %>
+            <div class="row summary-item-frame">
+              <div class="col-md-3 summary-item-picture-frame">
+                <a href="/item_display/<%= item.id %>"><img class="summary-item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"></a>
+              </div>
+              <div class="col-md-9 summary-item-data">
+                <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+                <ul>
+                  <% if !@prices.where(:item_id => item.id).last.nil?  %>
+                    <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+                  <% end %>
+                  <li>On sale since <%= item.created_at.strftime("%D") %></li>
+                </ul>
+                <button type="button" class="btn btn-default">Edit</button>
+                <button type="button" class="btn btn-default">Put on sale</button>
+                <button type="button" class="btn btn-default">Delete</button>
+              </div>
+            </div>
+            <br>
+          <% end %>
+
+          <h3>Items on sale</h3>
+          <% @selling.each do |item| %>
+            <div class="row summary-item-frame">
+              <div class="col-md-3 summary-item-picture-frame">
+                <a href="/item_display/<%= item.id %>"><img class="summary-item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"></a>
+              </div>
+              <div class="col-md-9 summary-item-data">
+                <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+                <ul>
+                  <% if !@prices.where(:item_id => item.id).last.nil?  %>
+                    <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+                  <% end %>
+                  <li>On sale since <%= item.created_at.strftime("%D") %></li>
+                </ul>
+                <button type="button" class="btn btn-default">Edit</button>
+              <button type="button" class="btn btn-default">Disable</button>
+              </div>
+            </div>
+            <br>
+          <% end %>
+
+          <h3>Items sold</h3>
+          <% @sold.each do |item| %>
+            <div class="row summary-item-frame">
+              <div class="col-md-3 summary-item-picture-frame">
+                <a href="/item_display/<%= item.id %>"><img class="summary-item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"></a>
+              </div>
+              <div class="col-md-9 summary-item-data">
+                <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+                <ul>
+                  <% if !@prices.where(:item_id => item.id).last.nil?  %>
+                    <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+                  <% end %>
+
+                  <li>On sale since <%= item.created_at.strftime("%D") %></li>
+                </ul>
+              </div>
+            </div>
+            <br>
+          <% end %>
+
+          <% if @disabled.count >0  %>
+            <h3>Disabled items</h3>
+            <% @disabled.each do |item| %>
+              <div class="row summary-item-frame">
+                <div class="col-md-3 summary-item-picture-frame">
+                  <a href="/item_display/<%= item.id %>"><img class="summary-item-picture" src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"></a>
+                </div>
+                <div class="col-md-9 summary-item-data">
+                  <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+                  <ul>
+                    <% if !@prices.where(:item_id => item.id).last.nil?  %>
+                      <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+                    <% end %>
+                    <li>On sale since <%= item.created_at.strftime("%D") %></li>
+                  </ul>
+                  <button type="button" class="btn btn-default">Edit</button>
+                  <button type="button" class="btn btn-default">Put on sale</button>
+                  <button type="button" class="btn btn-default">Delete</button>
+                </div>
+              </div>
+              <br>
+            <% end %>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="buy">
+          <h3>Items you bought</h3>
+          <div class="row">
+            <div class="col-md-12">
+              <p>No bought items so far!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

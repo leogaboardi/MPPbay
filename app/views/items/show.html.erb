@@ -5,14 +5,22 @@
       <dt>Title</dt>
       <dd><%= @item.title %></dd>
       <dt>User</dt>
-      <dd><%= @item.user_id %></dd>
+      <dd><%= @item.user.name %></dd>
       <dt>Status</dt>
-      <dd><%= @item.status_id %></dd>
+      <dd>
+      <% if !@item.status.nil? %>
+        <%= @item.status.label %> (Status id: <%= @item.status.id %>)
+      <% end %>
+      </dd>
       <dt>Condition</dt>
-      <dd><%= @item.condition_id %></dd>
+      <dd>
+      <% if !@item.condition.nil? %>
+        <%= @item.condition.label %> (Condition id: <%= @item.condition.id %>)
+      <% end %>
+      </dd>
       <dt>Details</dt>
       <dd><%= @item.details %></dd>
-      <dt>Price</dt>
+      <dt>Most recent price</dt>
       <dd>WIP</dd>
 
       <dt>Description</dt>
