@@ -6,8 +6,9 @@ class ItemsController < ApplicationController
   # TODO: category_2 associaton table
   # TODO: category_3 associaton table
   # TODO: user associaton table
+  # TODO: put the CRUD created in "general" controller here
+  # TODO: address association sale
 
-  # TODO: details: put placeholder 'anything else worth of saying'
   # TODO: think about specific properties for some categories (e.g. color for furniture)
 
   before_action :check_if_admin #, only[:index, :create, :update]

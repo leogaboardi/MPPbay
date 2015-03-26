@@ -6,6 +6,8 @@
       <dd><%= @item.title %></dd>
       <dt>User</dt>
       <dd><%= @item.user.name %></dd>
+      <dt>Created on</dt>
+      <dd><%= @item.created_at %></dd>
       <dt>Status</dt>
       <dd>
       <% if !@item.status.nil? %>

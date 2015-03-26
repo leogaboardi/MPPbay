@@ -8,9 +8,10 @@ class CreateAddresses < ActiveRecord::Migration
       t.integer :building_id
       t.string :city
       t.string :state
-      t.integer :zip
+      t.string :zip
       t.string :country
-      t.integer :phone_number
+      t.string :phone_number
+      t.boolean :main
 
       t.timestamps null: false
     end

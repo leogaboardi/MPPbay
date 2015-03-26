@@ -11,13 +11,115 @@
 <div class="row">
   <div class="col-md-12">
     <%= form_tag "/addresses", :class => "form-horizontal", :method => "post" do %>
+      <!-- Label and input for user_id -->
+      <% if current_user.admin? %>
+        <div class="form-group">
+          <label for="user_id" class="col-sm-3 control-label required">
+            Username
+          </label>
+          <div class="col-sm-4">
+            <%= select_tag :user_id, options_from_collection_for_select(User.order("name"), :id, :name, current_user.id), class: 'form-control' %>
+            <p><em>Note: this field is only visible to users with admin rights</em></p>
+          </div>
+        </div>
+      <% else %>
+        <%= hidden_field_tag 'user_id', current_user.id, required: true, class: 'form-control' %>
+      <% end %>
+
       <!-- Label and input for full_name -->
       <div class="form-group">
-        <label for="full_name" class="col-sm-3 control-label">
-          full_name
+        <label for="full_name" class="col-sm-3 control-label required">
+          Address name (e.g. "My house")
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'full_name', nil, class: 'form-control' %>
+          <%= text_field_tag 'full_name', nil, required: true, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for address_line_1 -->
+      <div class="form-group">
+        <label for="address_line_1" class="col-sm-3 control-label required">
+          Address line 1
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'address_line_1', nil, required: true, placeholder: "Street address, c/o", class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for address_line_2 -->
+      <div class="form-group">
+        <label for="address_line_2" class="col-sm-3 control-label">
+          Address line 2
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'address_line_2', nil, placeholder: "Apartment, suite, unit, building, floor, etc.", class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for city -->
+      <div class="form-group">
+        <label for="city" class="col-sm-3 control-label required">
+          City
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'city', nil,required: true, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for state -->
+      <div class="form-group">
+        <label for="state" class="col-sm-3 control-label">
+          State (if in US)
+        </label>
+        <div class="col-sm-4">
+           <%= select_tag :state, options_for_select(us_states), include_blank: true, class: 'form-control' %>
+        </div>
+      </div>
+
+
+      <!-- Label and input for zip -->
+      <div class="form-group">
+        <label for="zip" class="col-sm-3 control-label">
+          ZIP
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'zip', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for country -->
+      <div class="form-group">
+        <label for="country" class="col-sm-3 control-label">
+          Country
+        </label>
+        <div class="col-sm-4">
+          <%= select_tag :country, options_for_select(countries), class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Label and input for phone_number -->
+      <div class="form-group">
+        <label for="phone_number" class="col-sm-3 control-label">
+          Phone number
+        </label>
+        <div class="col-sm-4">
+          <%= text_field_tag 'phone_number', nil, class: 'form-control' %>
+        </div>
+      </div>
+
+      <!-- Main checkbox -->
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <div class="checkbox">
+            <label>
+              <% if @main.count >0 %>
+                <%= check_box_tag 'main', class: 'form-control' %>
+              <% else %>
+                <%= check_box_tag 'main', true, class: 'form-control' %>
+              <% end %>
+              Main address? (note: you can have only one main address)
+            </label>
+          </div>
         </div>
       </div>
 
@@ -29,7 +131,7 @@
       </div>
     <% end %>
     <div class="col-md-12">
-      <%= link_to "Go back", addresses_path %>
+     <%= link_to 'Go back', :back %>
       <br>
     </div>
   </div>

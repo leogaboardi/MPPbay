@@ -64,6 +64,9 @@ html, body{
   margin-left: 70%;
 }
 
+.item-description{
+  max-width: 100%;
+}
 .item-header{
 }
 

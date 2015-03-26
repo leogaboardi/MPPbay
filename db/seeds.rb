@@ -1,70 +1,138 @@
-users = [
+addresses = [
   {
-    :name => "Leonardo",
-    :email => "leonardo@example.com".downcase,
-    :phone => "5555555",
-    :admin => true,
-  },
-  {
-    :name => "Batman",
-    :email => "bruce_wayne@example.com".downcase,
-    :admin => true,
-    :phone => "5555555"
+    :user_id => 1,
+    :full_name => "My home",
+    :address_line_1 => "Some street number 123",
+    :address_line_2 => "Building A, Unit 123",
   },
     {
-    :name => "Robin",
-    :email => "robin@example.com".downcase,
-    :admin => false,
-    :phone => "5555555"
+    :user_id => 1,
+    :full_name => "Bat Cave",
+    :address_line_1 => "Wayne Manor, 123",
+    :city => "Gotham City",
+    :state => "??",
+    :zip => "55555",
+    :country => "United States",
+    :phone_number => "555-1234",
+
   },
-    {
-    :name => "Joker",
-    :email => "joker@example.com".downcase,
-    :admin => false,
-    :phone => "5555555"
+      {
+    :user_id => 1,
+    :full_name => "White house",
+    :address_line_1 => "1600 Pennsylvania Ave NW",
+    :city => "Washington",
+    :state => "DC",
+    :zip => "20500",
+    :country => "United States",
+    :phone_number => "(202) 456-1111",
+
   },
-    {
-    :name => "Gordon",
-    :email => "gordon@example.com".downcase,
-    :admin => false,
-    :phone => "5555555"
-  },
-    {
-    :name => "Penguin",
-    :email => "penguin@example.com".downcase,
-    :admin => false
-  },
-    {
-    :name => "Riddler",
-    :email => "riddler@example.com".downcase,
-    :admin => false
-  },
+]
+
+addresses.each do |new_address|
+  address = Address.new
+  address.user_id = new_address[:user_id]
+  address.full_name = new_address[:full_name]
+  address.address_line_1 = new_address[:address_line_1]
+  address.address_line_2 = new_address[:address_line_2]
+  address.city = new_address[:city]
+  address.state = new_address[:state]
+  address.zip = new_address[:zip]
+  address.country = new_address[:country]
+  address.phone_number = new_address[:phone_number]
+  address.save
+end
+
+availabilities = [
   {
-    :name => "2 Faces",
-    :email => "2faces@example.com".downcase,
-    :admin => false
-  },
-  {
-    :name => "Poison Ivy",
-    :email => "poisonivy@example.com".downcase,
-    :admin => false
-  },
-  {
-    :name => "John Doe",
-    :email => "jdoe@example.com".downcase,
-    :admin => false
+    :name => "Example",
+    :email_filter => "@example.com"
   }
 ]
 
-users.each do |new_user|
-  user = User.new
-  user.email = new_user[:email]
-  user.name = new_user[:name]
-  user.phone = new_user[:phone]
-  user.admin = new_user[:admin]
-  user.password = "password"
-  user.password_confirmation = "password"
-  user.save
+availabilities.each do |new_availability|
+  availability = Availability.new
+  availability.name = new_availability[:name]
+  availability.email_filter = new_availability[:email_filter]
+  availability.save
+end
+
+buildings = [
+  {:label => "Millenium Park Plaza",
+    :address_line_1 => "151 N Michigan ave",
+    :city => "Chicago",
+    :state => "IL",
+    :zip => "60601",
+    :country => "United States"
+  }
+]
+
+buildings.each do |new_building|
+  building = Building.new
+  building.label = new_building[:label]
+  building.address_line_1 = new_building[:address_line_1]
+  building.city = new_building[:city]
+  building.state = new_building[:state]
+  building.zip = new_building[:zip]
+  building.country = new_building[:country]
+  building.save
+end
+
+categories = [
+  { :name => "Home Decor",
+    :level => 1
+  },
+  { :name => "Books",
+    :level => 1,
+  },
+  { :name => "Furniture", # id 3
+    :level => 2,
+    :parent_id => 1
+  },
+    { :name => "Living room", # id 4
+    :level => 3,
+    :parent_id => 3
+
+  },
+  { :name => "Bedroom",
+    :level => 3,
+    :parent_id => 3
+  }
+]
+
+categories.each do |new_category|
+  category = Category.new
+  category.name = new_category[:name]
+  category.level = new_category[:levell]
+  category.parent_id = new_category[:parent_id]
+  category.save
+end
+
+conditions = [
+  {:label => "Brand new"},
+  {:label => "Used, but like new"},
+  {:label => "Used, some wear"},
+  {:label => "Considerable wear / some damage"}
+]
+
+conditions.each do |new_condition|
+  condition = Condition.new
+  condition.label = new_condition[:label]
+  condition.save
+end
+
+favorites = [
+  {
+    :user_id => 1,
+    :item_id => 1
+  }
+]
+
+favorites.each do |new_favorite|
+  favorite = Favorite.new
+  favorite.user_id = new_favorite[:user_id]
+  favorite.item_id = new_favorite[:item_id]
+  favorite.save
 end
 
 items = [
@@ -78,7 +146,7 @@ items = [
     :category_2_id => 3,
     :category_3_id => 4,
     :status_id => 2,
-    :condition_id => 2
+    :condition_id => 2,
   },
   {
     :user_id => 1,
@@ -147,50 +215,22 @@ items.each do |new_item|
   item.save
 end
 
-favorites = [
-  {
-    :user_id => 1,
-    :item_id => 1
-  }
+prices = [
+  {:item_id => 1,
+  :value => 12.99},
+  {:item_id => 2,
+  :value => 300},
+  {:item_id => 3,
+  :value => 10},
+  {:item_id => 4,
+  :value => 5.99}
 ]
 
-favorites.each do |new_favorite|
-  favorite = Favorite.new
-  favorite.user_id = new_favorite[:user_id]
-  favorite.item_id = new_favorite[:item_id]
-  favorite.save
-end
-
-addresses = [
-  {
-    :user_id => 1,
-    :full_name => "My home",
-    :address_line_1 => "Some street number 123",
-    :address_line_2 => "Building A, Unit 123",
-  }
-]
-
-addresses.each do |new_address|
-  address = Address.new
-  address.user_id = new_address[:user_id]
-  address.full_name = new_address[:full_name]
-  address.address_line_1 = new_address[:address_line_1]
-  address.address_line_2 = new_address[:address_line_2]
-  address.save
-end
-
-availabilities = [
-  {
-    :name => "Example",
-    :email_filter => "@example.com"
-  }
-]
-
-availabilities.each do |new_availability|
-  availability = Availability.new
-  availability.name = new_availability[:name]
-  availability.email_filter = new_availability[:email_filter]
-  availability.save
+prices.each do |new_price|
+  price = Price.new
+  price.value = new_price[:value]
+  price.item_id = new_price[:item_id]
+  price.save
 end
 
 purchases = [
@@ -219,70 +259,6 @@ purchases.each do |new_purchase|
   purchase.save
 end
 
-categories = [
-  { :name => "Home Decor",
-    :level => 1
-  },
-  { :name => "Books",
-    :level => 1,
-  },
-  { :name => "Furniture", # id 3
-    :level => 2,
-    :parent_id => 1
-  },
-    { :name => "Living room", # id 4
-    :level => 3,
-    :parent_id => 3
-  },
-  { :name => "Bedroom",
-    :level => 3,
-    :parent_id => 3
-  }
-]
-
-categories.each do |new_category|
-  category = Category.new
-  category.name = new_category[:name]
-  category.level = new_category[:levell]
-  category.parent_id = new_category[:parent_id]
-
-  category.save
-end
-
-conditions = [
-  {:label => "Brand new"},
-  {:label => "Used, but like new"},
-  {:label => "Used, some wear"},
-  {:label => "Considerable wear / some damage"}
-]
-
-conditions.each do |new_condition|
-  condition = Condition.new
-  condition.label = new_condition[:label]
-  condition.save
-end
-
-buildings = [
-  {:label => "Millenium Park Plaza",
-    :address_line_1 => "151 N Michigan ave",
-    :city => "Chicago",
-    :state => "IL",
-    :zip => "60601",
-    :country => "United States"
-  }
-]
-
-buildings.each do |new_building|
-  building = Building.new
-  building.label = new_building[:label]
-  building.address_line_1 = new_building[:address_line_1]
-  building.city = new_building[:city]
-  building.state = new_building[:state]
-  building.zip = new_building[:zip]
-  building.country = new_building[:country]
-  building.save
-end
-
 statuses = [
   {:label => "draft"},
   {:label => "on sale"},
@@ -296,20 +272,71 @@ statuses.each do |new_status|
   status.save
 end
 
-prices = [
-  {:item_id => 1,
-  :value => 12.99},
-  {:item_id => 2,
-  :value => 300},
-  {:item_id => 3,
-  :value => 10},
-  {:item_id => 4,
-  :value => 5.99}
+users = [
+  {
+    :name => "Leonardo",
+    :email => "leonardo@example.com".downcase,
+    :phone => "5555555",
+    :admin => true,
+  },
+  {
+    :name => "Batman",
+    :email => "bruce_wayne@example.com".downcase,
+    :admin => true,
+    :phone => "5555555"
+  },
+    {
+    :name => "Robin",
+    :email => "robin@example.com".downcase,
+    :admin => false,
+    :phone => "5555555"
+  },
+    {
+    :name => "Joker",
+    :email => "joker@example.com".downcase,
+    :admin => false,
+    :phone => "5555555"
+  },
+    {
+    :name => "Gordon",
+    :email => "gordon@example.com".downcase,
+    :admin => false,
+    :phone => "5555555"
+  },
+    {
+    :name => "Penguin",
+    :email => "penguin@example.com".downcase,
+    :admin => false
+  },
+    {
+    :name => "Riddler",
+    :email => "riddler@example.com".downcase,
+    :admin => false
+  },
+  {
+    :name => "2 Faces",
+    :email => "2faces@example.com".downcase,
+    :admin => false
+  },
+  {
+    :name => "Poison Ivy",
+    :email => "poisonivy@example.com".downcase,
+    :admin => false
+  },
+  {
+    :name => "John Doe",
+    :email => "jdoe@example.com".downcase,
+    :admin => false
+  }
 ]
 
-prices.each do |new_price|
-  price = Price.new
-  price.value = new_price[:value]
-  price.item_id = new_price[:item_id]
-  price.save
+users.each do |new_user|
+  user = User.new
+  user.email = new_user[:email]
+  user.name = new_user[:name]
+  user.phone = new_user[:phone]
+  user.admin = new_user[:admin]
+  user.password = "password"
+  user.password_confirmation = "password"
+  user.save
 end

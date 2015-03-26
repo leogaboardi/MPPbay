@@ -1,9 +1,17 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <% if @sell %>
-      <%= link_to "Sell new item", "/sell/new", :class => "btn btn-lg btn-primary btn-block"%>
-      <p>&nbsp</p>
-      <h3>Items you are currently selling</h3>
+      <% if @items.count ==0 %>
+        <div class="jumbotron">
+          <h2>Nothing to sell yet =(</h2>
+          <br>
+          <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
+        </div>
+      <% else %>
+        <%= link_to "Sell new item", "/sell/new", :class => "btn btn-lg btn-primary"%>
+        <p>&nbsp</p>
+        <h3>Items you are currently selling</h3>
+      <% end %>
     <% end %>
     <% @items.each do |item| %>
       <div class="col-md-6 browse-item">
@@ -12,7 +20,7 @@
             <% if !@pictures.where(:item_id => item.id).first.nil? %>
               src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
             <% else %>
-              src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"
+              src="/assets/default_picture.png"
             <% end %>
           ></a>
           <div class="browse-item-social">
@@ -25,8 +33,7 @@
           </div>
           <div class="browse-item-price-frame">
             <% if !@prices.where(:item_id => item.id).last.nil? %>
-            <a class="browse-item-price" href="/item_display/<%= item.id %>">$<%= "%.2f" % @prices.where(:item_id => item.id).last.value %>
-            </a>
+              <a class="browse-item-price" href="/item_display/<%= item.id %>">$<%= "%.2f" % @prices.where(:item_id => item.id).last.value.to_f %></a>
             <% end %>
           </div>
         </div>

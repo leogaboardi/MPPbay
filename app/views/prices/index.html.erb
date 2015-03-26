@@ -15,7 +15,11 @@
 
       <% @prices.each do |price| %>
       <tr>
-        <td><%= price.item_id %></td>
+        <% if !price.item.nil? %>
+          <td><%= price.item.title %></td>
+        <% else %>
+          <td></td>
+        <% end %>
         <td><%= price.value %></td>
         <td>
          <%= link_to "View", price_path(price.id) %>

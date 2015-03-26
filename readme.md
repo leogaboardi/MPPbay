@@ -2,22 +2,21 @@
 
 In this project I am practising further app development skills to implement a simple e-commerce website.
 
-# Todo for 3/23/2015:
-  FIXME: New product page: put the picture form
+# Next steps
 
-  TODO: P0: Users can edit their items
+  TODO: P0: Picture management
 
-  TODO: P0: user needs to manage the products they have
+  TODO: P0: create the home page
 
+  TODO: P0: browse page: filter by category and user_id
 
+  TODO: Item edit / creation validation (in view and model)
 
 # Todo list:
 
-  FIXME: Take out border from page navigator
-
-  TODO: P0: make product page
-
   TODO: P0: about page
+
+  TODO: P0: create a "splash" page for sign in where the user can select category
 
   Favorite list
 
@@ -34,6 +33,10 @@ In this project I am practising further app development skills to implement a si
   TODO: P1: devise: format sign up page
 
   TODO: P1: devise: format sign in page
+
+  TODO: P1: about page
+
+  TODO: P1: help & contact page
 
   TODO: P1: devise: format 'Forgot your password page' page
 

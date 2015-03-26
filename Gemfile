@@ -8,6 +8,8 @@ gem 'devise'
 # For image management
 gem 'paperclip'
 
+# This makes the jquery work better in the pages
+gem 'jquery-turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0.rc3'

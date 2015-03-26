@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
 
 
-  # TODO:
   # TODO: make a admin user non deleatable
-  # FIXME: In user update, when admin is false, the value becomes NIL
+  # TODO: put profile picture?
 
 
   before_action :authenticate_user!
-  before_action :check_if_admin #, only[:index, :create, :update]
+  before_action :check_if_admin, only: [ :create, :destroy, :index, :new, :show]
 
   def check_if_admin
     if not current_user.admin?
@@ -41,6 +40,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if current_user.admin? || @user.id == current_user.id
+    else
+      redirect_to root_path
+    end
   end
 
   def index
@@ -57,15 +60,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.name = params[:name]
-    @user.email = params[:email]
-    @user.phone = params[:phone]
-    @user.admin = params[:admin]
-
-    if @user.save
-      redirect_to "/users", :notice => "User updated successfully."
+    if current_user.admin? || @user.id == current_user.id
+      @user.name = params[:name]
+      @user.email = params[:email]
+      @user.phone = params[:phone]
+      @user.admin = params[:admin]
+      if @user.save
+        redirect_to "/summary", :notice => "User updated successfully."
+      else
+        render "new_form"
+      end
     else
-      render "new_form"
+      redirect_to root_path
     end
   end
 end

@@ -16,10 +16,11 @@
       <!-- Label and input for item_id -->
       <div class="form-group">
         <label for="item_id" class="col-sm-3 control-label">
-          item_id
+          Item title
         </label>
         <div class="col-sm-4">
-          <%= f.text_field :item_id, class: 'form-control' %>
+        <%= select_tag :item_id, options_from_collection_for_select(Item.all, :id, :title), include_blank: true,  class: 'form-control' %>
+        <!-- options_from_collection_for_select(Item.order("title"), :id, :title), include_blank: true,  class: 'form-control' -->
         </div>
       </div>
 
@@ -30,6 +31,18 @@
         </label>
         <div class="col-sm-4">
           <%= f.file_field :image %>
+        </div>
+      </div>
+
+      <!-- main_picture checkbox -->
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag 'default_picture' %>
+              Default picture for the item?
+            </label>
+          </div>
         </div>
       </div>
 

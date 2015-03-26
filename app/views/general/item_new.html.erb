@@ -8,12 +8,33 @@
     <% end %>
   <% end %>
 
+<!-- Validation failure messages -->
+  <% if @price.errors.any? %>
+    <% @price.errors.full_messages.each do |message| %>
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
+<!-- Validation failure messages -->
+  <% if @picture.errors.any? %>
+    <% @picture.errors.full_messages.each do |message| %>
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <%= form_tag "/sell", :class => "form-horizontal", :method => "post" do %>
+
+    <%= form_for @item, :url=> "/summary", :html => { multipart: true, :class => "form-horizontal", :method => "post" } do |f| %>
 
       <!-- Label and input for user_id -->
-          <%= hidden_field_tag 'user_id', current_user.id, class: 'form-control' %>
+          <%= hidden_field_tag 'user_id', current_user.id, required: true, class: 'form-control' %>
 
       <!-- Label and input for status_id -->
           <%= hidden_field_tag 'status_id', 1, class: 'form-control' %>
@@ -31,7 +52,7 @@
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Put some meaningful name for the item you want to sell"></span>
             </label>
             <div class="col-sm-8">
-              <%= text_field_tag 'title', nil, class: 'form-control' %>
+              <%= text_field_tag 'title', nil, required: true, class: 'form-control' %>
             </div>
           </div>
 
@@ -39,30 +60,33 @@
           <div class="form-group">
             <label for="category_1_id" class="col-sm-3 control-label required">
               Category
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Select the category in which your item best fits into"></span>
             </label>
             <div class="col-sm-4">
-              <%= select_tag 'category_1_id', options_from_collection_for_select(Category.order("name"), :id, :name), include_blank: true,  class: 'form-control' %>
+              <%= select_tag 'category_1_id', options_from_collection_for_select(Category.order("name"), :id, :name), include_blank: true, class: 'form-control' %>
+            </div>
+          </div>
+
+          <!-- Label and input for photos -->
+          <div class="form-group">
+            <label for="photos" class="col-sm-3 control-label required">
+              Photo
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Put some pictures showing the item you want to sell "></span>
+            </label>
+            <div class="col-sm-8">
+              <p style="padding-top: 7px">Photo uploading is currently unavailable =(</p>
+              <!--               f.file_field :image, required: true -->
             </div>
           </div>
 
           <!-- Label and input for description -->
           <div class="form-group">
             <label for="description" aria-required="true" class="col-sm-3 control-label">
-              Brief description <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              Brief description
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write a compelling description about the item you are selling. Limit of 200 characters. You can put further information in the 'details' field below"></span>
             </label>
             <div class="col-sm-8">
-              <%= text_area_tag 'description', @batman, row: 20, class: 'form-control' %>
-            </div>
-          </div>
-
-          <!-- Label and input for photos -->
-          <div class="form-group">
-
-            <label for="photos" class="col-sm-3 control-label">
-              Photos
-            </label>
-            <div class="col-sm-8">
-              <button class="btn btn-default" data-toggle="modal" data-target="#myModal" type="button" disabled="disabled">Add photos</button>
+              <%= text_area_tag 'description', nil, maxlength: 200, class: 'form-control item-description' %>
             </div>
           </div>
 
@@ -81,7 +105,7 @@
           <div class="form-group">
             <label for="item_url" class="col-sm-3 control-label">
               Reference link
-              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="If your item is being sold anywhere else, you can put the link in here so people can compare your product vs. a new one"></span>
             </label>
             <div class="col-sm-4">
               <%= text_field_tag 'item_url', nil, class: 'form-control' %>
@@ -91,7 +115,8 @@
           <!-- Label and input for details -->
           <div class="form-group">
             <label for="details" aria-required="true" class="col-sm-3 control-label">
-              Details <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              Details
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Anything else you might find relevant - for example, the color, size and material of a piece of furniture"></span>
             </label>
             <div class="col-sm-8">
               <%= text_area_tag 'details', nil, row: 20, class: 'form-control' %>
@@ -119,20 +144,22 @@
         <!-- Label and input for handling_time -->
           <div class="form-group">
             <label for="handling_time" class="col-sm-3 control-label required">
-              Handling time <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              Handling time
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="How much time you need, after a deal is closed, to send the item to the buyer"></span>
             </label>
             <div class="col-sm-4">
-              <%= text_field_tag 'handling_time', nil, class: 'form-control' %>
+              <%= text_field_tag "handling_time", nil ,class: 'form-control' %>
             </div>
           </div>
 
         <!-- Label and input for available_at -->
           <div class="form-group">
             <label for="available_at" class="col-sm-3 control-label">
-              Available for delivery from <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              Available for delivery from
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Put here a date when it is available for sale in case you want/need to keep the item until later"></span>
             </label>
             <div class="col-sm-4">
-              <%= text_field_tag 'available_at', nil, class: 'form-control' %>
+              <%= date_field_tag 'available_at', nil, class: 'form-control' %>
             </div>
           </div>
         </div>
@@ -143,21 +170,22 @@
           <h3 class="panel-title">Others</h3>
         </div>
         <div class="panel-body">
-
           <!-- Label and input for listing_duration -->
           <div class="form-group">
             <label for="listing_duration" class="col-sm-3 control-label required">
               Listing duration
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Put a date when you want to stop sell the item (say, the day you plan to move)"></span>
             </label>
             <div class="col-sm-4">
-              <%= text_field_tag 'listing_duration', nil, class: 'form-control' %>
+              <%= date_field_tag 'listing_duration', nil, class: 'form-control' %>
             </div>
           </div>
 
           <!-- Label and input for address_id -->
           <div class="form-group">
             <label for="address_id" class="col-sm-3 control-label">
-              Item address <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              Item address
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="You can put where the item is, as some people prefer buying stuff close to them"></span>
             </label>
             <div class="col-sm-4">
               <%= text_field_tag 'address_id', nil, class: 'form-control' %>
@@ -169,7 +197,7 @@
       <!-- CREATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">
-          <%= submit_tag "Create draft", :class => "btn btn-primary" %>
+          <%= submit_tag "Create draft", :class => "btn btn-primary", data: {confirm: "The created item will not be on sale yet - you will need to activate in Your account page"} %>
         </div>
       </div>
 

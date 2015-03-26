@@ -3,18 +3,29 @@ Rails.application.routes.draw do
   devise_for :users
   root 'root#index'
 
-
   resources :users, :items, :addresses, :favorites, :categories,
   :availabilities, :purchases, :pictures, :prices, :buildings, :conditions,
   :statuses
 
   get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
   get('/buy', { :controller => 'general', :action => 'buy', :as => "buy" })
+  patch('/disable/:id', { :controller => 'general', :action => 'disable' })
   get('/item_display/:id', { :controller => 'general', :action => 'item', :as => "item_display" })
+  delete('/item_display/:id', { :controller => 'general', :action => 'destroy'})
+
+
   get('/sell', { :controller => 'general', :action => 'sell', :as => "sell" })
-  post('/sell', { :controller => 'general', :action => 'create', :as => "create" })
-  get('/sell/new', { :controller => 'general', :action => 'item_new', :as => "item_new" })
   get('/summary', { :controller => 'general', :action => 'summary', :as => "summary" })
+  patch('/sell/:id', { :controller => 'general', :action => 'put_on_sale' })
+  # CREATE ITEM
+  get('/sell/new', { :controller => 'general', :action => 'item_new', :as => "item_new" })
+  post('/summary', { :controller => 'general', :action => 'create', :as => "create" })
+  # UPDATE ITEM
+  get('/sell/:id/edit', { :controller => 'general', :action => 'edit' })
+  patch('/sell/:id/edit', { :controller => 'general', :action => 'update' })
+
+  patch('/address/:id/main', { :controller => 'addresses', :action => 'make_main' })
+
 
   # CREATE
   #get('/users/new', { :controller => 'users', :action => 'new', :as => "new" })

@@ -6,7 +6,8 @@
     <p>&nbsp</p>
     <table class="table table-striped">
       <tr>
-        <th>Item ID</th>
+        <th>Item</th>
+        <th>Default?</th>
         <th></th>
         <th></th>
         <th></th>
@@ -14,7 +15,8 @@
 
       <% @pictures.each do |picture| %>
       <tr>
-        <td><%= picture.item_id %></td>
+        <td><%= picture.item.title %></td>
+        <td><%= picture.default_picture %></td>
         <td>
          <%= link_to "View", picture_path(picture.id) %>
         </td>

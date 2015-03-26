@@ -23,7 +23,8 @@ ActiveRecord::Schema.define(version: 20150317211901) do
     t.string   "state"
     t.integer  "zip"
     t.string   "country"
-    t.integer  "phone_number"
+    t.string   "phone_number"
+    t.boolean  "main"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150317211901) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "default_picture"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end

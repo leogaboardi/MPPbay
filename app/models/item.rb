@@ -4,6 +4,7 @@ class Item < ActiveRecord::Base
   has_many :favorites
   has_many :prices
   has_many :pictures
+  has_one :purchase
 
   belongs_to :user
   belongs_to :category

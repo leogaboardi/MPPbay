@@ -47,7 +47,7 @@
           Details
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'details', nil, class: 'form-control' %>
+          <%= text_field_tag 'details', @item.details, class: 'form-control' %>
         </div>
       </div>
 
@@ -87,7 +87,7 @@
           available_at
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'available_at', @item.available_at, class: 'form-control' %>
+          <%= date_field_tag 'available_at', @item.available_at, class: 'form-control' %>
         </div>
       </div>
 

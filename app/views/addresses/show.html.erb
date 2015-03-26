@@ -2,9 +2,27 @@
   <div class="col-md-8 col-md-offset-2">
     <h3>Address #<%= @address.id %> data</h3>
     <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @address.user.name %></dd>
       <dt>Name</dt>
       <dd><%= @address.full_name %></dd>
+      <dt>address_line_1</dt>
+      <dd><%= @address.address_line_1 %></dd>
+      <dt>address_line_2</dt>
+      <dd><%= @address.address_line_2 %></dd>
+      <dt>city</dt>
+      <dd><%= @address.city %></dd>
+      <dt>State</dt>
+      <dd><%= @address.state %></dd>
+      <dt>Country</dt>
+      <dd><%= @address.country %></dd>
+      <dt>ZIP</dt>
+      <dd><%= @address.zip %></dd>
+      <dt>Phone number</dt>
+      <dd><%= @address.phone_number %></dd>
+      <dt>Main address?</dt>
+      <dd><%= @address.main %></dd>
     </dl>
-    <%= link_to "Go back", addresses_path %>
+    <%= link_to 'Go back', :back %>
   </div>
 </div>

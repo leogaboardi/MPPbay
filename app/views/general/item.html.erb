@@ -20,7 +20,7 @@
           <% if !@pictures.first.nil? %>
               src="<%= @pictures.first.image.url %>"
           <% else %>
-              src="http://dnok91peocsw3.cloudfront.net/product/2540-236x236-1309894281-primary.png"
+              src="/assets/default_picture.png"
           <% end %>
         >
         <% if !@pictures.first.nil? %>
@@ -33,11 +33,18 @@
       </div>
       <div class="col-md-4 item-data-frame">
         <% if !@price.nil? %>
-          <div class="row item-price" >$<%= "%.2f" % @price.value %></div>
+          <div class="row item-price" >$<%= "%.2f" % @price.value.to_f %></div>
         <% end %>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-lg btn-primary" type="button">Contact seller</button>
+          <% if current_user.id == @item.user_id %>
+            <p><em>This item was created by you</em></p>
+            <%= link_to "Edit this item", "/sell/"+@item.id.to_s+"/edit", class: "btn btn-lg btn-primary" %>
+            <br><br>
+            <%= link_to "Delete this item", "/item_display/"+@item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
+          <% else %>
+          <button class="btn btn-lg btn-primary" type="button">Contact seller</button>
+          <% end %>
           </div>
         </div>
 
@@ -50,24 +57,28 @@
         <h3>Item Specifics</h3>
         <dl class="dl-horizontal">
           <dt>Condition</dt>
-          <dd><%= @item.condition_id %></dd>
+          <% if !@item.condition.nil? %>
+          <dd><%= @item.condition.label %>: <%= @item.condition.description %></dd>
+          <% else %>
+          <dd></dd>
+          <% end %>
           <dt>Item URL</dt>
           <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
           <dt>Details</dt>
           <dd><%= @item.details %></dd>
         </dl>
-        <h3>Sale terms</h3>
+        <h3>Other useful information</h3>
         <dl class="dl-horizontal">
-          <dt>Listing duration</dt>
-          <dd>Static</dd>
-          <dt>Available at</dt>
+          <dt>On sale by</dt>
+          <dd><%= @item.user.name%></dd>
+          <dt>On sale until</dt>
+          <dd><%= @item.listing_duration %></dd>
+          <dt>Available for delivery from:</dt>
           <dd><%= @item.available_at %></dd>
           <dt>Handling time</dt>
-          <dd>Static</dd>
-          <dt>Item location</dt>
-          <dd>Static</dd>
-
+          <dd><%= @item.handling_time %></dd>
         </dl>
     </div>
+    <%= link_to "Go back", :back %>
   </div>
 </div>

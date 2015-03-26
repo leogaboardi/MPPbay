@@ -12,8 +12,18 @@ class PicturesController < ApplicationController
   def create
 
     @picture = Picture.new
-    @picture.item_id = params[:picture][:item_id]
+    @picture.item_id = params[:item_id]
     @picture.image = params[:picture][:image]
+    # Makes sure there is only 1 default_picture for every item
+    @default = Picture.where(:item_id => @picture.item_id, :default_picture =>true ) #all pictures from the same item which are default
+    if params[:default_picture]
+      @default.each do |picture|
+        picture.default_picture = false
+        picture.save
+      end
+    end
+
+    @picture.default_picture = params[:default_picture]
 
     if @picture.save
       redirect_to "/pictures", :notice => "Picture created successfully."
@@ -46,12 +56,23 @@ class PicturesController < ApplicationController
 
   def update
     @picture = Picture.find(params[:id])
-    @picture.item_id = params[:picture][:item_id]
+    @picture.item_id = params[:item_id]
+
+    # Makes sure there is only 1 default_picture for every item
+    @default = Picture.where(:item_id => @picture.item_id, :default_picture =>true ) #all pictures from the same item which are default
+    if params[:default_picture]
+      @default.each do |picture|
+        picture.default_picture = false
+        picture.save
+      end
+    end
+
+    @picture.default_picture = params[:default_picture]
 
     if @picture.save
       redirect_to "/pictures", :notice => "Picture updated successfully."
     else
-      render "new"
+      render "edit"
     end
   end
 end
