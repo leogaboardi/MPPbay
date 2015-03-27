@@ -131,6 +131,21 @@ html, body{
   margin-right: 5px;
 }
 
+.jumbotron{
+  height: 500px;
+  margin-top: -10px;
+  padding-top: 150px;
+  background-image: url("/assets/jumbotronv2.jpg");
+  background-position: 50% 90%;
+  background-size: cover;
+  width: 100%;
+}
+
+.jumbotron-text{
+  color: rgb(240,240,240);
+  text-align: center;
+}
+
 .summary-item-frame{
 }
 
