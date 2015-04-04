@@ -1,35 +1,35 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_tag favorite_path(@favorite), :class => "form-horizontal", :method => "put" do %>
+    <%= form_tag cart_path(@cart), :class => "form-horizontal", :method => "put" do %>
       <!-- Label and input for user_id -->
       <div class="form-group">
         <label for="user_id" class="col-sm-3 control-label">
           Name
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'user_id', @favorite.user_id, class: 'form-control' %>
+          <%= text_field_tag 'user_id', @cart.user_id, class: 'form-control' %>
         </div>
       </div>
 
-      <!-- Label and input for item_id -->
+      <!-- Label and input for cart_id -->
       <div class="form-group">
         <label for="item_id" class="col-sm-3 control-label">
           Name
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'item_id', @favorite.item_id, class: 'form-control' %>
+          <%= text_field_tag 'item_id', @cart.item_id, class: 'form-control' %>
         </div>
       </div>
 
       <!-- CREATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">
-          <%= submit_tag "Update favorite", :class => "btn btn-primary" %>
+          <%= submit_tag "Update cart", :class => "btn btn-primary" %>
         </div>
       </div>
 
     <div class="col-md-12">
-      <%= link_to "Go back", favorites_path %>
+      <%= link_to "Go back", carts_path %>
     </div>
     <% end %>
   </div>

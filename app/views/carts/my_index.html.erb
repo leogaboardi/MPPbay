@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Manage carts</h3>
+
+      <h3>Your favorite items</h3>
+          <% @carts.each do |cart| %>
+            <div class="row summary-item-frame">
+              <div class="col-md-3 summary-item-picture-frame">
+                <a href="/item_display/<%= cart.item.id %>"><img class="summary-item-picture"
+                <% if !@pictures.where(:item_id => cart.item.id).first.nil? %>
+                  src="<%= @pictures.where(:item_id => cart.item.id).first.image.url %>"
+                <% else %>
+                src="/assets/default_picture.png"
+                <% end %>
+                ></a>
+              </div>
+              <div class="col-md-9 summary-item-data">
+                <a class="summary-item-name" href="/item_display/<%= cart.item.id %>"><%= cart.item.title %></a>
+                <ul>
+                  <li>Price: <%= @prices.where(:item_id => cart.item.id).last.value %></li>
+                  <li>On sale by Bruce Wayne</li>
+                  <li>cartd on <%= cart.created_at.strftime("%D") %></li>
+                </ul>
+              </div>
+            </div>
+            <br>
+          <% end %>
+      <%= link_to "Make offer", email_offer_path, :method => "get", class: "btn btn-lg btn-primary" %>
+  </div>
+</div>

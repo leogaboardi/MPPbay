@@ -5,14 +5,18 @@ Rails.application.routes.draw do
 
   resources :users, :items, :addresses, :favorites, :categories,
   :availabilities, :purchases, :pictures, :prices, :buildings, :conditions,
-  :statuses
+  :statuses, :carts, :offers
+
+  get('/my_cart', { :controller => 'carts', :action => 'my_index' })
+
+  get('/replyoffer', { :controller => 'transaction', :action => 'replyoffer', :as => "reply"  })
+  get('/email_offer', { :controller => 'transaction', :action => 'email_offer', :as => "email_offer"  })
 
   get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
   get('/buy', { :controller => 'general', :action => 'buy', :as => "buy" })
   patch('/disable/:id', { :controller => 'general', :action => 'disable' })
   get('/item_display/:id', { :controller => 'general', :action => 'item', :as => "item_display" })
   delete('/item_display/:id', { :controller => 'general', :action => 'destroy'})
-
 
   get('/sell', { :controller => 'general', :action => 'sell', :as => "sell" })
   get('/summary', { :controller => 'general', :action => 'summary', :as => "summary" })

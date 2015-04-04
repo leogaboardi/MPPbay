@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :addresses
   has_many :favorites
   has_many :items
+  has_many :carts
+  has_many :offers
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

@@ -2,7 +2,7 @@
   <div class="col-md-8 col-md-offset-2">
     <% if @sell %>
       <% if @items.count ==0 %>
-        <div class="jumbotron">
+        <div class="jumbotron-main">
           <h2>Nothing to sell yet =(</h2>
           <br>
           <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
@@ -29,11 +29,11 @@
         </div>
         <div class="browse-item-data">
           <div class="browse-item-name-frame">
-            <a class="browse-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+              <%= link_to item.title, item_display_path(item.id), :class => "browse-item-name" %>
           </div>
           <div class="browse-item-price-frame">
             <% if !@prices.where(:item_id => item.id).last.nil? %>
-              <a class="browse-item-price" href="/item_display/<%= item.id %>">$<%= "%.2f" % @prices.where(:item_id => item.id).last.value.to_f %></a>
+              <%= link_to "$"+"%.2f" % @prices.where(:item_id => item.id).last.value.to_f, item_display_path(item.id), :class => "browse-item-price" %>
             <% end %>
           </div>
         </div>

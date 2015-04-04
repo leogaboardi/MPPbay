@@ -1,9 +1,13 @@
-<div class="jumbotron">
+<div class="jumbotron-main">
   <div class="container">
     <div class="col-md-8 col-md-offset-2">
     <h1 class="jumbotron-text" style="color: white">Helping you buy and sell stuff</h1>
     <p class="jumbotron-text">Looking to equip your new home? Or maybe you need to sell your stuff? With MPPbay you can buy and sell with other people near you - the easy way</p>
-    <p class="jumbotron-text"><%= link_to "Start now", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+    <% if user_signed_in? %>
+      <p class="jumbotron-text"><%= link_to "Start now", buy_path, class: "btn btn-primary btn-lg" %></p>
+    <% else %>
+      <p class="jumbotron-text"><%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+    <% end %>
     </div>
   </div>
 </div>

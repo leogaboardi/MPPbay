@@ -5,6 +5,8 @@ class Item < ActiveRecord::Base
   has_many :prices
   has_many :pictures
   has_one :purchase
+  has_many :carts
+  has_many :offers
 
   belongs_to :user
   belongs_to :category

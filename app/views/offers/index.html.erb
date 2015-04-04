@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Manage offers</h3>
+
+    <%= link_to "Add new offer", new_offer_path, :class => "btn btn-primary" %>
+    <p>&nbsp</p>
+
+    <table class="table table-striped">
+      <tr>
+        <th>Buyer</th>
+        <th>Item</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <% @offers.each do |offer| %>
+      <tr>
+        <td><%= offer.buyer_id %></td>
+        <td><%= offer.item_id %></td>
+        <td>
+         <%= link_to "View", offer_path(offer.id) %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_offer_path(offer.id) %>
+        </td>
+
+        <td>
+          <%= link_to "Delete", offer_path(offer.id), :method => "delete", data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

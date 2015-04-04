@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317211901) do
+ActiveRecord::Schema.define(version: 20150330171116) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150317211901) do
     t.integer  "building_id"
     t.string   "city"
     t.string   "state"
-    t.integer  "zip"
+    t.string   "zip"
     t.string   "country"
     t.string   "phone_number"
     t.boolean  "main"
@@ -45,6 +45,13 @@ ActiveRecord::Schema.define(version: 20150317211901) do
     t.string   "country"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "carts", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: true do |t|
@@ -86,6 +93,14 @@ ActiveRecord::Schema.define(version: 20150317211901) do
     t.integer  "category_3_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "offers", force: true do |t|
+    t.integer  "buyer_id"
+    t.integer  "item_id"
+    t.integer  "seller_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pictures", force: true do |t|

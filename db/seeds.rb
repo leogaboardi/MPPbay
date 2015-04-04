@@ -78,6 +78,32 @@ buildings.each do |new_building|
   building.save
 end
 
+carts = [
+  {
+    :user_id => 1,
+    :item_id => 2
+  },
+    {
+    :user_id => 2,
+    :item_id => 3
+  },
+    {
+    :user_id => 2,
+    :item_id => 1
+  },
+    {
+    :user_id => 2,
+    :item_id => 4
+  }
+]
+
+carts.each do |new_cart|
+  cart = Cart.new
+  cart.user_id = new_cart[:user_id]
+  cart.item_id = new_cart[:item_id]
+  cart.save
+end
+
 categories = [
   { :name => "Home Decor",
     :level => 1
@@ -161,20 +187,20 @@ items = [
   },
   {
     :user_id => 2,
-    :status_id => 1,
+    :status_id => 1, #Draft
     :title => "Some smelly stuff"
   },
   {
     :user_id => 1,
     :title => "Coffee table",
-    :status_id => 1,
+    :status_id => 1, #Draft
     :description => "Used coffee table",
     :item_url => "http://www.ikea.com/us/en/catalog/products/40104294/#/10104295"
   },
     {
     :user_id => 1,
     :title => "Desk",
-    :status_id => 2,
+    :status_id => 2, #On sale
     :description => "Desk from Ikea",
     :item_url => ""
   },
@@ -191,6 +217,27 @@ items = [
     :status_id => 4,
     :description => "Desk lamp from IKEA. Light bulb not included",
     :item_url => ""
+  },
+    {
+    #Item.id: 8
+    :user_id => 2,
+    :title => "Queen mattress",
+    :status_id => 2, #On sale
+    :description => "Gently used and very clean - propped on my wall for a while. Thick 8 inch mattress"
+  },
+  {
+    #Item.id: 9
+    :user_id => 3,
+    :title => "Nice 5 piece dining table available here at MPP",
+    :status_id => 2, #On sale
+    :description => "5 Piece table that has hardly been used. In great shape. Feel free to come by and look at them!"
+  },
+  {
+    #Item.id: 10
+    :user_id => 3,
+    :title => "TV Stand available here at MPP",
+    :status_id => 2, #On sale
+    :details => "TV stand is only 5 months old. I paid $125 for the TV stand. The TV stand has all glass shelves with metal frames to support. It looks great. I am willing to part with it at a cost. I can help deliver both (with your help) to your house."
   }
 ]
 
@@ -215,6 +262,34 @@ items.each do |new_item|
   item.save
 end
 
+root = "C:/Dropbox/2015/Others/MPP Bay/pictures/"
+pictures=[
+  {:item_id => 1, #2x2 Shelving unit
+    :image => root+"kallax-shelving-unit__0243996_PE383247_S4.JPG"
+  },
+  {:item_id => 4, #Coffee table
+    :image => root+"lack-coffee-table__57536_PE163118_S4.JPG"
+  },
+  {:item_id => 5, #Desk
+    :image => root+"malm-desk__0133379_PE288796_S4.JPG"
+  },
+  {:item_id => 6, #Swivel chair
+    :image => root+"vilgot-swivel-chair-black__0113486_PE265710_S4.JPG"
+  },
+  {:item_id => 6, #Swivel chair
+    :image => root+"20150323_203723.jpg"
+  }
+]
+
+pictures.each do |new_picture|
+  picture = Picture.new
+  picture.item_id = new_picture[:item_id]
+  picture.image = File.new(new_picture[:image])
+  picture.default_picture = true
+  picture.save
+end
+
+
 prices = [
   {:item_id => 1,
   :value => 12.99},
@@ -223,7 +298,13 @@ prices = [
   {:item_id => 3,
   :value => 10},
   {:item_id => 4,
-  :value => 5.99}
+  :value => 5.99},
+  {:item_id => 8,
+  :value => 80},
+  {:item_id => 9,
+  :value => 100},
+  {:item_id => 10,
+  :value => 70}
 ]
 
 prices.each do |new_price|
@@ -279,12 +360,6 @@ users = [
     :phone => "5555555",
     :admin => true,
   },
-  {
-    :name => "Batman",
-    :email => "bruce_wayne@example.com".downcase,
-    :admin => true,
-    :phone => "5555555"
-  },
     {
     :name => "Robin",
     :email => "robin@example.com".downcase,
@@ -296,37 +371,6 @@ users = [
     :email => "joker@example.com".downcase,
     :admin => false,
     :phone => "5555555"
-  },
-    {
-    :name => "Gordon",
-    :email => "gordon@example.com".downcase,
-    :admin => false,
-    :phone => "5555555"
-  },
-    {
-    :name => "Penguin",
-    :email => "penguin@example.com".downcase,
-    :admin => false
-  },
-    {
-    :name => "Riddler",
-    :email => "riddler@example.com".downcase,
-    :admin => false
-  },
-  {
-    :name => "2 Faces",
-    :email => "2faces@example.com".downcase,
-    :admin => false
-  },
-  {
-    :name => "Poison Ivy",
-    :email => "poisonivy@example.com".downcase,
-    :admin => false
-  },
-  {
-    :name => "John Doe",
-    :email => "jdoe@example.com".downcase,
-    :admin => false
   }
 ]
 

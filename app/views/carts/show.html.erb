@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>Cart #<%= @cart.id %> data</h3>
+    <dl class="dl-horizontal">
+      <dt>User</dt>
+      <dd><%= @cart.user_id %></dd>
+      <dt>Item</dt>
+      <dd><%= @cart.item_id %></dd>
+    </dl>
+    <%= link_to "Go back", carts_path %>
+  </div>
+</div>

@@ -43,7 +43,7 @@
             <br><br>
             <%= link_to "Delete this item", "/item_display/"+@item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
           <% else %>
-          <button class="btn btn-lg btn-primary" type="button">Contact seller</button>
+            <%= link_to "Add to cart", my_cart_path, :method => "get", class: "btn btn-lg btn-primary" %>
           <% end %>
           </div>
         </div>

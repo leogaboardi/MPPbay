@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>Offer #<%= @offer.id %> data</h3>
+    <dl class="dl-horizontal">
+      <dt>Buyer</dt>
+      <dd><%= @offer.buyer_id %></dd>
+      <dt>Item</dt>
+      <dd><%= @offer.item_id %></dd>
+    </dl>
+    <%= link_to "Go back", offers_path %>
+  </div>
+</div>
