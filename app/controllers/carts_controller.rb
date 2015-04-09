@@ -1,7 +1,9 @@
 class CartsController < ApplicationController
 
   # TODO: check the check_if_admin functions
-
+  # TODO: uniqueness when creating a cart (no user can have twice the same item)
+  # FIXME: my_index: @sellers is selecting only the seller name. I want the ID as well
+  # FIXME: my_index: the if statment in view compares seller name. Should be seller ID
   before_action :check_if_admin, only: [:index]
 
   def check_if_admin
@@ -16,7 +18,7 @@ class CartsController < ApplicationController
     @cart.item_id = params[:item_id]
 
     if @cart.save
-      redirect_to "/carts", :notice => "Item successfully added to cart."
+      redirect_to "/my_cart", :notice => "Item added to cart."
     else
       render "new_form"
     end
@@ -25,7 +27,7 @@ class CartsController < ApplicationController
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
-    redirect_to "/carts", :notice => "Item successfully removed from cart."
+    redirect_to "/my_cart", :notice => "Item successfully removed from cart."
   end
 
   def edit
@@ -33,7 +35,9 @@ class CartsController < ApplicationController
   end
 
   def my_index
-    @carts = Cart.where(:user_id => current_user.id)
+    @carts = Cart.where(:user_id => current_user.id).joins(item: :user).order("users.name ASC")
+    @sellers = Cart.where(:user_id => current_user.id).joins(item: :user).select(:name).distinct
+
     @pictures = Picture.all
     @prices = Price.all
   end

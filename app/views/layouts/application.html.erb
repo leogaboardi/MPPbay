@@ -52,6 +52,8 @@
             <li><%= link_to "Buy", "/buy" %></li>
             <li><%= link_to "Sell", "/sell"  %></li>
             <li><%= link_to "Your account", "/summary"  %></li>
+            <li><a href="/my_cart">Your cart <strong><%= @cart_size %></strong></a>
+            </li>
             <li><%= link_to "Help & Contact", "/" %></li>
 
             <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>

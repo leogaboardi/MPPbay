@@ -31,7 +31,8 @@
   - [ ] format forgot your password page
 
 - [ ] Get rid of Conditions model (use helper instead)
-- [ ] Get rid of Status model (use helper instead)
+- [ ] Get rid of Status model (use helper instead)s
+- [ ] Get rid of Price model (use static variable in item instead)
 
 # P2
 - [ ] Create SimilarItems functionality

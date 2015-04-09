@@ -63,6 +63,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @prices = Price.where(:item_id => @item.id)
   end
 
   def update
