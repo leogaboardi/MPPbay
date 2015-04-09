@@ -2,11 +2,13 @@ source 'https://rubygems.org'
 
 gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.git", :branch => "boothappdev"
 
-# For user management
-gem 'devise'
 
-# For image management
-gem 'paperclip'
+gem 'devise' # For user management
+
+
+gem 'paperclip' # For image management
+
+gem 'figaro' #For managing sensitive information
 
 # This makes the jquery work better in the pages
 gem 'jquery-turbolinks'

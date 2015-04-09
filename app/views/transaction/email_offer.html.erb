@@ -1,23 +1,31 @@
 <div class="row">
   <div class="col-md-12">
-    <h3>Make offer</h3>
+    <h3>Make offer to <%= @seller %></h3>
 
     <p>Message to the seller</p>
 
-    <%= form_tag "/offers", :class => "form-horizontal", :method => "post" do %>
+    <%= form_tag "/batman", :class => "form-horizontal", :method => "get" do %>
 
       <!-- Label and input for description -->
       <div class="form-group">
         <label for="description" aria-required="true" class="col-sm-3 control-label">
-          Brief description
-          <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Write a compelling description about the item you are selling. Limit of 200 characters. You can put further information in the 'details' field below"></span>
+          Your email
         </label>
         <div class="col-sm-8">
-          <%= text_area_tag 'description', nil, maxlength: 200, class: 'form-control item-description' %>
+          <%= text_area_tag 'description', "Hello,", maxlength: 1000, class: 'form-control item-description', rows:"10" %>
         </div>
       </div>
 
-      <%= check_box_tag 'accept' %>
+      <div class="form-group">
+        <div class="col-sm-8 col-sm-offset-3">
+          <div class="checkbox">
+            <label>
+              <%= check_box_tag 'accept' %>
+              <p>Yep, I'm sure I want to send this email.</p>
+            </label>
+          </div>
+        </div>
+      </div>
 
       <!-- CREATE BUTTON -->
       <div class="form-group">

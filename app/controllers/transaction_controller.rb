@@ -1,7 +1,7 @@
 class TransactionController < ApplicationController
 
   def email_offer
-
+    @seller = 1
   end
 
   def replyoffer
@@ -10,5 +10,11 @@ class TransactionController < ApplicationController
 
   def checkout
 
+  end
+
+  def batman
+    UserMailer.welcome_email(@user).deliver_now
+
+    redirect_to "/buy", :notice => "Thanks!"
   end
 end
