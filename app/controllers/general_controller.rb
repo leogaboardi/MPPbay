@@ -4,6 +4,7 @@ class GeneralController < ApplicationController
   # TODO: P0: item_new: validation (both in model and in view)
   # TODO: P1: item_new: make photos uploadable in
   # TODO: P1: summary: make a checklist check when click "put on sale"
+  # TODO: P1: summary: put a tab for "items you offered to buy"
   # TODO: P0: css: items in browse with 2 line titles are off the frame
   # FIXME: P0: category dropdown in item / edit page
 

@@ -80,26 +80,26 @@ end
 
 carts = [
   {
-    :user_id => 1,
-    :item_id => 2
+    :buyer_id => 1,
+    :item_id => 10 # Nice 5 piece dining table available here at MPP (from Joker)
   },
     {
-    :user_id => 2,
-    :item_id => 3
+    :buyer_id => 1,
+    :item_id => 9 #TV Stand available here at MPP (from Joker)
   },
     {
-    :user_id => 2,
-    :item_id => 1
+    :buyer_id => 1, #Robin
+    :item_id => 8 # Queen mattress (from Robin)
   },
     {
-    :user_id => 2,
+    :buyer_id => 2,
     :item_id => 4
   }
 ]
 
 carts.each do |new_cart|
   cart = Cart.new
-  cart.user_id = new_cart[:user_id]
+  cart.buyer_id = new_cart[:buyer_id]
   cart.item_id = new_cart[:item_id]
   cart.save
 end

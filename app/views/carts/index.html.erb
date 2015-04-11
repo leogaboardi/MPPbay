@@ -7,7 +7,8 @@
 
     <table class="table table-striped">
       <tr>
-        <th>User</th>
+        <th>Buyer</th>
+        <th>Buyer_id</th>
         <th>Item</th>
         <th></th>
         <th></th>
@@ -16,7 +17,14 @@
 
       <% @carts.each do |cart| %>
       <tr>
-        <td><%= cart.user.name %></td>
+        <td>
+          <% if !cart.buyer_id.nil? %>
+            <%= User.find(cart.buyer_id).name %>
+          <% end %>
+        </td>
+        <td>
+          <%= cart.buyer_id %>
+        </td>
         <td><%= cart.item.title %></td>
 
         <td>

@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-md-12">
     <%= form_tag cart_path(@cart), :class => "form-horizontal", :method => "put" do %>
-      <!-- Label and input for user_id -->
+      <!-- Label and input for buyer_id -->
       <div class="form-group">
-        <label for="user_id" class="col-sm-3 control-label">
-          Name
+        <label for="buyer_id" class="col-sm-3 control-label">
+          Buyer id
         </label>
         <div class="col-sm-4">
-          <%= text_field_tag 'user_id', @cart.user_id, class: 'form-control' %>
+          <%= text_field_tag 'buyer_id', @cart.buyer_id, class: 'form-control' %>
         </div>
       </div>
 

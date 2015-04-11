@@ -4,7 +4,7 @@ gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.g
 
 
 gem 'devise' # For user management
-
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun' #For sending emails
 
 gem 'paperclip' # For image management
 

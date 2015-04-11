@@ -4,7 +4,7 @@
   - [x] Build cart model
   - [x] Build offer CRUD
   - [x] Build cart CRUD
-  - [ ] View: cart
+  - [x] View: cart
   - [ ] View: send offer email
   - [ ] Design html offer email
   - [ ] View: offer reply (accept/decline/counter offer)
@@ -39,3 +39,4 @@
 - [ ] Create search
 - [ ] On product lists (summary, etc) user can choose between a simple list view, or a more "nicer" view with thumnail, etc.
 - [ ] Make sure an admin can't delete him/herself
+- [ ] Get rid of unused mailers

@@ -1,9 +1,6 @@
 class CartsController < ApplicationController
 
   # TODO: check the check_if_admin functions
-  # TODO: uniqueness when creating a cart (no user can have twice the same item)
-  # FIXME: my_index: @sellers is selecting only the seller name. I want the ID as well
-  # FIXME: my_index: the if statment in view compares seller name. Should be seller ID
   before_action :check_if_admin, only: [:index]
 
   def check_if_admin
@@ -14,13 +11,13 @@ class CartsController < ApplicationController
 
   def create
     @cart = Cart.new
-    @cart.user_id = params[:user_id]
+    @cart.buyer_id = params[:buyer_id]
     @cart.item_id = params[:item_id]
 
     if @cart.save
       redirect_to "/my_cart", :notice => "Item added to cart."
     else
-      render "new_form"
+      redirect_to "/my_cart"
     end
   end
 
@@ -35,8 +32,11 @@ class CartsController < ApplicationController
   end
 
   def my_index
-    @carts = Cart.where(:user_id => current_user.id).joins(item: :user).order("users.name ASC")
-    @sellers = Cart.where(:user_id => current_user.id).joins(item: :user).select(:name).distinct
+    @carts = Cart.where(:buyer_id => current_user.id)
+    #@sellers = Cart.where(:buyer_id => current_user.id).joins(item: :user).select(:name).distinct
+    @sellers = Cart.where(:buyer_id => current_user.id).joins(:item).select(:user_id).distinct
+    # @batman = User.where(:user_id => @sellers_id.user_id)
+
 
     @pictures = Picture.all
     @prices = Price.all
@@ -56,7 +56,7 @@ class CartsController < ApplicationController
 
   def update
     @cart = Cart.find(params[:id])
-    @cart.user_id = params[:user_id]
+    @cart.buyer_id = params[:buyer_id]
     @cart.item_id = params[:item_id]
 
     if @cart.save

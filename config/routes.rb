@@ -10,9 +10,8 @@ Rails.application.routes.draw do
   get('/my_cart', { :controller => 'carts', :action => 'my_index' })
 
   get('/replyoffer', { :controller => 'transaction', :action => 'replyoffer', :as => "reply"  })
-  get('/email_offer', { :controller => 'transaction', :action => 'email_offer', :as => "email_offer"  })
-  get('/batman', { :controller => 'transaction', :action => 'batman'})
-
+  get('/email_offer/:seller_id', { :controller => 'transaction', :action => 'email_offer', :as => "email_offer"  })
+  get('/send_email_offer/:buyer_id/:seller_id', { :controller => 'transaction', :action => 'send_email_offer', :as => "send_email_offer"})
 
   get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
   get('/buy', { :controller => 'general', :action => 'buy', :as => "buy" })

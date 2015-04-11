@@ -2,8 +2,10 @@
   <div class="col-md-8 col-md-offset-2">
     <h3>Cart #<%= @cart.id %> data</h3>
     <dl class="dl-horizontal">
-      <dt>User</dt>
-      <dd><%= @cart.user_id %></dd>
+      <dt>Buyer ID</dt>
+      <dd><%= @cart.buyer_id %></dd>
+      <dt>Item owner ID</dt>
+      <dd><%= Item.find(@cart.item_id).user.name %></dd>
       <dt>Item</dt>
       <dd><%= @cart.item_id %></dd>
     </dl>

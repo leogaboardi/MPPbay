@@ -1,35 +1,40 @@
 <div class="row">
   <div class="col-md-12">
-    <h3>Shopping carts</h3>
-        <% @sellers.each do |seller| %>
-          <br>
-          <h4>Items from <%= seller.name %></h4>
-          <% @carts.each do |cart| %>
-            <% if cart.item.user.name == seller.name %>
-              <div class="row summary-item-frame">
-                <div class="col-md-3 summary-item-picture-frame">
-                  <a href="/item_display/<%= cart.item.id %>"><img class="summary-item-picture"
-                  <% if !@pictures.where(:item_id => cart.item.id).first.nil? %>
-                    src="<%= @pictures.where(:item_id => cart.item.id).first.image.url %>"
-                  <% else %>
-                  src="/assets/default_picture.png"
-                  <% end %>
-                  ></a>
-                </div>
-                <div class="col-md-9 summary-item-data">
-                  <a class="summary-item-name" href="/item_display/<%= cart.item.id %>"><%= cart.item.title %></a>
-                  <ul>
-                    <li>On sale by <%= cart.item.user.name %></li>
-                    <li>Added on cart on <%= cart.created_at.strftime("%D") %></li>
-                  </ul>
-                  <%= link_to "Remove from cart", cart_path(cart.id), :method => "delete", data: {confirm: "Are you sure?"}, :class => "btn btn-default" %>
-                </div>
+    <% if @carts.length==0 %>
+      <h3>Your shopping cart is empty</h3>
+      <p>Why don't you look for   <%= link_to "something that might interest you?", "/buy" %> </p>
+    <% else %>
+      <h3>Yout shopping cart</h3>
+      <% @sellers.each do |seller| %>
+        <br>
+        <h4>Items from <%= User.find(seller.user_id).name %></h4>
+        <% @carts.each do |cart| %>
+          <% if cart.item.user_id == seller.user_id %>
+            <div class="row summary-item-frame">
+              <div class="col-md-3 summary-item-picture-frame">
+                <a href="/item_display/<%= cart.item.id %>"><img class="summary-item-picture"
+                <% if !@pictures.where(:item_id => cart.item.id).first.nil? %>
+                  src="<%= @pictures.where(:item_id => cart.item.id).first.image.url %>"
+                <% else %>
+                src="/assets/default_picture.png"
+                <% end %>
+                ></a>
               </div>
-              <br>
-            <% end %>
+              <div class="col-md-9 summary-item-data">
+                <a class="summary-item-name" href="/item_display/<%= cart.item.id %>"><%= cart.item.title %></a>
+                <ul>
+                  <li>On sale by <%= cart.item.user.name %></li>
+                  <li>Added on cart on <%= cart.created_at.strftime("%D") %></li>
+                </ul>
+                <%= link_to "Remove from cart", cart_path(cart.id), :method => "delete", data: {confirm: "Are you sure?"}, :class => "btn btn-default" %>
+              </div>
+            </div>
+            <br>
           <% end %>
-          <%= link_to "Make offer to "+seller.name, email_offer_path, :method => "get", class: "btn btn-lg btn-primary" %>
-          <br>
         <% end %>
+        <%= link_to "Make offer to "+User.find(seller.user_id).name.to_s, email_offer_path(seller.user_id), :method => "get", class: "btn btn-lg btn-primary" %>
+        <br>
+      <% end %>
+    <% end %>
   </div>
 </div>

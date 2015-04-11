@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150330171116) do
   end
 
   create_table "carts", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "buyer_id"
     t.integer  "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(version: 20150330171116) do
   create_table "offers", force: true do |t|
     t.integer  "buyer_id"
     t.integer  "item_id"
-    t.integer  "seller_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,27 +1,23 @@
 <div class="row">
   <div class="col-md-12">
-    <h3>Make offer to <%= @seller %></h3>
+    <h3>Make an offer to <%= @seller.name %></h3>
+    <p>Here is a template message you can send to <%= @seller.name %> making an offer to buy his/her stuff. Fell free to change it as you wish!</p>
 
-    <p>Message to the seller</p>
-
-    <%= form_tag "/batman", :class => "form-horizontal", :method => "get" do %>
+    <%= form_tag send_email_offer_path(current_user.id,@seller.id), :class => "form-horizontal", :method => "get" do %>
 
       <!-- Label and input for description -->
       <div class="form-group">
-        <label for="description" aria-required="true" class="col-sm-3 control-label">
-          Your email
-        </label>
-        <div class="col-sm-8">
-          <%= text_area_tag 'description', "Hello,", maxlength: 1000, class: 'form-control item-description', rows:"10" %>
+        <div class="col-sm-8 col-sm-offset-2">
+          <%= text_area_tag 'description', @text_template, maxlength: 1000, class: 'form-control item-description', rows:"10" %>
         </div>
       </div>
 
       <div class="form-group">
-        <div class="col-sm-8 col-sm-offset-3">
+        <div class="col-sm-8 col-sm-offset-2">
           <div class="checkbox">
             <label>
               <%= check_box_tag 'accept' %>
-              <p>Yep, I'm sure I want to send this email.</p>
+              <p>I understand that I am making a serious offer, and that MPPbay has nothing to do if there any screw up from this!</p>
             </label>
           </div>
         </div>
@@ -29,14 +25,14 @@
 
       <!-- CREATE BUTTON -->
       <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-9">
+        <div class="col-sm-offset-2 col-sm-8">
           <%= submit_tag "Make offer", :class => "btn btn-primary", data: {confirm: "Are you sure?"} %>
         </div>
       </div>
 
     <% end %>
     <div class="col-md-12">
-      <%= link_to "Go back", offers_path %>
+      <%= link_to "Go back", my_cart_path, data: {confirm: "Are you sure? If you press OK, you will lose any changes you might have made on the email."}  %>
     </div>
   </div>
 </div>
