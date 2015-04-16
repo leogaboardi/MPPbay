@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <% if !@sample_email %>
+      <div class="container main">
+    <% end %>
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Hi <%= @seller.name %></h3>
+        <p>
+          <%= @buyer.name %> just sent you an offer for the following items you own in MPPbay:
+        </p>
+        <% @offers.each do |item| %>
+          <div class="row summary-item-frame">
+            <div class="col-md-3 summary-item-picture-frame">
+              <img class="summary-item-picture"
+              <% if false%>
+                src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
+              <% else %>
+              src="/assets/default_picture.png"
+              <% end %>
+              >
+            </div>
+            <div class="col-md-9 summary-item-data">
+              <p class="summary-item-name"><%= item.item.title %></p>
+              <p class="summary-item-name"><%= item.item.id %></p>
+
+              <ul>
+                <% if false %>
+                  <% if !@prices.where(:item_id => item.id).last.nil?  %>
+                    <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <br>
+        <% end %>
+
+        <% if @sample_email %>
+          <p><em>The additional comments you may write below will show up in here</em></p>
+        <% else %>
+          <% if !@comment.blank? %>
+          <p>Comments from <%= @buyer.name %>:</p>
+          <p><%= @comment %></p>
+          <% end %>
+        <% end %>
+        <p>Please get in touch with <%= @buyer.name %> (email: <%= @buyer.email %>) to negotiate the terms, accept or decline the offer, etc. Also, if you close a deal, don't forget to mark the items as "sold" in MPPBay so other people don't try to make an additional offer by mistake.</p>
+        <p>Thanks,</p>
+        <p>MPPbay team</p>
+        </div>
+      </div>
+    <% if !@sample_email %>
+      <div>
+    <% end %>
+  </body>
+</html>

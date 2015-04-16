@@ -64,6 +64,10 @@ html, body{
   margin-left: 70%;
 }
 
+.email{
+  background-color:#CCCCCC;
+  height: 2px;
+}
 .item-description{
   max-width: 100%;
 }

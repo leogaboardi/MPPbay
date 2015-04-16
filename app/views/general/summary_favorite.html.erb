@@ -1,0 +1,23 @@
+<h3>Your favorite items</h3>
+<% @favorites.each do |favorite| %>
+  <div class="row summary-item-frame">
+    <div class="col-md-3 summary-item-picture-frame">
+      <a href="/item_display/<%= favorite.item.id %>"><img class="summary-item-picture"
+      <% if !@pictures.where(:item_id => favorite.item.id).first.nil? %>
+        src="<%= @pictures.where(:item_id => favorite.item.id).first.image.url %>"
+      <% else %>
+      src="/assets/default_picture.png"
+      <% end %>
+      ></a>
+    </div>
+    <div class="col-md-9 summary-item-data">
+      <a class="summary-item-name" href="/item_display/<%= favorite.item.id %>"><%= favorite.item.title %></a>
+      <ul>
+        <li>Price: <%= @prices.where(:item_id => favorite.item.id).last.value %></li>
+        <li>On sale by Bruce Wayne</li>
+        <li>Favorited on <%= favorite.created_at.strftime("%D") %></li>
+      </ul>
+    </div>
+  </div>
+  <br>
+<% end %>

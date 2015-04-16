@@ -32,7 +32,7 @@
             <br>
           <% end %>
         <% end %>
-        <%= link_to "Make offer to "+User.find(seller.user_id).name.to_s, email_offer_path(seller.user_id), :method => "get", class: "btn btn-lg btn-primary" %>
+        <%= link_to "Make offer to "+User.find(seller.user_id).name.to_s, new_email_offer_path(seller.user_id), :method => "get", class: "btn btn-lg btn-primary" %>
         <br>
       <% end %>
     <% end %>

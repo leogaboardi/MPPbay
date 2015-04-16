@@ -1,0 +1,59 @@
+<h3>Your profile</h3>
+          <dl class="dl-horizontal">
+            <dt>Name</dt>
+            <dd><%= current_user.name %></dd>
+            <dt>Email</dt>
+            <dd><%= current_user.email %></dd>
+            <dt>Phone</dt>
+            <dd><%= current_user.phone %></dd>
+          </dl>
+          <%= link_to "Edit your profile", edit_user_path(current_user.id), :class => "btn btn-default"%>
+          <h3>Your addresses</h3>
+          <%= link_to "Add new address", new_address_path, :class => "btn btn-default"%>
+          <br><br>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Main address</h3>
+            </div>
+            <% if @main_addresses.count == 0 %>
+              <div class="panel-body">
+                <p><em>You have no address assigned as a main address</em></p>
+               </div>
+            <% end %>
+            <% @main_addresses.each do |address| %>
+              <div class="panel-body">
+                <p><%= address.full_name %></p>
+                <p><%= address.address_line_1 %></p>
+                <p><%= address.address_line_2 %></p>
+                <p><%= address.city %> <%= address.state %></p>
+                <p><%= address.zip %></p>
+                <p><%= address.country %></p>
+                <p>Phone: <%= address.phone_number %></p>
+                <%= link_to "Edit", edit_address_path(address.id),  :class => "btn btn-default" %>
+                <%= link_to "Delete", address_path(address.id), :method => "delete", data: {confirm: "Are you sure?"}, :class => "btn btn-default" %>
+              </div>
+              <%= content_tag(:hr)%>
+            <% end %>
+          </div>
+          <% if @other_addresses.count > 0 %>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Other addresses</h3>
+              </div>
+            <% @other_addresses.each do |address| %>
+              <div class="panel-body">
+                <p><%= address.full_name %></p>
+                <p><%= address.address_line_1 %></p>
+                <p><%= address.address_line_2 %></p>
+                <p><%= address.city %> <%= address.state %></p>
+                <p><%= address.zip %></p>
+                <p><%= address.country %></p>
+                <p>Phone: <%= address.phone_number %></p>
+                <%= link_to "Edit", edit_address_path(address.id),  :class => "btn btn-default" %>
+                <%= link_to "Delete", address_path(address.id), :method => "delete", data: {confirm: "Are you sure?"}, :class => "btn btn-default" %>
+                <%= link_to "Make main address", "/address/"+(address.id.to_s)+"/main", :method => "patch", data: {confirm: "Are you sure?"}, :class => "btn btn-default" %>
+              </div>
+              <%= content_tag(:hr)%>
+            <% end %>
+            </div>
+          <% end %>

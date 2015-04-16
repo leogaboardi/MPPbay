@@ -11,14 +11,5 @@ class ExampleMailer < ActionMailer::Base
     mg_client.send_message ENV['domain'], message_params
   end
 
-  def offer_email(buyer_id, seller_id)
-    @buyer = User.find(buyer_id)
-    @seller = User.find(seller_id)
-    mg_client = Mailgun::Client.new ENV['api_key']
-    message_params = {:from    => @buyer.email,
-                      :to      => @seller.email,
-                      :subject => 'You have received an offer for your MPPbay item',
-                      :text    => 'This mail is sent using Mailgun API via mailgun-ruby'}
-    mg_client.send_message ENV['domain'], message_params
-  end
+
 end

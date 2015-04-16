@@ -1,3 +1,8 @@
+N_USERS = 10  #Number of users
+N_ITEMS = 100 #Number of items
+P_CART =  0.1 #Probability of an item belonging to the users cart
+P_OFFER =  0.05 #Probability of an item belonging to the users cart
+
 addresses = [
   {
     :user_id => 1,
@@ -78,24 +83,17 @@ buildings.each do |new_building|
   building.save
 end
 
-carts = [
-  {
-    :buyer_id => 1,
-    :item_id => 10 # Nice 5 piece dining table available here at MPP (from Joker)
-  },
-    {
-    :buyer_id => 1,
-    :item_id => 9 #TV Stand available here at MPP (from Joker)
-  },
-    {
-    :buyer_id => 1, #Robin
-    :item_id => 8 # Queen mattress (from Robin)
-  },
-    {
-    :buyer_id => 2,
-    :item_id => 4
-  }
-]
+carts = []
+N_USERS.times do |user|
+  N_ITEMS.times do |item|
+    if (rand(0..100).to_f/100 <= P_CART)
+      carts << {
+      :buyer_id => user+1,
+      :item_id => item+1
+      }
+    end
+  end
+end
 
 carts.each do |new_cart|
   cart = Cart.new
@@ -241,6 +239,18 @@ items = [
   }
 ]
 
+  N_ITEMS.times do |n|
+    items << {
+    :user_id => rand(1..N_USERS),
+    :title => "item #{n+1}",
+    :description => "Description of item #{n+1}",
+    :details => "Some description of the item #{n+1}",
+    :category_1_id => 1,
+    :status_id => rand(1..4),
+    :condition_id => rand(1..4)
+    }
+  end
+
 items.each do |new_item|
   item = Item.new
 
@@ -260,6 +270,25 @@ items.each do |new_item|
   item.category_3_id = new_item[:category_3_id]
 
   item.save
+end
+
+offers = []
+N_USERS.times do |user|
+  N_ITEMS.times do |item|
+    if (rand(0..100).to_f/100 <= P_OFFER)
+      offers << {
+      :buyer_id => user+1,
+      :item_id => item+1
+      }
+    end
+  end
+end
+
+offers.each do |new_offer|
+  offer = Offer.new
+  offer.buyer_id = new_offer[:buyer_id]
+  offer.item_id = new_offer[:item_id]
+  offer.save
 end
 
 root = "C:/Dropbox/2015/Others/MPP Bay/pictures/"
@@ -306,6 +335,13 @@ prices = [
   {:item_id => 10,
   :value => 70}
 ]
+
+  N_ITEMS.times do |n|
+    prices << {
+    :item_id => n+8,
+    :value => rand(0..99999).to_f/100
+    }
+  end
 
 prices.each do |new_price|
   price = Price.new
@@ -359,20 +395,17 @@ users = [
     :email => "leonardo@example.com".downcase,
     :phone => "5555555",
     :admin => true,
-  },
-    {
-    :name => "Robin",
-    :email => "robin@example.com".downcase,
-    :admin => false,
-    :phone => "5555555"
-  },
-    {
-    :name => "Joker",
-    :email => "joker@example.com".downcase,
-    :admin => false,
-    :phone => "5555555"
   }
 ]
+
+  N_USERS.times do |n|
+    users << {
+    :name =>  "user#{n+1}",
+    :email => "user#{n+1}@example.com",
+    :admin => false,
+    :phone => "5555555"
+    }
+  end
 
 users.each do |new_user|
   user = User.new

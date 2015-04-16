@@ -1,14 +1,22 @@
 <div class="row">
   <div class="col-md-12">
     <h3>Make an offer to <%= @seller.name %></h3>
-    <p>Here is a template message you can send to <%= @seller.name %> making an offer to buy his/her stuff. Fell free to change it as you wish!</p>
+    <p>Below this line you can see the email to be sent to <%= @seller.name %> making an offer to buy his/her stuff. You can also add additional comments below.</p>
+    <hr class="email">
+    <div class="row"></div>
+      <div class="col-md-8 col-md-offset-2">
+        <%= render :file => "/app/views/transaction_mailer/offer_email" %>
+      </div>
+    </div>
 
+    <p>&nbsp;</p>
+    <hr class="email">
     <%= form_tag send_email_offer_path(current_user.id,@seller.id), :class => "form-horizontal", :method => "get" do %>
 
-      <!-- Label and input for description -->
+      <!-- Label and input for comment -->
       <div class="form-group">
-        <div class="col-sm-8 col-sm-offset-2">
-          <%= text_area_tag 'description', @text_template, maxlength: 1000, class: 'form-control item-description', rows:"10" %>
+        <div class="col-sm-8 col-md-offset-2">
+          <%= text_area_tag 'comment', nil, maxlength: 1000, class: 'form-control', rows:"5", :placeholder => "Put some additional comments here if you want to" %>
         </div>
       </div>
 
@@ -16,7 +24,7 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="checkbox">
             <label>
-              <%= check_box_tag 'accept' %>
+              <%= check_box_tag 'accept', 'accepted', false, options = {:required => true} %>
               <p>I understand that I am making a serious offer, and that MPPbay has nothing to do if there any screw up from this!</p>
             </label>
           </div>
@@ -26,7 +34,7 @@
       <!-- CREATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-8">
-          <%= submit_tag "Make offer", :class => "btn btn-primary", data: {confirm: "Are you sure?"} %>
+          <%= submit_tag "Make offer", :class => "btn btn-primary" %>
         </div>
       </div>
 

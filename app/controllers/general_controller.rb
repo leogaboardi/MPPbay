@@ -5,6 +5,7 @@ class GeneralController < ApplicationController
   # TODO: P1: item_new: make photos uploadable in
   # TODO: P1: summary: make a checklist check when click "put on sale"
   # TODO: P1: summary: put a tab for "items you offered to buy"
+  # TODO: P2: item: put a sign telling "someone is already asking for this item"
   # TODO: P0: css: items in browse with 2 line titles are off the frame
   # FIXME: P0: category dropdown in item / edit page
 
@@ -143,6 +144,7 @@ class GeneralController < ApplicationController
     @selling = Item.where(:user_id => current_user.id, :status_id => 2)
     @draft = Item.where(:user_id => current_user.id, :status_id => 1)
     @sold = Item.where(:user_id => current_user.id, :status_id => 3)
+    @offers_made = Offer.where(:buyer_id => current_user.id)
     @disabled = Item.where(:user_id => current_user.id, :status_id => 4)
     @purchases = Purchase.where(:buyer_id => current_user.id)
   end

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <% if   @purchases.count==0 || @purchases.blank? %>
+      <div class="jumbotron">
+        <h2>Nothing bought yet =(</h2>
+        <%= link_to "Look for something to buy!", "/buy", :class => "btn btn-lg btn-primary"%>
+      </div>
+    <% else %>
+      <h3>Items bought</h3>
+      <% @purchases.each do |purchase| %>
+        <div class="row summary-item-frame">
+          <div class="col-md-3 summary-item-picture-frame">
+            <a href="/item_display/<%= purchase.item.id %>"><img class="summary-item-picture"
+            <% if !@pictures.where(:item_id => purchase.item.id).first.nil? %>
+              src="<%= @pictures.where(:item_id => purchase.item.id).first.image.url %>"
+            <% else %>
+            src="/assets/default_picture.png"
+            <% end %>
+            ></a>
+          </div>
+          <div class="col-md-9 summary-item-data">
+            <a class="summary-item-name" href="/item_display/<%= purchase.item.id %>"><%= purchase.item.title %></a>
+            <ul>
+              <% if !@prices.where(:item_id => purchase.item.id).last.nil? %>
+                <li>Price: <%= @prices.where(:item_id => purchase.item.id).last.value %></li>
+              <% end %>
+              <li>Sold in <%= purchase.created_at.strftime("%D, %I:%M %p") %></li>
+            </ul>
+          </div>
+        </div>
+        <br>
+      <% end %>
+    <% end %>
+  </div>
+</div>
