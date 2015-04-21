@@ -10,31 +10,27 @@
     <% end %>
     <div class="row">
       <div class="col-md-12">
-        <h3>Hi <%= @seller.name %></h3>
+        <h3>Hi <%= @seller.name %>,</h3>
         <p>
           <%= @buyer.name %> just sent you an offer for the following items you own in MPPbay:
         </p>
-        <% @offers.each do |item| %>
+        <% @offers.each do |offer| %>
           <div class="row summary-item-frame">
             <div class="col-md-3 summary-item-picture-frame">
               <img class="summary-item-picture"
-              <% if false%>
-                src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
-              <% else %>
+              <% if @pictures.where(:item_id => offer.item.id).length>0 %>
+                src="<%= @pictures.where(:item_id => offer.item.id).first.image.url %>"
+               <% else %>
               src="/assets/default_picture.png"
               <% end %>
               >
             </div>
             <div class="col-md-9 summary-item-data">
-              <p class="summary-item-name"><%= item.item.title %></p>
-              <p class="summary-item-name"><%= item.item.id %></p>
-
+              <p class="summary-item-name"><%= offer.item.title %></p>
               <ul>
-                <% if false %>
-                  <% if !@prices.where(:item_id => item.id).last.nil?  %>
-                    <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+                  <% if !@prices.where(:item_id => offer.item.id).last.nil?  %>
+                    <li>Price: $<%= @prices.where(:item_id => offer.item.id).last.value %></li>
                   <% end %>
-                <% end %>
               </ul>
             </div>
           </div>

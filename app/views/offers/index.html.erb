@@ -8,6 +8,7 @@
     <table class="table table-striped">
       <tr>
         <th>Buyer</th>
+        <th>Seller</th>
         <th>Item</th>
         <th></th>
         <th></th>
@@ -17,7 +18,8 @@
       <% @offers.each do |offer| %>
       <tr>
         <td><%= offer.buyer_id %></td>
-        <td><%= offer.item_id %></td>
+        <td><%= offer.item.user.name %></td>
+        <td><%= offer.item.title %></td>
         <td>
          <%= link_to "View", offer_path(offer.id) %>
         </td>

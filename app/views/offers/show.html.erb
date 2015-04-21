@@ -3,9 +3,13 @@
     <h3>Offer #<%= @offer.id %> data</h3>
     <dl class="dl-horizontal">
       <dt>Buyer</dt>
-      <dd><%= @offer.buyer_id %></dd>
+      <dd><%= @offer.buyer.name %> (<%= @offer.buyer.email %>)</dd>
+      <dt>Seller</dt>
+      <dd><%= @offer.item.user.name %> (<%= @offer.item.user.email %>)</dd>
       <dt>Item</dt>
-      <dd><%= @offer.item_id %></dd>
+      <dd><%= @offer.item.title %></dd>
+      <dt>Offer date</dt>
+      <dd><%= @offer.created_at %></dd>
     </dl>
     <%= link_to "Go back", offers_path %>
   </div>

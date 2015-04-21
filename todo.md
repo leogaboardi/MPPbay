@@ -25,13 +25,14 @@
 
 - [ ] Devise
   - [ ] Setup email service
-  - [ ] format sign up page
-  - [ ] format sign in page
-  - [ ] format forgot your password page
+  - [x] format sign up page
+  - [x] format sign in page
+  - [x] format forgot your password page
 
 - [ ] Get rid of Conditions model (use helper instead)
 - [ ] Get rid of Status model (use helper instead)s
-- [ ] Get rid of Price model (use static variable in item instead)
+- [ ] Get rid of Price model? (use static variable in item instead)
+- [ ] Get rid of Availability model and use helper instead.
 
 # P2
 - [ ] Favorite functionality

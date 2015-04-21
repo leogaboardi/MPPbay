@@ -1,3 +1,19 @@
-Hi <%= @seller.name %>
-Sample mail sent using smtp.
+Hi <%= @seller.name %>,
+<%= @buyer.name %> just sent you an offer for the following items you own in MPPbay:
+<% @offers.each do |offer| %>
 
+-<%= offer.item.title %>
+  <% if !@prices.where(:item_id => offer.item.id).last.nil?  %>
+  Price: $<%= @prices.where(:item_id => offer.item.id).last.value %>
+  <% end %>
+<% end %>
+
+<% if !@comment.blank? %>
+Comments from <%= @buyer.name %>:
+<%= @comment %>
+<% end %>
+
+Please get in touch with <%= @buyer.name %> (email: <%= @buyer.email %>) to negotiate the terms, accept or decline the offer, etc. Also, if you close a deal, don't forget to mark the items as "sold" in MPPBay so other people don't try to make an additional offer by mistake.
+
+Thanks,
+MPPbay team
