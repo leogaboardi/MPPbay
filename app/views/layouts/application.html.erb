@@ -52,14 +52,12 @@
             <li><%= link_to "Buy", "/buy" %></li>
             <li><%= link_to "Sell", "/sell"  %></li>
             <li><%= link_to "Your account", "/summary"  %></li>
-            <li><a href="/my_cart">Your cart <strong><%= @cart_size %></strong></a>
-            </li>
+            <li><%= link_to (raw("Your cart <strong>#{@cart_size}</strong>")),"/my_cart" %></li>
             <li><%= link_to "Help & Contact", "/" %></li>
-
-            <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
+            <li><%= link_to "Sign out", "/users/sign_out", :method => :delete %></li>
           <% else %>
-            <li><a href="/users/sign_up">Sign up</a></li>
-            <li><a href="/users/sign_in">Sign in</a></li>
+            <li><%= link_to "Sign up", "/users/sign_up" %></li>
+            <li><%= link_to "Sign in", "/users/sign_in" %></li>
           <% end %>
         </ul>
       </div><!-- /.container-fluid -->
