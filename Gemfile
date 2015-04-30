@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 #gem 'momentjs-rails','>= 2.9.0'
 #gem 'bootstrap3-datetimepicjer-rails', '~> 4.7.14'
 
+gem 'newrelic_rpm' #Monitoring tool
+
+
 gem 'devise' # For user management
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun' #For sending emails
 
