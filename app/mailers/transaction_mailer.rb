@@ -18,12 +18,12 @@ class TransactionMailer < ApplicationMailer
     message_params = {:from    => ENV['gmail_username'],
                       :to      => @seller.email,
                       :subject => 'You\'ve received an offer for your MPPbay item',
-                      :text    => 'Test'
-                    #  :html => '<html>dsdasdas</html>'
+                      :text    => 'Test',
+                      :html => '<html>dsdasdas</html>'
                     }
 
     # Send your message through the client
-    mg_client.send_message ENV['domain'], message_params
+    mg_client.send_message ENV['mailer_domain'], message_params
 
   end
 end
