@@ -1,7 +1,7 @@
 <br>
           <% if @draft.count+@disabled.count+@sold.count+@disabled.count==0 %>
             <div class="jumbotron">
-              <h2>Nothing to sell yet =(</h2>
+              <h2>You don't have nothing on sale yet =(</h2>
               <br>
               <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
             </div>
