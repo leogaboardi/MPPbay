@@ -1,14 +1,12 @@
 # P0
-- [ ] Purchase process
+- [x ] Purchase process
   - [x] Build offer model
   - [x] Build cart model
   - [x] Build offer CRUD
   - [x] Build cart CRUD
   - [x] View: cart
   - [x] View: send offer email
-  - [ ] Design html offer email (put pictures and price)
-  - [ ] Design html offer email (txt version)
-  - [ ] Think about next steps
+  - [x] Design html offer email (txt version)
 
 - [ ] Item management
   - [ ] Fix item forms (new/edit): put under the right controller
@@ -35,6 +33,8 @@
 - [ ] Get rid of Availability model and use helper instead.
 
 # P2
+- [ ] Design html offer email (put css, pictures and links)
+- [ ] Offer email: send a reminder email to the seller if an offer is pending
 - [ ] Favorite functionality
 - [ ] Create SimilarItems functionality
 - [ ] Create search

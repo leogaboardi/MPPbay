@@ -4,7 +4,6 @@ class RootController < ApplicationController
   #TODO: index page
 
   def about
-
   end
 
   def index

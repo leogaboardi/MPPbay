@@ -8,8 +8,14 @@ class TransactionController < ApplicationController
     @offers = Cart.joins(:item).where('buyer_id = ? AND user_id = ?', @buyer.id, @seller.id)
     @pictures = Picture.all
     @prices = Price.all
-    @total_price = 0
     @sample_email = true
+
+    @total_price = 0
+    @offers.each do |offer|
+      if !@prices.where(:item_id => offer.item.id).last.nil?
+        @total_price = @total_price + @prices.where(:item_id => offer.item.id).last.value
+      end
+    end
 
   end
 

@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to "/users", :notice => "User created successfully."
     else
-      render "new_form"
+      render "new"
     end
   end
 
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to "/summary", :notice => "User updated successfully."
       else
-        render "new_form"
+        render "edit"
       end
     else
       redirect_to root_path

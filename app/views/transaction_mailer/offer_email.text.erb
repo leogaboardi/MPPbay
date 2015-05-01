@@ -7,7 +7,8 @@ Hi <%= @seller.name %>,
   Price: $<%= @prices.where(:item_id => offer.item.id).last.value %>
   <% end %>
 <% end %>
-
+-------
+Total: $<%= @total_price %>
 <% if !@comment.blank? %>
 Comments from <%= @buyer.name %>:
 <%= @comment %>

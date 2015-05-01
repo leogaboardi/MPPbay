@@ -11,20 +11,9 @@
     <div class="row">
       <div class="col-md-12">
         <h3>Hi <%= @seller.name %>,</h3>
-        <p>
-          <%= @buyer.name %> just sent you an offer for the following items you own in MPPbay:
-        </p>
+        <p><%= @buyer.name %> just sent you an offer for the following items you own in MPPbay:</p>
         <% @offers.each do |offer| %>
           <div class="row summary-item-frame">
-            <div class="col-md-3 summary-item-picture-frame">
-              <img class="summary-item-picture"
-              <% if @pictures.where(:item_id => offer.item.id).length>0 %>
-                src="<%= @pictures.where(:item_id => offer.item.id).first.image.url %>"
-               <% else %>
-              src="/assets/default_picture.png"
-              <% end %>
-              >
-            </div>
             <div class="col-md-9 summary-item-data">
               <p class="summary-item-name"><%= offer.item.title %></p>
               <ul>
@@ -36,7 +25,8 @@
           </div>
           <br>
         <% end %>
-
+        Total: $<%= @total_price %>
+        <br>
         <% if @sample_email %>
           <p><em>The additional comments you may write below will show up in here</em></p>
         <% else %>
