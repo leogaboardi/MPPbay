@@ -9,8 +9,17 @@
   - [x] Design html offer email (txt version)
 
 - [ ] Item management
-  - [ ] Fix item forms (new/edit): put under the right controller
+  - [x] Fix item forms (new/edit): put under the right controller
   - [ ] Validation
+  - [x] Dropdown lists
+    -[x] New item
+      -[x] Category
+      -[x] Condition
+      -[x] Address
+    -[x] Edit item
+      -[x] Category
+      -[x] Condition
+      -[x] Address
   - [ ] Picture management
 - [ ] Browse filtering / sort
 
@@ -20,6 +29,7 @@
  - [ ] About
  - [x] Home page
  - [ ] Do not forget to cite Bootstrap and glyphcons.com
+ - [ ] Check how Heroku backs databases up
 
 - [ ] Devise
   - [ ] Setup email service
@@ -27,10 +37,10 @@
   - [x] format sign in page
   - [x] format forgot your password page
 
-- [ ] Get rid of Conditions model (use helper instead)
-- [ ] Get rid of Status model (use helper instead)s
-- [ ] Get rid of Price model? (use static variable in item instead)
-- [ ] Get rid of Availability model and use helper instead.
+- [ ] Destroy Condition model (use helper instead)
+- [ ] Destroy Categories model (use helper instead)
+- [ ] Destroy Status model (use helper instead)
+- [ ] Destroy Availability model and use helper instead.
 
 # P2
 - [ ] Design html offer email (put css, pictures and links)
@@ -41,3 +51,4 @@
 - [ ] On product lists (summary, etc) user can choose between a simple list view, or a more "nicer" view with thumnail, etc.
 - [ ] Make sure an admin can't delete him/herself
 - [ ] Get rid of unused mailers (exmaple_mailer)
+- [ ] Item controller methods: clean up redundant methods (e.g. create vs. frontend_create)

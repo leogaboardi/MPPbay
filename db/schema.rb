@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 20150330171116) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "availabilities", force: true do |t|
-    t.string   "name"
-    t.string   "email_filter"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "buildings", force: true do |t|
     t.string   "label"
     t.string   "address_line_1"
@@ -55,21 +48,6 @@ ActiveRecord::Schema.define(version: 20150330171116) do
     t.integer  "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.integer  "level"
-    t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "conditions", force: true do |t|
-    t.string   "label"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "favorites", force: true do |t|
@@ -127,12 +105,6 @@ ActiveRecord::Schema.define(version: 20150330171116) do
     t.integer  "buyer_id"
     t.integer  "seller_id"
     t.integer  "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "statuses", force: true do |t|
-    t.string   "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

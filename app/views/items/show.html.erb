@@ -6,19 +6,14 @@
       <dd><%= @item.title %></dd>
       <dt>User</dt>
       <dd><%= @item.user.name %></dd>
+      <dt>Category</dt>
+      <dd><%= @item.category_1_id %></dd>
       <dt>Created on</dt>
       <dd><%= @item.created_at %></dd>
       <dt>Status</dt>
-      <dd>
-      <% if !@item.status.nil? %>
-        <%= @item.status.label %> (Status id: <%= @item.status.id %>)
-      <% end %>
-      </dd>
+      <dd><%= @item.status_id %></dd>
       <dt>Condition</dt>
-      <dd>
-      <% if !@item.condition.nil? %>
-        <%= @item.condition.label %> (Condition id: <%= @item.condition.id %>)
-      <% end %>
+      <dd><%= @item.condition_id %></dd>
       </dd>
       <dt>Details</dt>
       <dd><%= @item.details %></dd>

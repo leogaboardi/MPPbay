@@ -41,7 +41,7 @@
             <p><em>This item was created by you</em></p>
             <%= link_to "Edit this item", "/sell/"+@item.id.to_s+"/edit", class: "btn btn-lg btn-primary" %>
             <br><br>
-            <%= link_to "Delete this item", "/item_display/"+@item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
+            <%= link_to "Delete this item", item_path(@item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
           <% else %>
             <%= form_tag carts_path, :class => "form-horizontal", :method => "post" do %>
 
@@ -63,8 +63,8 @@
         <h3>Item Specifics</h3>
         <dl class="dl-horizontal">
           <dt>Condition</dt>
-          <% if !@item.condition.nil? %>
-          <dd><%= @item.condition.label %>: <%= @item.condition.description %></dd>
+          <% if !@item.condition_id? %>
+          <dd><%= @item.condition_id %>: <%= @item.condition_id %></dd>
           <% else %>
           <dd></dd>
           <% end %>

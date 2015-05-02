@@ -15,11 +15,6 @@
     }
   </style>
 
-  <script type="text/javascript">
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    });
-  </script>
 
 
   <%= stylesheet_link_tag :all %>
@@ -95,18 +90,14 @@
     <p style="text-align:center">Admin stuff</p>
     <ul class="list-inline text-center" >
       <li><%= link_to "Addresses", addresses_path %></li>
-      <li><%= link_to "Availabilities", availabilities_path %></li>
       <li><%= link_to "Buildings", buildings_path %></li>
-      <li><%= link_to "Categories", categories_path %></li>
       <li><%= link_to "Carts", carts_path %></li>
-      <li><%= link_to "Conditions", conditions_path %></li>
       <li><%= link_to "Favorites", favorites_path %></li>
       <li><%= link_to "Items", items_path %></li>
       <li><%= link_to "Offers", offers_path %></li>
       <li><%= link_to "Pictures", pictures_path %></li>
       <li><%= link_to "Prices", prices_path %></li>
       <li><%= link_to "Purchases", purchases_path %></li>
-      <li><%= link_to "Statuses", statuses_path %></li>
       <li><%= link_to "Users", users_path %></li>
     </ul>
   <% end %>

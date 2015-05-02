@@ -16,20 +16,22 @@ Rails.application.routes.draw do
   get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
   get('/buy', { :controller => 'general', :action => 'buy', :as => "buy" })
   patch('/disable/:id', { :controller => 'general', :action => 'disable' })
-  get('/item_display/:id', { :controller => 'general', :action => 'item', :as => "item_display" })
-  delete('/item_display/:id', { :controller => 'general', :action => 'destroy'})
 
   get('/sell', { :controller => 'general', :action => 'sell', :as => "sell" })
   get('/summary', { :controller => 'general', :action => 'summary', :as => "summary" })
   patch('/sell/:id', { :controller => 'general', :action => 'put_on_sale' })
-  # CREATE ITEM
-  get('/sell/new', { :controller => 'general', :action => 'item_new', :as => "item_new" })
-  post('/summary', { :controller => 'general', :action => 'create', :as => "create" })
-  # UPDATE ITEM
-  get('/sell/:id/edit', { :controller => 'general', :action => 'edit' })
-  patch('/sell/:id/edit', { :controller => 'general', :action => 'update' })
-
   patch('/address/:id/main', { :controller => 'addresses', :action => 'make_main' })
+
+  # READ ITEM
+  get('/item_display/:id', { :controller => 'items', :action => 'frontend_show', :as => "item_display" })
+
+  # CREATE ITEM
+  get('/sell/new', { :controller => 'items', :action => 'frontend_new', :as => "item_new" })
+  post('/summary', { :controller => 'items', :action => 'frontend_create', :as => "create" })
+  # UPDATE ITEM
+  get('/sell/:id/edit', { :controller => 'items', :action => 'frontend_item_edit' })
+  patch('/sell/:id/edit', { :controller => 'items', :action => 'frontend_item_update' })
+
 
 
   # CREATE

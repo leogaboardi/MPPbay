@@ -1,38 +1,25 @@
 N_USERS = 10  #Number of users
+N_ADDRESSES = 30  #Number of addresses
 N_ITEMS = 100 #Number of items
 P_CART =  0.1 #Probability of an item belonging to the users cart
 P_OFFER =  0.05 #Probability of an item belonging to the users cart
 
-addresses = [
-  {
-    :user_id => 1,
-    :full_name => "My home",
-    :address_line_1 => "Some street number 123",
-    :address_line_2 => "Building A, Unit 123",
-  },
-    {
-    :user_id => 1,
-    :full_name => "Bat Cave",
-    :address_line_1 => "Wayne Manor, 123",
-    :city => "Gotham City",
-    :state => "??",
-    :zip => "55555",
-    :country => "United States",
-    :phone_number => "555-1234",
 
-  },
-      {
-    :user_id => 1,
-    :full_name => "White house",
-    :address_line_1 => "1600 Pennsylvania Ave NW",
-    :city => "Washington",
-    :state => "DC",
-    :zip => "20500",
-    :country => "United States",
-    :phone_number => "(202) 456-1111",
+addresses = []
 
-  },
-]
+N_ADDRESSES.times do |n|
+  addresses << {
+  :user_id => rand(1..N_USERS),
+  :full_name => "Address #{n+1}",
+  :address_line_1 => "Line 1 for address #{n+1}",
+  :address_line_2 => "Line 2 for address #{n+1}",
+  :city => "City #{n+1}",
+  :state => "State #{n+1}",
+  :zip => "Zip #{n+1}",
+  :country => "Country #{n+1}",
+  :phone_number => "Phone number #{n+1}",
+  }
+end
 
 addresses.each do |new_address|
   address = Address.new
@@ -46,20 +33,6 @@ addresses.each do |new_address|
   address.country = new_address[:country]
   address.phone_number = new_address[:phone_number]
   address.save
-end
-
-availabilities = [
-  {
-    :name => "Example",
-    :email_filter => "@example.com"
-  }
-]
-
-availabilities.each do |new_availability|
-  availability = Availability.new
-  availability.name = new_availability[:name]
-  availability.email_filter = new_availability[:email_filter]
-  availability.save
 end
 
 buildings = [
@@ -100,49 +73,6 @@ carts.each do |new_cart|
   cart.buyer_id = new_cart[:buyer_id]
   cart.item_id = new_cart[:item_id]
   cart.save
-end
-
-categories = [
-  { :name => "Home Decor",
-    :level => 1
-  },
-  { :name => "Books",
-    :level => 1,
-  },
-  { :name => "Furniture", # id 3
-    :level => 2,
-    :parent_id => 1
-  },
-    { :name => "Living room", # id 4
-    :level => 3,
-    :parent_id => 3
-
-  },
-  { :name => "Bedroom",
-    :level => 3,
-    :parent_id => 3
-  }
-]
-
-categories.each do |new_category|
-  category = Category.new
-  category.name = new_category[:name]
-  category.level = new_category[:levell]
-  category.parent_id = new_category[:parent_id]
-  category.save
-end
-
-conditions = [
-  {:label => "Brand new"},
-  {:label => "Used, but like new"},
-  {:label => "Used, some wear"},
-  {:label => "Considerable wear / some damage"}
-]
-
-conditions.each do |new_condition|
-  condition = Condition.new
-  condition.label = new_condition[:label]
-  condition.save
 end
 
 favorites = [
@@ -291,7 +221,7 @@ offers.each do |new_offer|
   offer.save
 end
 
-root = "C:/Dropbox/2015/Others/MPP Bay/pictures/"
+root = "C:/Dropbox/2015/Others/mppbay/pictures/"
 pictures=[
   {:item_id => 1, #2x2 Shelving unit
     :image => root+"kallax-shelving-unit__0243996_PE383247_S4.JPG"
@@ -380,19 +310,6 @@ purchases.each do |new_purchase|
   purchase.seller_id = new_purchase[:seller_id]
   purchase.buyer_id = new_purchase[:buyer_id]
   purchase.save
-end
-
-statuses = [
-  {:label => "draft"},
-  {:label => "on sale"},
-  {:label => "sold"},
-  {:label => "disabled"}
-]
-
-statuses.each do |new_status|
-  status = Status.new
-  status.label = new_status[:label]
-  status.save
 end
 
 users = [

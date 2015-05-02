@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to "/items", :notice => "item deleted successfully."
+    redirect_to "/summary", :notice => "Item deleted."
   end
 
   def edit
@@ -88,5 +88,115 @@ class ItemsController < ApplicationController
     else
       render "new_form"
     end
+  end
+
+def frontend_create
+    @item = Item.new
+    @item.user_id = params[:user_id]
+    @item.title = params[:title]
+    @item.category_1_id = params[:category_1_id]
+    @item.description = params[:description]
+    @item.condition_id = params[:condition_id]
+    @item.item_url = params[:item_url]
+    @item.details = params[:details]
+    @item.status_id = 1 #A new item is always created as a draft
+
+    @item.handling_time = params[:handling_time]
+    @item.available_at = params[:available_at]
+
+    @item.listing_duration = params[:listing_duration]
+    @item.address_id = params[:address_id]
+
+    if @item.save
+      @price = Price.new
+      @price.value = params[:price]
+      @price.item_id = @item.id
+
+      if @price.save
+        #if false
+        #  @picture = Picture.new
+        #  @picture.item_id = @item.id
+        #  @picture.image = params[:item][:image]
+        #  @picture.default_picture = true
+
+       #   if @picture.save
+       #     redirect_to "/sell", :notice => "Item created successfully."
+       #   else
+       #     render "item_new"
+       #   end
+       # else
+
+          redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
+       # end
+      else
+        render "item_new"
+      end
+    else
+      render "item_new"
+    end
+  end
+  def frontend_item_update
+    @item = Item.find(params[:id])
+    @item.user_id = params[:user_id]
+    @item.title = params[:title]
+    @item.category_1_id = params[:category_1_id]
+    @item.description = params[:description]
+    @item.condition_id = params[:condition_id]
+    @item.item_url = params[:item_url]
+    @item.details = params[:details]
+    @item.status_id = params[:status_id]
+    @item.handling_time = params[:handling_time]
+    @item.available_at = params[:available_at]
+    @item.listing_duration = params[:listing_duration]
+    @item.address_id = params[:address_id]
+
+    if @item.save
+      @price = Price.new
+      @price.value = params[:price]
+      @price.item_id = @item.id
+
+      if @price.save
+#        if false
+          #@picture = Picture.new
+          #@picture.item_id = @item.id
+          #@picture.image = params[:item][:image]
+          #@picture.default_picture = true
+
+ #         if @picture.save
+ #           redirect_to "/sell", :notice => "Item created successfully."
+ #         else
+ #           render "item_new"
+ #         end
+ #       else
+
+          redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
+        #end
+      else
+        render "item_edit"
+      end
+    else
+      render "item_edit"
+    end
+  end
+
+  def frontend_item_edit
+    @item = Item.find(params[:id])
+    @price = Price.where(:item_id => params[:id]).last
+    @address = Address.where(:user => current_user.id)
+    render("frontend_edit")
+  end
+
+  def frontend_show
+    # TODO: P0: clickable heart (creates a favorite)
+    # TODO: P0: item page is static, make it dynamic
+    @pictures = Picture.where(:item_id => params[:id])
+    @price = Price.where(:item_id => params[:id]).last
+    @item = Item.find(params[:id])
+  end
+
+  def frontend_new
+    @item = Item.new
+    @price = Price.new
+    @address = Address.where(:user => current_user.id)
   end
 end

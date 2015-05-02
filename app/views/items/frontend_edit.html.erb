@@ -8,15 +8,12 @@
     <% end %>
   <% end %>
 
-<!-- Validation failure messages -->
-  <% if @price.errors.any? %>
-    <% @price.errors.full_messages.each do |message| %>
-      <div class="alert alert-dismissable alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <%= message %>
-      </div>
-    <% end %>
-  <% end %>
+<!-- Makes the bootstrap tooltips work -->
+  <script type="text/javascript">
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+  </script>
 
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
@@ -53,13 +50,13 @@
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Select the category in which your item best fits into"></span>
             </label>
             <div class="col-sm-4">
-              <%= select_tag 'category_1_id', options_from_collection_for_select(Category.order("name"), :id, :name, @item.category_1_id), include_blank: true, class: 'form-control' %>
+              <%= select_tag 'category_1_id', options_for_select(categories,@item.category_1_id), include_blank: true, class: 'form-control' %>
             </div>
           </div>
 
           <!-- Label and input for photos -->
           <div class="form-group">
-            <label for="photos" class="col-sm-3 control-label required">
+            <label for="photos" class="col-sm-3 control-label">
               Photo
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Put some pictures showing the item you want to sell "></span>
             </label>
@@ -86,7 +83,7 @@
               Condition
             </label>
             <div class="col-sm-4">
-              <%= select_tag 'condition_id', options_from_collection_for_select(Condition.order("label"), :id, :label, @item.condition_id), include_blank: true, class: 'form-control' %>
+              <%= select_tag 'condition_id', options_for_select(conditions,@item.condition_id), include_blank: true, class: 'form-control' %>
             </div>
           </div>
 
@@ -108,7 +105,7 @@
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Anything else you might find relevant - for example, the color, size and material of a piece of furniture"></span>
             </label>
             <div class="col-sm-8">
-              <%= text_area_tag 'details', @item.details, row: 20, class: 'form-control' %>
+              <%= text_area_tag 'details', @item.details, rows: 5, class: 'form-control' %>
             </div>
           </div>
         </div>
@@ -126,13 +123,17 @@
               Price
             </label>
             <div class="col-sm-4">
-          <%= number_field_tag 'price',"%.2f" % @price.value.to_f ,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+            <% if @price.nil? %>
+              <%= number_field_tag 'price', nil,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+            <% else %>
+              <%= number_field_tag 'price',"%.2f" % @price.value.to_f ,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+            <% end %>
             </div>
           </div>
 
         <!-- Label and input for handling_time -->
           <div class="form-group">
-            <label for="handling_time" class="col-sm-3 control-label required">
+            <label for="handling_time" class="col-sm-3 control-label">
               Handling time
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="How much time you need, after a deal is closed, to send the item to the buyer"></span>
             </label>
@@ -162,7 +163,7 @@
 
           <!-- Label and input for listing_duration -->
           <div class="form-group">
-            <label for="listing_duration" class="col-sm-3 control-label required">
+            <label for="listing_duration" class="col-sm-3 control-label">
               Listing duration
               <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Put a date when you want to stop sell the item (say, the day you plan to move)"></span>
             </label>
@@ -177,7 +178,7 @@
               Item address <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
             </label>
             <div class="col-sm-4">
-              <%= text_field_tag 'address_id', @item.address_id, class: 'form-control' %>
+              <%= select_tag 'address_id', options_from_collection_for_select(@address, :id, :full_name, @item.address_id), include_blank: true, class: 'form-control' %>
             </div>
           </div>
         </div>

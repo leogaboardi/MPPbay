@@ -1,4 +1,41 @@
 module ApplicationHelper
+  def categories
+    [
+      ['Books', 1],
+      ['Electronics', 1],
+      ['Furniture', 3],
+      ['Home decor', 4],
+      ['Other stuff', 5]
+    ]
+  end
+
+  def conditions
+    [
+      ['Brand new', 1],
+      ['Used, but like new', 2],
+      ['Used, some wear', 3],
+      ['Considerable wear / some damage', 4]
+    ]
+  end
+
+  def statuses
+    [
+      ['draft', 1],
+      ['on sale', 2],
+      ['sold', 3],
+      ['disabled', 4]
+    ]
+  end
+
+  def white_list
+    [
+      {
+        :name => "Chicago Booth",
+        :email_filter => "@chicagobooth.edu"
+      }
+    ]
+  end
+
   def us_states
     [
       ['Alabama', 'AL'],
