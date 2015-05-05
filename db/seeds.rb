@@ -176,20 +176,30 @@ items = [
     :description => "Description of item #{n+1}",
     :details => "Some description of the item #{n+1}",
     :category_1_id => 1,
-    :status_id => rand(1..4),
-    :condition_id => rand(1..4)
+    :condition_id => rand(1..4),
+    :status_id => rand(1..4)
     }
   end
 
 items.each do |new_item|
   item = Item.new
-
   item.user_id = new_item[:user_id]
   item.title = new_item[:title]
   item.details = new_item[:details]
   item.description = new_item[:description]
   item.item_url = new_item[:item_url]
-  item.status_id = new_item[:status_id]
+  case new_item[:user_id]
+  when 7
+    item.status_id = 1
+  when 8
+    item.status_id = 2
+  when 9
+    item.status_id = 3
+  when 10
+    item.status_id = 4
+  else
+    item.status_id = new_item[:status_id]
+  end
   item.condition_id = new_item[:condition_id]
   item.handling_time = new_item[:handling_time]
   item.listing_duration = new_item[:listing_duration]

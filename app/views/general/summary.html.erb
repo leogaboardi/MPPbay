@@ -8,9 +8,16 @@
           <li role="presentation" ><a href="#favorites" aria-controls="favorites" role="tab" data-toggle="tab">Your favorite items</a></li>
         <% end %>
 
-        <% if @selling.length >0 %>
-          <li role="presentation"><a href="#sell" aria-controls="sell" role="tab" data-toggle="tab">Items you are selling</a></li>
+        <li role="presentation"><a href="#sell" aria-controls="sell" role="tab" data-toggle="tab">Items you are selling</a></li>
+
+        <% if @sold.length >0 %>
+          <li role="presentation"><a href="#sold" aria-controls="sold" role="tab" data-toggle="tab">Items you sold</a></li>
         <% end %>
+
+        <% if @draft.length + @disabled.length >0 %>
+          <li role="presentation"><a href="#draft" aria-controls="draft" role="tab" data-toggle="tab">Drafts and disabled items</a></li>
+        <% end %>
+
 
         <% if @offers_made.length >0 %>
           <li role="presentation"><a href="#offer_made" aria-controls="buy" role="tab" data-toggle="tab">Offers you made</a></li>
@@ -37,6 +44,14 @@
 
         <div role="tabpanel" class="tab-pane" id="sell">
            <%= render :file => "/app/views/general/summary_sell" %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="sold">
+           <%= render :file => "/app/views/general/summary_sold" %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="draft">
+           <%= render :file => "/app/views/general/summary_draft" %>
         </div>
         <div role="tabpanel" class="tab-pane" id="buy">
           <%= render :file => "/app/views/general/summary_buy" %>

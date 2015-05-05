@@ -1,131 +1,41 @@
-<br>
-          <% if @draft.count+@disabled.count+@sold.count+@disabled.count==0 %>
-            <div class="jumbotron">
-              <h2>You don't have nothing on sale yet =(</h2>
-              <br>
-              <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
-            </div>
-          <% else %>
-          <%= link_to "Sell new item", "/sell/new", :class => "btn btn-lg btn-primary"%>
+<% if @selling.count==0 %>
+  <div class="jumbotron">
+    <h2>You don't have nothing on sale yet =(</h2>
+    <% if @draft.count >0 %>
+    <p>You have some drafts - why don't you put them online?</p>
+    <% end %>
+    <br>
+    <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
+  </div>
+<% else %>
+  <%= link_to "Sell new item", "/sell/new", :class => "btn btn-lg btn-primary"%>
+<% end %>
+
+<% if @selling.count >0  %>
+  <% @selling.each do |item| %>
+    <div class="row summary-item-frame">
+      <div class="col-md-3 summary-item-picture-frame">
+        <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
+        <% if !@pictures.where(:item_id => item.id).first.nil? %>
+          src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
+        <% else %>
+        src="/assets/default_picture.png"
+        <% end %>
+        ></a>
+      </div>
+      <div class="col-md-9 summary-item-data">
+        <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+        <ul>
+          <% if !@prices.where(:item_id => item.id).last.nil?  %>
+
+            <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
           <% end %>
-
-          <% if @draft.count >0 %>
-            <h3>Items on draft</h3>
-            <p><em>These items are not yet on sale; they may be lacking some information before being able to be put on sale</em></p>
-            <% @draft.each do |item| %>
-              <div class="row summary-item-frame">
-                <div class="col-md-3 summary-item-picture-frame">
-                  <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
-                  <% if !@pictures.where(:item_id => item.id).first.nil? %>
-                    src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
-                  <% else %>
-                  src="/assets/default_picture.png"
-                  <% end %>
-                  ></a>
-                </div>
-                <div class="col-md-9 summary-item-data">
-                  <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
-                  <ul>
-                    <% if !@prices.where(:item_id => item.id).last.nil?  %>
-                      <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
-                    <% end %>
-                    <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
-                  </ul>
-                  <%= link_to "Edit information", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
-                  <%= link_to "Edit pictures", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
-                  <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-                  <%= link_to "Delete", "item_display/"+item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-                </div>
-              </div>
-              <br>
-            <% end %>
-          <% end %>
-
-          <% if @selling.count >0  %>
-            <h3>Items on sale</h3>
-
-            <% @selling.each do |item| %>
-              <div class="row summary-item-frame">
-                <div class="col-md-3 summary-item-picture-frame">
-                  <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
-                  <% if !@pictures.where(:item_id => item.id).first.nil? %>
-                    src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
-                  <% else %>
-                  src="/assets/default_picture.png"
-                  <% end %>
-                  ></a>
-                </div>
-                <div class="col-md-9 summary-item-data">
-                  <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
-                  <ul>
-                    <% if !@prices.where(:item_id => item.id).last.nil?  %>
-
-                      <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
-                    <% end %>
-                    <li>On sale since <%= item.created_at.strftime("%D, %I:%M %p") %></li>
-                  </ul>
-                  <%= link_to "Edit", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
-                  <%= link_to "Disable", "/disable/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-                </div>
-              </div>
-              <br>
-            <% end %>
-          <% end %>
-
-          <% if @sold.count > 0 %>
-            <h3>Items sold</h3>
-            <% @sold.each do |item| %>
-              <div class="row summary-item-frame">
-                <div class="col-md-3 summary-item-picture-frame">
-                  <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
-                  <% if !@pictures.where(:item_id => item.id).first.nil? %>
-                    src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
-                  <% else %>
-                  src="/assets/default_picture.png"
-                  <% end %>
-                  ></a>
-                </div>
-                <div class="col-md-9 summary-item-data">
-                  <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
-                  <ul>
-                    <% if !@prices.where(:item_id => item.id).last.nil? %>
-                      <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
-                    <% end %>
-                    <li>On sale since <%= item.created_at.strftime("%D, %I:%M %p") %></li>
-                  </ul>
-                </div>
-              </div>
-              <br>
-            <% end %>
-          <% end %>
-
-          <% if @disabled.count >0  %>
-            <h3>Disabled items</h3>
-            <p><em>These items are not on sale anymore - you might want to put them back on sale or delete them</em></p>
-            <% @disabled.each do |item| %>
-              <div class="row summary-item-frame">
-                <div class="col-md-3 summary-item-picture-frame">
-                  <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
-                  <% if !@pictures.where(:item_id => item.id).first.nil? %>
-                    src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
-                  <% else %>
-                  src="/assets/default_picture.png"
-                  <% end %>
-                  ></a>
-                </div>
-                <div class="col-md-9 summary-item-data">
-                  <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
-                  <ul>
-                    <% if !@prices.where(:item_id => item.id).last.nil?  %>
-                      <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
-                    <% end %>
-                    <li>On sale since <%= item.created_at.strftime("%D, %I:%M %p")%></li>
-                  </ul>
-                  <%= link_to "Edit", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
-                  <%= link_to "Put on sale", "/sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-                  <%= link_to "Delete", "/item_display/"+item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-                </div>
-              </div>
-              <br>
-            <% end %>
-          <% end %>
+          <li>On sale since <%= item.created_at.strftime("%D, %I:%M %p") %></li>
+        </ul>
+        <%= link_to "Edit", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
+        <%= link_to "Disable", "/disable/"+item.id.to_s, :method => "patch", class: "btn btn-default" %>
+      </div>
+    </div>
+    <br>
+  <% end %>
+<% end %>

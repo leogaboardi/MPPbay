@@ -1,0 +1,25 @@
+<h3>Items sold</h3>
+<% @sold.each do |item| %>
+  <div class="row summary-item-frame">
+    <div class="col-md-3 summary-item-picture-frame">
+      <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
+      <% if !@pictures.where(:item_id => item.id).first.nil? %>
+        src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
+      <% else %>
+      src="/assets/default_picture.png"
+      <% end %>
+      ></a>
+    </div>
+    <div class="col-md-9 summary-item-data">
+      <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+      <ul>
+        <% if !@prices.where(:item_id => item.id).last.nil? %>
+          <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
+        <% end %>
+        <li>Put on sale in <%= item.created_at.strftime("%D, %I:%M %p") %></li>
+      </ul>
+    </div>
+  </div>
+  <br>
+<% end %>
+
