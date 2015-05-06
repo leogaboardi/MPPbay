@@ -13,9 +13,7 @@
     <div class="col-md-9 summary-item-data">
       <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
       <ul>
-        <% if !@prices.where(:item_id => item.id).last.nil? %>
-          <li>Price: <%= @prices.where(:item_id => item.id).last.value %></li>
-        <% end %>
+        <li>Price: <%= item.price %></li>
         <li>Put on sale in <%= item.created_at.strftime("%D, %I:%M %p") %></li>
       </ul>
     </div>

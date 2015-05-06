@@ -23,18 +23,16 @@
               src="/assets/default_picture.png"
             <% end %>
           ></a>
-          <div class="browse-item-social">
+<!--           <div class="browse-item-social">
             <span style="font-size: 40px" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-          </div>
+          </div> -->
         </div>
         <div class="browse-item-data">
           <div class="browse-item-name-frame">
               <%= link_to item.title, item_display_path(item.id), :class => "browse-item-name" %>
           </div>
           <div class="browse-item-price-frame">
-            <% if !@prices.where(:item_id => item.id).last.nil? %>
-              <%= link_to "$"+"%.2f" % @prices.where(:item_id => item.id).last.value.to_f, item_display_path(item.id), :class => "browse-item-price" %>
-            <% end %>
+            <%= link_to "$"+"%.2f" % item.price, item_display_path(item.id), :class => "browse-item-price" %>
           </div>
         </div>
       </div>

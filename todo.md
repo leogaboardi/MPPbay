@@ -11,6 +11,7 @@
 - [ ] Item management
   - [x] Fix item forms (new/edit): put under the right controller
   - [ ] Validation
+  - [ ] Make the "creation draft" button work
   - [x] Dropdown lists
     -[x] New item
       -[x] Category
@@ -21,7 +22,6 @@
       -[x] Condition
       -[x] Address
   - [ ] Picture management
-- [ ] Browse filtering / sort
 
 # P1
 - [ ] Static pages
@@ -30,6 +30,7 @@
  - [x] Home page
  - [ ] Do not forget to cite Bootstrap and glyphcons.com
  - [ ] Check how Heroku backs databases up
+ - [ ] Browse filtering / sort
 
 - [ ] Devise
   - [ ] Setup email service
@@ -43,8 +44,10 @@
 - [ ] Destroy Availability model and use helper instead.
 
 # P2
+- [ ] Put whitelist email
 - [ ] Design html offer email (put css, pictures and links)
 - [ ] Offer email: send a reminder email to the seller if an offer is pending
+- [ ] Disable items after they pass the cutoff date
 - [ ] Favorite functionality
 - [ ] Create SimilarItems functionality
 - [ ] Create search

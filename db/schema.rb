@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150330171116) do
     t.integer  "status_id"
     t.string   "title"
     t.integer  "condition_id"
+    t.float    "price"
     t.string   "description"
     t.string   "details"
     t.string   "handling_time"
@@ -92,13 +93,6 @@ ActiveRecord::Schema.define(version: 20150330171116) do
     t.boolean  "default_picture"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-  end
-
-  create_table "prices", force: true do |t|
-    t.integer  "item_id"
-    t.float    "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "purchases", force: true do |t|

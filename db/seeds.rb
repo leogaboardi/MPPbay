@@ -89,85 +89,7 @@ favorites.each do |new_favorite|
   favorite.save
 end
 
-items = [
-    {
-    :user_id => 1,
-    :title => "2x2 Shelving unit",
-    :description => "Kallax 2x2 shelving unit from IKEA",
-    :item_url => "http://www.ikea.com/us/en/catalog/products/40275813/",
-    :details => "Birch effect. Shelf in good conditions. Link shows original product from ikea",
-    :category_1_id => 1,
-    :category_2_id => 3,
-    :category_3_id => 4,
-    :status_id => 2,
-    :condition_id => 2,
-  },
-  {
-    :user_id => 1,
-    :title => "3 place fabric sofa",
-    :condition_id => 4,
-    :description => "3 place, L shaped fabric sofa. Blue color",
-    :status_id => 2,
-    :category_1_id => 1,
-    :category_2_id => 3,
-    :category_3_id => 4,
-    :details => "Sofa is worn, with stains and dirt in the textile (it is difficult to clean. No damage."
-  },
-  {
-    :user_id => 2,
-    :status_id => 1, #Draft
-    :title => "Some smelly stuff"
-  },
-  {
-    :user_id => 1,
-    :title => "Coffee table",
-    :status_id => 1, #Draft
-    :description => "Used coffee table",
-    :item_url => "http://www.ikea.com/us/en/catalog/products/40104294/#/10104295"
-  },
-    {
-    :user_id => 1,
-    :title => "Desk",
-    :status_id => 2, #On sale
-    :description => "Desk from Ikea",
-    :item_url => ""
-  },
-    {
-    :user_id => 1,
-    :title => "Swivel chair",
-    :status_id => 3,
-    :description => "Chair from IKEA",
-    :item_url => ""
-  },
-    {
-    :user_id => 1,
-    :title => "Desk lamp",
-    :status_id => 4,
-    :description => "Desk lamp from IKEA. Light bulb not included",
-    :item_url => ""
-  },
-    {
-    #Item.id: 8
-    :user_id => 2,
-    :title => "Queen mattress",
-    :status_id => 2, #On sale
-    :description => "Gently used and very clean - propped on my wall for a while. Thick 8 inch mattress"
-  },
-  {
-    #Item.id: 9
-    :user_id => 3,
-    :title => "Nice 5 piece dining table available here at MPP",
-    :status_id => 2, #On sale
-    :description => "5 Piece table that has hardly been used. In great shape. Feel free to come by and look at them!"
-  },
-  {
-    #Item.id: 10
-    :user_id => 3,
-    :title => "TV Stand available here at MPP",
-    :status_id => 2, #On sale
-    :details => "TV stand is only 5 months old. I paid $125 for the TV stand. The TV stand has all glass shelves with metal frames to support. It looks great. I am willing to part with it at a cost. I can help deliver both (with your help) to your house."
-  }
-]
+items = []
 
   N_ITEMS.times do |n|
     items << {
@@ -177,7 +99,8 @@ items = [
     :details => "Some description of the item #{n+1}",
     :category_1_id => 1,
     :condition_id => rand(1..4),
-    :status_id => rand(1..4)
+    :status_id => rand(1..4),
+    :price => rand(0..99999).to_f/100
     }
   end
 
@@ -188,6 +111,7 @@ items.each do |new_item|
   item.details = new_item[:details]
   item.description = new_item[:description]
   item.item_url = new_item[:item_url]
+  item.price = new_item[:price]
   case new_item[:user_id]
   when 7
     item.status_id = 1
@@ -256,44 +180,6 @@ pictures.each do |new_picture|
   picture.image = File.new(new_picture[:image])
   picture.default_picture = true
   picture.save
-end
-
-
-prices = [
-  {:item_id => 1,
-  :value => 12.99},
-  {:item_id => 2,
-  :value => 300},
-  {:item_id => 3,
-  :value => 10},
-  {:item_id => 4,
-  :value => 5.99},
-  {:item_id => 5,
-  :value => 80},
-  {:item_id => 6,
-  :value => 80},
-  {:item_id => 7,
-  :value => 80},
-  {:item_id => 8,
-  :value => 80},
-  {:item_id => 9,
-  :value => 100},
-  {:item_id => 10,
-  :value => 70}
-]
-
-  N_ITEMS.times do |n|
-    prices << {
-    :item_id => n+8,
-    :value => rand(0..99999).to_f/100
-    }
-  end
-
-prices.each do |new_price|
-  price = Price.new
-  price.value = new_price[:value]
-  price.item_id = new_price[:item_id]
-  price.save
 end
 
 purchases = [

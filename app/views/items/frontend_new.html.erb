@@ -8,16 +8,6 @@
     <% end %>
   <% end %>
 
-<!-- Validation failure messages -->
-  <% if @price.errors.any? %>
-    <% @price.errors.full_messages.each do |message| %>
-      <div class="alert alert-dismissable alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <%= message %>
-      </div>
-    <% end %>
-  <% end %>
-
 <!-- Makes the bootstrap tooltips work -->
   <script type="text/javascript">
     $(function () {
@@ -135,7 +125,7 @@
               Price
             </label>
             <div class="col-sm-4">
-          <%= number_field_tag 'price', nil,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
+          <%= number_field_tag 'price', nil,min: 0, max: 9999.99, step: 0.01, required: true, class: 'form-control' %>
             </div>
           </div>
 
@@ -184,7 +174,11 @@
       <!-- CREATE BUTTON -->
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-9">
-          <%= submit_tag "Create draft", :class => "btn btn-primary", data: {confirm: "The created item will not be on sale yet - you will need to activate in Your account page"} %>
+          <%= submit_tag "submit", :class => "btn btn-primary", :value => "Create draft" %>
+        </div>
+        <br>  <br>
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= submit_tag "submit", :class => "btn btn-primary", :value => "Who cares about drafts? Put this on sale now!" %>
         </div>
       </div>
 

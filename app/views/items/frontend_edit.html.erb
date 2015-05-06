@@ -123,11 +123,7 @@
               Price
             </label>
             <div class="col-sm-4">
-            <% if @price.nil? %>
-              <%= number_field_tag 'price', nil,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
-            <% else %>
-              <%= number_field_tag 'price',"%.2f" % @price.value.to_f ,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
-            <% end %>
+              <%= number_field_tag 'price',"%.2f" % @item.price ,min: 0, max: 9999.99, step: 0.01, class: 'form-control' %>
             </div>
           </div>
 

@@ -17,12 +17,8 @@
       </dd>
       <dt>Details</dt>
       <dd><%= @item.details %></dd>
-      <dt>Most recent price</dt>
-      <% if !@prices.length==0 %>
-        <dd><%= @prices.last.value %></dd>
-      <% else %>
-        <dd>No price set <%= @prices.length %></dd>
-      <% end %>
+      <dt>Price</dt>
+      <dd><%= @item.price %></dd>
       <dt>Description</dt>
       <dd> <%= @item.description %> </dd>
       <dt>Handling time</dt>
@@ -43,9 +39,6 @@
       <dd><%= @item.category_3_id %></dd>
     </dl>
 
-    <% @prices.each do |price| %>
-      <p><%= price.value %></p>
-    <% end %>
-    <%= link_to "Go back", items_path %>
+     <%= link_to "Go back", items_path %>
   </div>
 </div>

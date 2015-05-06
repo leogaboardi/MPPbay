@@ -19,7 +19,6 @@ class GeneralController < ApplicationController
     # TODO: P0: browser is static, make it dynamic
     # TODO: P1: put pagination, if needed
 
-    @prices = Price.all
     @items = Item.where(:status => 2).where.not(:user_id => current_user.id)
     @pictures = Picture.all
     render "browse"
@@ -49,7 +48,6 @@ class GeneralController < ApplicationController
 
     @sell=true
 
-    @prices = Price.all
     @pictures = Picture.all
     @items = Item.where(:status => 2, :user_id => current_user.id)
     render "browse"
@@ -63,7 +61,6 @@ class GeneralController < ApplicationController
 
     # TODO: P0: on "profile" tab, make address edit / delete buttons work
 
-    @prices = Price.all
     @other_addresses = Address.where(:user_id => current_user.id, :main => [false,nil])
     @main_addresses = Address.where(:user_id => current_user.id, :main => [true])
 

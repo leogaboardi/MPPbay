@@ -32,9 +32,7 @@
         <% end %>
       </div>
       <div class="col-md-4 item-data-frame">
-        <% if !@price.nil? %>
-          <div class="row item-price" >$<%= "%.2f" % @price.value.to_f %></div>
-        <% end %>
+          <div class="row item-price" >$<%= "%.2f" % @item.price %></div>
         <div class="row">
           <div class="col-md-12">
           <% if current_user.id == @item.user_id %>

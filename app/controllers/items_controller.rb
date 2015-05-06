@@ -11,10 +11,18 @@ class ItemsController < ApplicationController
 
   # TODO: think about specific properties for some categories (e.g. color for furniture)
 
-  before_action :check_if_admin #, only[:index, :create, :update]
+  before_action :check_if_admin, only: [:index, :create,:show, :update]
+  before_action :check_current_user, only: [ :frontend_edit, :frontend_update]
 
   def check_if_admin
     if not current_user.admin?
+      redirect_to "/"
+    end
+  end
+
+  def check_current_user
+    @item = Item.find(params[:id])
+    if not current_user.id == @item.user_id
       redirect_to "/"
     end
   end
@@ -32,6 +40,7 @@ class ItemsController < ApplicationController
     @item.available_at = params[:available_at]
     @item.item_url = params[:item_url]
     @item.address_id = params[:address_id]
+    @item.price = params[:price]
     @item.category_1_id = params[:category_1_id]
     @item.category_2_id = params[:category_2_id]
     @item.category_3_id = params[:category_3_id]
@@ -63,7 +72,6 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @prices = Price.where(:item_id => @item.id)
   end
 
   def update
@@ -82,6 +90,7 @@ class ItemsController < ApplicationController
     @item.category_1_id = params[:category_1_id]
     @item.category_2_id = params[:category_2_id]
     @item.category_3_id = params[:category_3_id]
+    @item.price = params[:price]
 
     if @item.save
       redirect_to "/items", :notice => "item updated successfully."
@@ -99,8 +108,12 @@ def frontend_create
     @item.condition_id = params[:condition_id]
     @item.item_url = params[:item_url]
     @item.details = params[:details]
-    @item.status_id = 1 #A new item is always created as a draft
-
+    if (true)
+      @item.status_id = 1 #Put in draft
+    else
+      @item.status_id = 2 #Put on sale
+    end
+    @item.price = params[:price]
     @item.handling_time = params[:handling_time]
     @item.available_at = params[:available_at]
 
@@ -108,34 +121,26 @@ def frontend_create
     @item.address_id = params[:address_id]
 
     if @item.save
-      @price = Price.new
-      @price.value = params[:price]
-      @price.item_id = @item.id
+      #if false
+      #  @picture = Picture.new
+      #  @picture.item_id = @item.id
+      #  @picture.image = params[:item][:image]
+      #  @picture.default_picture = true
 
-      if @price.save
-        #if false
-        #  @picture = Picture.new
-        #  @picture.item_id = @item.id
-        #  @picture.image = params[:item][:image]
-        #  @picture.default_picture = true
+      #   if @picture.save
+      #     redirect_to "/sell", :notice => "Item created successfully."
+      #   else
+      #     render "item_new"
+      #   end
+      # else
 
-       #   if @picture.save
-       #     redirect_to "/sell", :notice => "Item created successfully."
-       #   else
-       #     render "item_new"
-       #   end
-       # else
-
-          redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
+      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
        # end
-      else
-        render "item_new"
-      end
     else
       render "item_new"
     end
   end
-  def frontend_item_update
+  def frontend_update
     @item = Item.find(params[:id])
     @item.user_id = params[:user_id]
     @item.title = params[:title]
@@ -149,13 +154,10 @@ def frontend_create
     @item.available_at = params[:available_at]
     @item.listing_duration = params[:listing_duration]
     @item.address_id = params[:address_id]
+    @item.price = params[:price]
 
     if @item.save
-      @price = Price.new
-      @price.value = params[:price]
-      @price.item_id = @item.id
 
-      if @price.save
 #        if false
           #@picture = Picture.new
           #@picture.item_id = @item.id
@@ -168,20 +170,16 @@ def frontend_create
  #           render "item_new"
  #         end
  #       else
-
-          redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
+      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
         #end
-      else
-        render "item_edit"
-      end
+
     else
       render "item_edit"
     end
   end
 
-  def frontend_item_edit
+  def frontend_edit
     @item = Item.find(params[:id])
-    @price = Price.where(:item_id => params[:id]).last
     @address = Address.where(:user => current_user.id)
     render("frontend_edit")
   end
@@ -190,13 +188,11 @@ def frontend_create
     # TODO: P0: clickable heart (creates a favorite)
     # TODO: P0: item page is static, make it dynamic
     @pictures = Picture.where(:item_id => params[:id])
-    @price = Price.where(:item_id => params[:id]).last
     @item = Item.find(params[:id])
   end
 
   def frontend_new
     @item = Item.new
-    @price = Price.new
     @address = Address.where(:user => current_user.id)
   end
 end

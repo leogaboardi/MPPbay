@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   get('/sell/new', { :controller => 'items', :action => 'frontend_new', :as => "item_new" })
   post('/summary', { :controller => 'items', :action => 'frontend_create', :as => "create" })
   # UPDATE ITEM
-  get('/sell/:id/edit', { :controller => 'items', :action => 'frontend_item_edit' })
-  patch('/sell/:id/edit', { :controller => 'items', :action => 'frontend_item_update' })
+  get('/sell/:id/edit', { :controller => 'items', :action => 'frontend_edit' })
+  patch('/sell/:id/edit', { :controller => 'items', :action => 'frontend_update' })
 
 
 
