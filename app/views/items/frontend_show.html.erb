@@ -2,7 +2,7 @@
   <div class="col-md-8 col-md-offset-2">
     <ol class="breadcrumb">
       <li><%= link_to "Home", "/buy" %></li>
-      <li><%= link_to @item.category_1_id, "#" %></li>
+      <li><%= categories[@item.category_1_id-1][0] %></li>
       <li class="active"><%= @item.title %></li>
     </ol>
     <div class="row item-header">
@@ -37,7 +37,7 @@
           <div class="col-md-12">
           <% if current_user.id == @item.user_id %>
             <p><em>This item was created by you</em></p>
-            <%= link_to "Edit this item", "/sell/"+@item.id.to_s+"/edit", class: "btn btn-lg btn-primary" %>
+            <%= link_to "Edit this item", edit_item_path(@item.id), class: "btn btn-lg btn-primary" %>
             <br><br>
             <%= link_to "Delete this item", item_path(@item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
           <% else %>
@@ -60,27 +60,37 @@
     <div class="row item-details">
         <h3>Item Specifics</h3>
         <dl class="dl-horizontal">
+          <dt>Category</dt>
+          <dd><%= categories[@item.category_1_id][0] %></dd>
+          <% if !@item.condition_id.nil? %>
           <dt>Condition</dt>
-          <% if !@item.condition_id? %>
-          <dd><%= @item.condition_id %>: <%= @item.condition_id %></dd>
-          <% else %>
-          <dd></dd>
+          <dd><%= conditions[@item.condition_id][0] %></dd>
           <% end %>
-          <dt>Item URL</dt>
-          <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
-          <dt>Details</dt>
-          <dd><%= @item.details %></dd>
+          <% if !@item.item_url.nil? && !@item.details.blank?%>
+            <dt>Reference link</dt>
+            <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
+          <% end %>
+          <% if !@item.details.nil? && !@item.details.blank? %>
+            <dt>Details</dt>
+            <dd><%= @item.details %></dd>
+          <% end %>
         </dl>
         <h3>Other useful information</h3>
         <dl class="dl-horizontal">
-          <dt>On sale by</dt>
-          <dd><%= @item.user.name%></dd>
-          <dt>On sale until</dt>
-          <dd><%= @item.listing_duration %></dd>
-          <dt>Available for delivery from:</dt>
-          <dd><%= @item.available_at %></dd>
-          <dt>Handling time</dt>
-          <dd><%= @item.handling_time %></dd>
+          <dt>Seller</dt>
+          <dd><%= @item.user.name%> (<%= @item.user.email %>)</dd>
+          <% if !@item.listing_duration.nil? && !@item.listing_duration.blank? %>
+            <dt>On sale until:</dt>
+            <dd><%= @item.listing_duration %></dd>
+          <% end %>
+          <% if !@item.available_at.nil? && !@item.available_at.blank? %>
+            <dt>Available for delivery:</dt>
+            <dd><%= @item.available_at %></dd>
+          <% end %>
+          <% if !@item.address_id.nil? %>
+            <dt>Item location: </dt>
+            <dd><%= Address.find(@item.address_id).city %></dd>
+          <% end %>
         </dl>
     </div>
     <%= link_to "Go back", :back %>

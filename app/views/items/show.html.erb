@@ -1,44 +1,98 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <h3><%= @item.title %> data</h3>
-    <dl class="dl-horizontal">
-      <dt>Title</dt>
-      <dd><%= @item.title %></dd>
-      <dt>User</dt>
-      <dd><%= @item.user.name %></dd>
-      <dt>Category</dt>
-      <dd><%= @item.category_1_id %></dd>
-      <dt>Created on</dt>
-      <dd><%= @item.created_at %></dd>
-      <dt>Status</dt>
-      <dd><%= @item.status_id %></dd>
-      <dt>Condition</dt>
-      <dd><%= @item.condition_id %></dd>
-      </dd>
-      <dt>Details</dt>
-      <dd><%= @item.details %></dd>
-      <dt>Price</dt>
-      <dd><%= @item.price %></dd>
-      <dt>Description</dt>
-      <dd> <%= @item.description %> </dd>
-      <dt>Handling time</dt>
-      <dd><%= @item.handling_time %></dd>
-      <dt>Listing duration</dt>
-      <dd><%= @item.listing_duration %></dd>
-      <dt>Available at</dt>
-      <dd><%= @item.available_at %></dd>
-      <dt>Item URL</dt>
-      <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
-      <dt>Item location</dt>
-      <dd><%= @item.address_id %></dd>
-      <dt>Category 1</dt>
-      <dd><%= @item.category_1_id %></dd>
-      <dt>Category 2</dt>
-      <dd><%= @item.category_2_id %></dd>
-      <dt>Category 3</dt>
-      <dd><%= @item.category_3_id %></dd>
-    </dl>
+    <ol class="breadcrumb">
+      <li><%= link_to "Home", "/buy" %></li>
+      <li><%= categories[@item.category_1_id-1][0] %></li>
+      <li class="active"><%= @item.title %></li>
+    </ol>
+    <div class="row item-header">
+      <div class="item-name">
+        <h1><%= @item.title %></h1>
+      </div>
+      <div class="item-social">
+      <span style="font-size: 40px; float: right" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+      </div>
+    </div>
 
-     <%= link_to "Go back", items_path %>
+    <div class="row item-highlight">
+      <div class="col-md-8 item-picture-frame">
+        <img class="item-picture"
+          <% if !@pictures.first.nil? %>
+              src="<%= @pictures.first.image.url %>"
+          <% else %>
+              src="/assets/default_picture.png"
+          <% end %>
+        >
+        <% if !@pictures.first.nil? %>
+          <div class="item-thumblist">
+          <% @pictures.each do |picture| %>
+            <img class="item-thumbnail" src="<%= picture.image.url %>">
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-4 item-data-frame">
+          <div class="row item-price" >$<%= "%.2f" % @item.price %></div>
+        <div class="row">
+          <div class="col-md-12">
+          <% if current_user.id == @item.user_id %>
+            <p><em>This item was created by you</em></p>
+            <%= link_to "Edit this item", edit_item_path(@item.id), class: "btn btn-lg btn-primary" %>
+            <br><br>
+            <%= link_to "Delete this item", item_path(@item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
+          <% else %>
+            <%= form_tag carts_path, :class => "form-horizontal", :method => "post" do %>
+
+              <%= hidden_field_tag 'buyer_id', current_user.id, required: true %>
+              <%= hidden_field_tag 'item_id', @item.id, required: true %>
+              <%= submit_tag "Add to cart", :class => "btn btn-lg btn-primary" %>
+
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+
+        <div class="row item-description">
+          <p><%= @item.description %></p>
+        </div>
+      </div>
+    </div>
+    <div class="row item-details">
+        <h3>Item Specifics</h3>
+        <dl class="dl-horizontal">
+          <dt>Category</dt>
+          <dd><%= categories[@item.category_1_id-1][0] %></dd>
+          <% if !@item.condition_id.nil? && !@item.condition_id.blank?  %>
+            <dt>Condition</dt>
+            <dd><%= conditions[@item.condition_id-1][0] %></dd>
+          <% end %>
+          <% if !@item.item_url.nil? && !@item.details.blank?%>
+            <dt>Reference link</dt>
+            <dd><a href="<%= @item.item_url %>" target="_blank"><%= @item.item_url %></a></dd>
+          <% end %>
+          <% if !@item.details.nil? && !@item.details.blank? %>
+            <dt>Details</dt>
+            <dd><%= @item.details %></dd>
+          <% end %>
+        </dl>
+        <h3>Other useful information</h3>
+        <dl class="dl-horizontal">
+          <dt>Seller</dt>
+          <dd><%= @item.user.name%> (<%= @item.user.email %>)</dd>
+          <% if !@item.listing_duration.nil? && !@item.listing_duration.blank? %>
+            <dt>On sale until:</dt>
+            <dd><%= @item.listing_duration %></dd>
+          <% end %>
+          <% if !@item.available_at.nil? && !@item.available_at.blank? %>
+            <dt>Available for delivery:</dt>
+            <dd><%= @item.available_at %></dd>
+          <% end %>
+          <% if !@item.address_id.nil? %>
+            <dt>Item location: </dt>
+            <dd><%= Address.find(@item.address_id).city %></dd>
+          <% end %>
+        </dl>
+    </div>
+    <%= link_to "Go back", :back %>
   </div>
 </div>

@@ -17,9 +17,7 @@
             <div class="col-md-9 summary-item-data">
               <p class="summary-item-name"><%= offer.item.title %></p>
               <ul>
-                  <% if !@prices.where(:item_id => offer.item.id).last.nil?  %>
-                    <li>Price: $<%= @prices.where(:item_id => offer.item.id).last.value %></li>
-                  <% end %>
+                <li>Price: $<%= offer.item.price %></li>
               </ul>
             </div>
           </div>

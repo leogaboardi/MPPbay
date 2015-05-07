@@ -1,21 +1,21 @@
 <% if @selling.count==0 %>
-  <div class="jumbotron">
     <h2>You don't have nothing on sale yet =(</h2>
     <% if @draft.count >0 %>
     <p>You have some drafts - why don't you put them online?</p>
     <% end %>
     <br>
-    <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
-  </div>
+    <%= link_to "Start selling now!", new_item_path, :class => "btn btn-lg btn-primary"%>
 <% else %>
-  <%= link_to "Sell new item", "/sell/new", :class => "btn btn-lg btn-primary"%>
+  <br>
+  <%= link_to "Sell new item", new_item_path, :class => "btn btn-lg btn-primary"%>
+  <br><br>
 <% end %>
 
 <% if @selling.count >0  %>
   <% @selling.each do |item| %>
     <div class="row summary-item-frame">
       <div class="col-md-3 summary-item-picture-frame">
-        <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
+        <a href="/items/<%= item.id %>"><img class="summary-item-picture"
         <% if !@pictures.where(:item_id => item.id).first.nil? %>
           src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
         <% else %>
@@ -24,12 +24,12 @@
         ></a>
       </div>
       <div class="col-md-9 summary-item-data">
-        <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+        <a class="summary-item-name" href="/items/<%= item.id %>"><%= item.title %></a>
         <ul>
           <li>Price: <%= item.price %></li>
           <li>On sale since <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
-        <%= link_to "Edit", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
+        <%= link_to "Edit", edit_item_path(item.id), class: "btn btn-default" %>
         <%= link_to "Disable", "/disable/"+item.id.to_s, :method => "patch", class: "btn btn-default" %>
       </div>
     </div>

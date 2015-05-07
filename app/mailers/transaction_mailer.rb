@@ -1,5 +1,5 @@
 class TransactionMailer < ApplicationMailer
-
+  # FIXME: sum is getting rounding errors
   def offer_email(buyer_id, seller_id,comment, test=false)
     @buyer = User.find(buyer_id)
     @seller = User.find(seller_id)

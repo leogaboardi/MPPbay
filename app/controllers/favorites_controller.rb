@@ -3,6 +3,7 @@ class FavoritesController < ApplicationController
   # TODO: user association
   # TODO: item association
 
+  before_action :authenticate_user!
   before_action :check_if_admin
 
   def check_if_admin

@@ -2,13 +2,12 @@
   <div class="col-md-8 col-md-offset-2">
     <% if @sell %>
       <% if @items.count ==0 %>
-        <div class="jumbotron-main">
+
           <h2>Nothing on sale yet =(</h2>
           <br>
-          <%= link_to "Start selling now!", "/sell/new", :class => "btn btn-lg btn-primary"%>
-        </div>
+          <%= link_to "Start selling now!", new_item_path, :class => "btn btn-lg btn-primary"%>
       <% else %>
-        <%= link_to "Sell new item", "/sell/new", :class => "btn btn-lg btn-primary"%>
+        <%= link_to "Sell new item", new_item_path, :class => "btn btn-lg btn-primary"%>
         <p>&nbsp</p>
         <h3>Items you are currently selling</h3>
       <% end %>
@@ -16,7 +15,7 @@
     <% @items.each do |item| %>
       <div class="col-md-6 browse-item">
         <div class="browse-item-picture-frame">
-          <a href="/item_display/<%= item.id %>"><img class="browse-item-picture"
+          <a href="/items/<%= item.id %>"><img class="browse-item-picture"
             <% if !@pictures.where(:item_id => item.id).first.nil? %>
               src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
             <% else %>
@@ -29,10 +28,10 @@
         </div>
         <div class="browse-item-data">
           <div class="browse-item-name-frame">
-              <%= link_to item.title, item_display_path(item.id), :class => "browse-item-name" %>
+              <%= link_to truncate(item.title, length: 17), item_path(item.id), :class => "browse-item-name" %>
           </div>
           <div class="browse-item-price-frame">
-            <%= link_to "$"+"%.2f" % item.price, item_display_path(item.id), :class => "browse-item-price" %>
+            <%= link_to "$"+"%.2f" % item.price, item_path(item.id), :class => "browse-item-price" %>
           </div>
         </div>
       </div>

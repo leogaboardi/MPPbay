@@ -2,7 +2,7 @@ module ApplicationHelper
   def categories
     [
       ['Books', 1],
-      ['Electronics', 1],
+      ['Electronics', 2],
       ['Furniture', 3],
       ['Home decor', 4],
       ['Other stuff', 5]

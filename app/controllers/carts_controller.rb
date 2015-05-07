@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
 
   # TODO: check the check_if_admin functions
+  before_action :authenticate_user!
   before_action :check_if_admin, only: [:index]
 
   def check_if_admin
@@ -39,7 +40,6 @@ class CartsController < ApplicationController
 
 
     @pictures = Picture.all
-    @prices = Price.all
   end
 
   def index

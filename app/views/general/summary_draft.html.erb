@@ -5,7 +5,7 @@
   <% @draft.each do |item| %>
     <div class="row summary-item-frame">
       <div class="col-md-3 summary-item-picture-frame">
-        <a href="/item_display/<%= item.id %>"><img class="summary-item-picture"
+        <a href="/items/<%= item.id %>"><img class="summary-item-picture"
         <% if !@pictures.where(:item_id => item.id).first.nil? %>
           src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
         <% else %>
@@ -14,12 +14,12 @@
         ></a>
       </div>
       <div class="col-md-9 summary-item-data">
-        <a class="summary-item-name" href="/item_display/<%= item.id %>"><%= item.title %></a>
+        <a class="summary-item-name" href="/items/<%= item.id %>"><%= item.title %></a>
         <ul>
           <li>Price: <%= item.price%></li>
           <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
-        <%= link_to "Edit information", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
+        <%= link_to "Edit information", edit_item_path(item.id), class: "btn btn-default" %>
         <%= link_to "Edit pictures", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
         <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
         <%= link_to "Delete", "item_display/"+item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
@@ -49,7 +49,7 @@
           <li>Price: <%= item.price %></li>
           <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
-        <%= link_to "Edit information", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
+        <%= link_to "Edit information", edit_item_path(item.id), class: "btn btn-default" %>
         <%= link_to "Edit pictures", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
         <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
         <%= link_to "Delete", "item_display/"+item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>

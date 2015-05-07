@@ -2,19 +2,18 @@ class TransactionController < ApplicationController
 
   #FIXME: html email need inline styling (CSS and style section does not work)
 
+  before_action :authenticate_user!
+
   def new_email_offer
     @seller = User.find(params[:seller_id])
     @buyer = User.find(current_user.id)
     @offers = Cart.joins(:item).where('buyer_id = ? AND user_id = ?', @buyer.id, @seller.id)
     @pictures = Picture.all
-    @prices = Price.all
     @sample_email = true
 
     @total_price = 0
     @offers.each do |offer|
-      if !@prices.where(:item_id => offer.item.id).last.nil?
-        @total_price = @total_price + @prices.where(:item_id => offer.item.id).last.value
-      end
+      @total_price = @total_price + offer.item.price
     end
 
   end

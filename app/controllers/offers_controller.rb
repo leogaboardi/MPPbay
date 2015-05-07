@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :check_if_admin, only:[:destroy, :edit, :index, :show, :update]
 
   def check_if_admin

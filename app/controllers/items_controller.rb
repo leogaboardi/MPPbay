@@ -1,18 +1,11 @@
 class ItemsController < ApplicationController
 
-  # TODO: user associaton table
-  # TODO: status associaton table
-  # TODO: category_1 associaton table
-  # TODO: category_2 associaton table
-  # TODO: category_3 associaton table
-  # TODO: user associaton table
-  # TODO: put the CRUD created in "general" controller here
-  # TODO: address association sale
-
   # TODO: think about specific properties for some categories (e.g. color for furniture)
 
-  before_action :check_if_admin, only: [:index, :create,:show, :update]
-  before_action :check_current_user, only: [ :frontend_edit, :frontend_update]
+  before_action :authenticate_user!
+
+  before_action :check_if_admin, only: [:index, :show]
+  before_action :check_current_user, only: [ :edit]
 
   def check_if_admin
     if not current_user.admin?
@@ -22,7 +15,7 @@ class ItemsController < ApplicationController
 
   def check_current_user
     @item = Item.find(params[:id])
-    if not current_user.id == @item.user_id
+    if not current_user.id == @item.user_id || current_user.admin?
       redirect_to "/"
     end
   end
@@ -31,7 +24,6 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.title = params[:title]
     @item.user_id = params[:user_id]
-    @item.status_id = params[:status_id]
     @item.condition_id = params[:condition_id]
     @item.details = params[:details]
     @item.description = params[:description]
@@ -45,80 +37,11 @@ class ItemsController < ApplicationController
     @item.category_2_id = params[:category_2_id]
     @item.category_3_id = params[:category_3_id]
 
-    if @item.save
-      redirect_to "/items", :notice => "item created successfully."
-    else
-      render "new_form"
-    end
-  end
-
-  def destroy
-    @item = Item.find(params[:id])
-    @item.destroy
-    redirect_to "/summary", :notice => "Item deleted."
-  end
-
-  def edit
-    @item = Item.find(params[:id])
-  end
-
-  def index
-    @items = Item.all
-  end
-
-  def new
-    @item = Item.new
-  end
-
-  def show
-    @item = Item.find(params[:id])
-  end
-
-  def update
-    @item = Item.find(params[:id])
-    @item.title = params[:title]
-    @item.user_id = params[:user_id]
-    @item.status_id = params[:status_id]
-    @item.condition_id = params[:condition_id]
-    @item.details = params[:details]
-    @item.description = params[:description]
-    @item.handling_time = params[:handling_time]
-    @item.listing_duration = params[:listing_duration]
-    @item.available_at = params[:available_at]
-    @item.item_url = params[:item_url]
-    @item.address_id = params[:address_id]
-    @item.category_1_id = params[:category_1_id]
-    @item.category_2_id = params[:category_2_id]
-    @item.category_3_id = params[:category_3_id]
-    @item.price = params[:price]
-
-    if @item.save
-      redirect_to "/items", :notice => "item updated successfully."
-    else
-      render "new_form"
-    end
-  end
-
-def frontend_create
-    @item = Item.new
-    @item.user_id = params[:user_id]
-    @item.title = params[:title]
-    @item.category_1_id = params[:category_1_id]
-    @item.description = params[:description]
-    @item.condition_id = params[:condition_id]
-    @item.item_url = params[:item_url]
-    @item.details = params[:details]
-    if (true)
-      @item.status_id = 1 #Put in draft
-    else
+    if params[:status] == "true"
       @item.status_id = 2 #Put on sale
+    else
+      @item.status_id = 1 #Put in draft
     end
-    @item.price = params[:price]
-    @item.handling_time = params[:handling_time]
-    @item.available_at = params[:available_at]
-
-    @item.listing_duration = params[:listing_duration]
-    @item.address_id = params[:address_id]
 
     if @item.save
       #if false
@@ -134,65 +57,66 @@ def frontend_create
       #   end
       # else
 
-      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
+      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created!"
        # end
     else
       render "item_new"
     end
   end
-  def frontend_update
+
+  def destroy
     @item = Item.find(params[:id])
-    @item.user_id = params[:user_id]
-    @item.title = params[:title]
-    @item.category_1_id = params[:category_1_id]
-    @item.description = params[:description]
-    @item.condition_id = params[:condition_id]
-    @item.item_url = params[:item_url]
-    @item.details = params[:details]
-    @item.status_id = params[:status_id]
-    @item.handling_time = params[:handling_time]
-    @item.available_at = params[:available_at]
-    @item.listing_duration = params[:listing_duration]
-    @item.address_id = params[:address_id]
-    @item.price = params[:price]
-
-    if @item.save
-
-#        if false
-          #@picture = Picture.new
-          #@picture.item_id = @item.id
-          #@picture.image = params[:item][:image]
-          #@picture.default_picture = true
-
- #         if @picture.save
- #           redirect_to "/sell", :notice => "Item created successfully."
- #         else
- #           render "item_new"
- #         end
- #       else
-      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created successfully."
-        #end
-
-    else
-      render "item_edit"
-    end
+    @item.destroy
+    redirect_to "/summary", :notice => "Item deleted."
   end
 
-  def frontend_edit
+  def edit
     @item = Item.find(params[:id])
     @address = Address.where(:user => current_user.id)
-    render("frontend_edit")
   end
 
-  def frontend_show
+  def index
+    @items = Item.all
+  end
+
+  def new
+    @item = Item.new
+    @address = Address.where(:user => current_user.id)
+  end
+
+  def show
     # TODO: P0: clickable heart (creates a favorite)
     # TODO: P0: item page is static, make it dynamic
     @pictures = Picture.where(:item_id => params[:id])
     @item = Item.find(params[:id])
   end
 
-  def frontend_new
-    @item = Item.new
-    @address = Address.where(:user => current_user.id)
+  def update
+    @item = Item.find(params[:id])
+    @item.title = params[:title]
+    if current_user.admin?
+      @item.user_id = params[:user_id]
+    else
+      @item.user_id = current_user.id
+    end
+    @item.condition_id = params[:condition_id]
+    @item.details = params[:details]
+    @item.description = params[:description]
+    @item.handling_time = params[:handling_time]
+    @item.listing_duration = params[:listing_duration]
+    @item.available_at = params[:available_at]
+    @item.item_url = params[:item_url]
+    @item.address_id = params[:address_id]
+    @item.category_1_id = params[:category_1_id]
+    @item.category_2_id = params[:category_2_id]
+    @item.category_3_id = params[:category_3_id]
+    @item.price = params[:price]
+    @item.status_id = params[:status_id]
+
+    if @item.save
+      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item updated!."
+    else
+      render "item_edit"
+    end
   end
 end
