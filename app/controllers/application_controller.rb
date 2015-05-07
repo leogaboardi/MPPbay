@@ -12,10 +12,8 @@ class ApplicationController < ActionController::Base
 
   def general
     if user_signed_in?
-       # @cart_size = 1
       @cart_size = "("+Cart.where(:buyer_id => current_user.id).length.to_s+")"
     end
-
   end
 
 end

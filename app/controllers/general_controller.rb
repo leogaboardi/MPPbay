@@ -19,7 +19,7 @@ class GeneralController < ApplicationController
     # TODO: P0: browser is static, make it dynamic
     # TODO: P1: put pagination, if needed
 
-    @items = Item.where(:status => 2).where.not(:user_id => current_user.id)
+    @items = Item.where(:status => 2)
     @pictures = Picture.all
     render "browse"
   end

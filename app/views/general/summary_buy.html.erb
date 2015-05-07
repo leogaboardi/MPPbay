@@ -7,13 +7,12 @@
   <% @purchases.each do |purchase| %>
     <div class="row summary-item-frame">
       <div class="col-md-3 summary-item-picture-frame">
-        <a href="/items/<%= purchase.item.id %>"><img class="summary-item-picture"
-        <% if !@pictures.where(:item_id => purchase.item.id).first.nil? %>
-          src="<%= @pictures.where(:item_id => purchase.item.id).first.image.url %>"
-        <% else %>
-        src="/assets/default_picture.png"
-        <% end %>
-        ></a>
+            <% if !@pictures.where(:item_id => purchase.id).first.nil? %>
+              <a href="/items/<%= purchase.id %>"><img class="summary-item-picture"
+              src="<%= @pictures.where(:item_id => purchase.id).first.image.url %>"></a>
+            <% else %>
+              <%= link_to "#{image_tag('default_picture.png', class: 'summary-item-picture')}".html_safe, item_path(purchase.id) %>
+            <% end %>
       </div>
       <div class="col-md-9 summary-item-data">
         <a class="summary-item-name" href="/items/<%= purchase.item.id %>"><%= purchase.item.title %></a>

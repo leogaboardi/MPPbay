@@ -10,8 +10,7 @@
 
 - [ ] Item management
   - [x] Fix item forms (new/edit): put under the right controller
-  - [ ] Validation
-  - [ ] New form: put accept terms checkbox
+  - [x] Validation
   - [x] Make the "creation draft" button work
   - [x] Dropdown lists
     -[x] New item

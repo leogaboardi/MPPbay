@@ -15,13 +15,12 @@
     <% @items.each do |item| %>
       <div class="col-md-6 browse-item">
         <div class="browse-item-picture-frame">
-          <a href="/items/<%= item.id %>"><img class="browse-item-picture"
             <% if !@pictures.where(:item_id => item.id).first.nil? %>
-              src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
+              <a href="/items/<%= item.id %>"><img class="browse-item-picture"
+              src="<%= @pictures.where(:item_id => item.id).first.image.url %>"></a>
             <% else %>
-              src="/assets/default_picture.png"
+              <%= link_to "#{image_tag('default_picture.png', class: 'browse-item-picture')}".html_safe, item_path(item.id) %>
             <% end %>
-          ></a>
 <!--           <div class="browse-item-social">
             <span style="font-size: 40px" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
           </div> -->

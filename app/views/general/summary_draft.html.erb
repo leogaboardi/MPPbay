@@ -5,13 +5,12 @@
   <% @draft.each do |item| %>
     <div class="row summary-item-frame">
       <div class="col-md-3 summary-item-picture-frame">
-        <a href="/items/<%= item.id %>"><img class="summary-item-picture"
-        <% if !@pictures.where(:item_id => item.id).first.nil? %>
-          src="<%= @pictures.where(:item_id => item.id).first.image.url %>"
-        <% else %>
-        src="/assets/default_picture.png"
-        <% end %>
-        ></a>
+            <% if !@pictures.where(:item_id => item.id).first.nil? %>
+              <a href="/items/<%= item.id %>"><img class="summary-item-picture"
+              src="<%= @pictures.where(:item_id => item.id).first.image.url %>"></a>
+            <% else %>
+              <%= link_to "#{image_tag('default_picture.png', class: 'summary-item-picture')}".html_safe, item_path(item.id) %>
+            <% end %>
       </div>
       <div class="col-md-9 summary-item-data">
         <a class="summary-item-name" href="/items/<%= item.id %>"><%= item.title %></a>
@@ -20,9 +19,9 @@
           <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
         <%= link_to "Edit information", edit_item_path(item.id), class: "btn btn-default" %>
-        <%= link_to "Edit pictures", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
+        <%= link_to "Edit pictures", pictures_path, class: "btn btn-default" %>
         <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-        <%= link_to "Delete", "item_display/"+item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+        <%= link_to "Delete", item_path(item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
       </div>
     </div>
     <br>
@@ -50,9 +49,9 @@
           <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
         <%= link_to "Edit information", edit_item_path(item.id), class: "btn btn-default" %>
-        <%= link_to "Edit pictures", "/sell/"+item.id.to_s+"/edit", class: "btn btn-default" %>
+        <%= link_to "Edit pictures", pictures_path, class: "btn btn-default" %>
         <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
-        <%= link_to "Delete", "item_display/"+item.id.to_s, :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
+        <%= link_to "Delete", item_path(item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
       </div>
     </div>
     <br>

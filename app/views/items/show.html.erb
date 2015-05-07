@@ -17,10 +17,10 @@
     <div class="row item-highlight">
       <div class="col-md-8 item-picture-frame">
         <img class="item-picture"
-          <% if !@pictures.first.nil? %>
-              src="<%= @pictures.first.image.url %>"
+           <% if !@pictures.first.nil? %>
+            <img class="item-picture" src="<%= @pictures.first.image.url %>">
           <% else %>
-              src="/assets/default_picture.png"
+            <%= image_tag('default_picture.png', class: 'browse-item-picture') %>
           <% end %>
         >
         <% if !@pictures.first.nil? %>
@@ -78,7 +78,7 @@
         <h3>Other useful information</h3>
         <dl class="dl-horizontal">
           <dt>Seller</dt>
-          <dd><%= @item.user.name%> (<%= @item.user.email %>)</dd>
+          <dd><%= @item.user.name%></dd>
           <% if !@item.listing_duration.nil? && !@item.listing_duration.blank? %>
             <dt>On sale until:</dt>
             <dd><%= @item.listing_duration %></dd>

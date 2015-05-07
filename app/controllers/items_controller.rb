@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user!
 
-  before_action :check_if_admin, only: [:index, :show]
+  before_action :check_if_admin, only: [:index]
   before_action :check_current_user, only: [ :edit]
 
   def check_if_admin
@@ -57,17 +57,20 @@ class ItemsController < ApplicationController
       #   end
       # else
 
-      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item created!"
+      redirect_to item_path(@item.id), :notice => "Item created!"
        # end
     else
-      render "item_new"
+      @address = Address.where(:user => current_user.id)
+      render :new
     end
   end
 
   def destroy
     @item = Item.find(params[:id])
-    @item.destroy
-    redirect_to "/summary", :notice => "Item deleted."
+    if current_user.admin? || @item.user_id == current_user.id
+      @item.destroy
+    end
+    redirect_to summary_path, :notice => "Item deleted."
   end
 
   def edit
@@ -114,9 +117,10 @@ class ItemsController < ApplicationController
     @item.status_id = params[:status_id]
 
     if @item.save
-      redirect_to "/item_display/"+@item.id.to_s, :notice => "Item updated!."
+      redirect_to item_path(@item.id), :notice => "Item updated!."
     else
-      render "item_edit"
+      @address = Address.where(:user => current_user.id)
+      render :edit
     end
   end
 end
