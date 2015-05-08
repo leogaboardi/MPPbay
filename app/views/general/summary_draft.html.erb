@@ -19,7 +19,7 @@
           <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
         <%= link_to "Edit information", edit_item_path(item.id), class: "btn btn-default" %>
-        <%= link_to "Edit pictures", pictures_path, class: "btn btn-default" %>
+        <%= link_to "Edit pictures", "/pictures/item/"+item.id.to_s, class: "btn btn-default" %>
         <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
         <%= link_to "Delete", item_path(item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
       </div>
@@ -49,7 +49,7 @@
           <li>Created on <%= item.created_at.strftime("%D, %I:%M %p") %></li>
         </ul>
         <%= link_to "Edit information", edit_item_path(item.id), class: "btn btn-default" %>
-        <%= link_to "Edit pictures", pictures_path, class: "btn btn-default" %>
+        <%= link_to "Edit pictures", "/pictures/item/"+item.id.to_s, class: "btn btn-default" %>
         <%= link_to "Put on sale", "sell/"+item.id.to_s, :method => "patch", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
         <%= link_to "Delete", item_path(item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-default" %>
       </div>

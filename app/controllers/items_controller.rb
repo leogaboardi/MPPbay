@@ -44,21 +44,17 @@ class ItemsController < ApplicationController
     end
 
     if @item.save
-      #if false
-      #  @picture = Picture.new
-      #  @picture.item_id = @item.id
-      #  @picture.image = params[:item][:image]
-      #  @picture.default_picture = true
+      @picture = Picture.new
+      @picture.item_id = @item.id
+      @picture.image = params[:item][:image]
+      @picture.default_picture = true
 
-      #   if @picture.save
-      #     redirect_to "/sell", :notice => "Item created successfully."
-      #   else
-      #     render "item_new"
-      #   end
-      # else
-
+      if @picture.save
       redirect_to item_path(@item.id), :notice => "Item created!"
-       # end
+      else
+        @address = Address.where(:user => current_user.id)
+      render :new
+      end
     else
       @address = Address.where(:user => current_user.id)
       render :new
@@ -91,6 +87,12 @@ class ItemsController < ApplicationController
     # TODO: P0: clickable heart (creates a favorite)
     # TODO: P0: item page is static, make it dynamic
     @pictures = Picture.where(:item_id => params[:id])
+
+    if @pictures.where(:default_picture => true).count == 0
+      @main_picture = @pictures.first
+    else
+      @main_picture = @pictures.where(:default_picture => true).first
+    end
     @item = Item.find(params[:id])
   end
 

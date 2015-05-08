@@ -8,7 +8,7 @@
   - [x] View: send offer email
   - [x] Design html offer email (txt version)
 
-- [ ] Item management
+- [x] Item management
   - [x] Fix item forms (new/edit): put under the right controller
   - [x] Validation
   - [x] Make the "creation draft" button work
@@ -21,7 +21,7 @@
       -[x] Category
       -[x] Condition
       -[x] Address
-  - [ ] Picture management
+  - [x] Picture management
 
 # P1
 - [ ] Static pages

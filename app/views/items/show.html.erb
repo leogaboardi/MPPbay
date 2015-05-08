@@ -9,24 +9,22 @@
       <div class="item-name">
         <h1><%= @item.title %></h1>
       </div>
-      <div class="item-social">
+      <!-- <div class="item-social">
       <span style="font-size: 40px; float: right" class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-      </div>
+      </div> -->
     </div>
 
     <div class="row item-highlight">
       <div class="col-md-8 item-picture-frame">
-        <img class="item-picture"
-           <% if !@pictures.first.nil? %>
-            <img class="item-picture" src="<%= @pictures.first.image.url %>">
-          <% else %>
-            <%= image_tag('default_picture.png', class: 'browse-item-picture') %>
-          <% end %>
-        >
+        <% if @pictures.count != 0 %>
+          <%= image_tag(@main_picture.image.url(:med), class: "item-picture", id: "main_picture")  %>
+        <% else %>
+          <%= image_tag('default_picture.png', class: 'item-picture') %>
+        <% end %>
         <% if !@pictures.first.nil? %>
           <div class="item-thumblist">
-          <% @pictures.each do |picture| %>
-            <img class="item-thumbnail" src="<%= picture.image.url %>">
+          <% @pictures.each_with_index do |picture,i| %>
+            <%= image_tag(picture.image.url(:thumbnail), class: "item-thumbnail", id: "picture#"+i.to_s, onclick:"{document.getElementById('main_picture').src = '#{@pictures[i].image.url(:med)}';}")  %>
           <% end %>
           </div>
         <% end %>
@@ -38,6 +36,8 @@
           <% if current_user.id == @item.user_id %>
             <p><em>This item was created by you</em></p>
             <%= link_to "Edit this item", edit_item_path(@item.id), class: "btn btn-lg btn-primary" %>
+            <br><br>
+            <%= link_to "Edit the pictures", "/pictures/item/"+@item.id.to_s, class: "btn btn-lg btn-primary" %>
             <br><br>
             <%= link_to "Delete this item", item_path(@item.id), :method => "delete", data: {confirm: "Are you sure?"}, class: "btn btn-lg btn-primary" %>
           <% else %>

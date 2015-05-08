@@ -21,6 +21,8 @@ class GeneralController < ApplicationController
 
     @items = Item.where(:status => 2)
     @pictures = Picture.all
+
+
     render "browse"
   end
 

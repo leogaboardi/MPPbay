@@ -26,7 +26,7 @@ class PicturesController < ApplicationController
     @picture.default_picture = params[:default_picture]
 
     if @picture.save
-      redirect_to "/pictures", :notice => "Picture created successfully."
+      redirect_to "/pictures/item/"+@picture.item_id.to_s, :notice => "Picture created successfully."
     else
       render "new"
     end
@@ -34,8 +34,10 @@ class PicturesController < ApplicationController
 
   def destroy
     @picture = Picture.find(params[:id])
+    item_id = @picture.item_id
+
     @picture.destroy
-    redirect_to "/pictures", :notice => "Picture deleted successfully."
+    redirect_to "/pictures/item/"+@picture.item_id.to_s, :notice => "Picture deleted."
   end
 
   def edit
@@ -46,12 +48,37 @@ class PicturesController < ApplicationController
     @pictures = Picture.all
   end
 
+  def index_item
+    @item = Item.find(params[:id])
+    @picture = Picture.new
+    @pictures = Picture.where(:item_id => params[:id])
+  end
+
   def new
     @picture = Picture.new
   end
 
   def show
     @picture = Picture.find(params[:id])
+  end
+
+  def make_default
+    @picture = Picture.find(params[:id])
+
+    # Makes sure there is only 1 default_picture for every item
+    @default = Picture.where(:item_id => @picture.item_id, :default_picture =>true ) #all pictures from the same item which are default
+    @default.each do |picture|
+      picture.default_picture = false
+      picture.save
+    end
+
+    @picture.default_picture = true
+
+    if @picture.save
+      redirect_to "/pictures/item/"+@picture.item_id.to_s, :notice => "Changes succesfull"
+    else
+      render "index_item"
+    end
   end
 
   def update

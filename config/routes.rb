@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   patch('/sell/:id', { :controller => 'general', :action => 'put_on_sale' })
   patch('/address/:id/main', { :controller => 'addresses', :action => 'make_main' })
 
+  get('/pictures/item/:id', { :controller => 'pictures', :action => 'index_item' })
+  put('/pictures/default/:id', { :controller => 'pictures', :action => 'make_default' })
+
   # CREATE
   #get('/users/new', { :controller => 'users', :action => 'new', :as => "new" })
   #post('/users', { :controller => 'users', :action => 'create', :as => "create"  })

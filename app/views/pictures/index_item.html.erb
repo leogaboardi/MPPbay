@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3><%= link_to @item.title, item_path(@item.id)  %></h3>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Upload a new picture</h3>
+        </div>
+        <div class="panel-body">
+    <%= form_for @picture, :url=> pictures_path, :html => { multipart: true, :class => "form-horizontal", :method => "post" } do |f| %>
+
+      <!-- Label and input for item_id -->
+      <%= hidden_field_tag 'item_id', @item.id, required: true, class: 'form-control' %>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="item_id" class="col-sm-3 control-label">
+          Image location
+        </label>
+        <div class="col-sm-4">
+          <%= f.file_field :image,  required:true %>
+        </div>
+      </div>
+
+      <!-- main_picture checkbox -->
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-3">
+          <div class="checkbox">
+            <label>
+              <%= hidden_field_tag 'default_picture', false, required: true, class: 'form-control' %>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- CREATE BUTTON -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-9">
+          <%= f.submit "Upload picture", :class => "btn btn-primary" %>
+        </div>
+      </div>
+
+    <% end %>
+    </div>
+      </div>
+
+
+    <p>&nbsp</p>
+    <table class="table">
+      <% @pictures.each do |picture| %>
+      <tr>
+        <td style="text-align: center">
+        <% if picture.default_picture? %>
+            <p><em>This is your main picture (it will show in the browser, etc).</em></p>
+        <% end %>
+          <%= image_tag(picture.image.url(:med))  %>
+        </td>
+        <td>
+          <% if !picture.default_picture? %>
+          <%= link_to "Make this the main picture", "/pictures/default/"+ picture.id.to_s, :class=>"btn btn-default", :method => "put" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "Delete", picture_path(picture.id), :method => "delete", data: {confirm: "Are you sure?"}, :class=>"btn btn-default" %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-12">
+    <%= link_to "Go back", :back %>
+    <br>
+  </div>
+</div>
