@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :check_if_admin
+  before_action :check_if_admin only:[:index]
 
   def check_if_admin
     if not current_user.admin?
@@ -9,8 +9,8 @@ class PicturesController < ApplicationController
     end
   end
 
-  def create
 
+  def create
     @picture = Picture.new
     @picture.item_id = params[:item_id]
     @picture.image = params[:picture][:image]
@@ -35,13 +35,21 @@ class PicturesController < ApplicationController
   def destroy
     @picture = Picture.find(params[:id])
     item_id = @picture.item_id
-
-    @picture.destroy
-    redirect_to "/pictures/item/"+@picture.item_id.to_s, :notice => "Picture deleted."
+    item = Item.find(item_id)
+    if item.user_id == current_user.id
+      @picture.destroy
+      redirect_to "/pictures/item/"+@picture.item_id.to_s, :notice => "Picture deleted."
+    else
+      redirect_to "/"
+    end
   end
 
   def edit
     @picture = Picture.find(params[:id])
+    item = Item.find(@picture.item_id)
+    if !item.user_id == current_user.id
+      redirect_to "/"
+    end
   end
 
   def index
@@ -50,8 +58,12 @@ class PicturesController < ApplicationController
 
   def index_item
     @item = Item.find(params[:id])
-    @picture = Picture.new
-    @pictures = Picture.where(:item_id => params[:id])
+    if @item.user_id == current_user.id || current_user.admin?
+      @picture = Picture.new
+      @pictures = Picture.where(:item_id => params[:id])
+    else
+      redirect_to "/"
+    end
   end
 
   def new

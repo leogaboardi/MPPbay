@@ -52,6 +52,7 @@
 - [ ] Favorite functionality
 - [ ] Create SimilarItems functionality
 - [ ] Create search
+- [ ] Cross check access to picture management
 - [ ] On product lists (summary, etc) user can choose between a simple list view, or a more "nicer" view with thumnail, etc.
 - [ ] Get rid of unused mailers (exmaple_mailer)
 - [x] Item controller methods: clean up redundant methods (e.g. create vs. frontend_create)
