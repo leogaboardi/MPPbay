@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :check_if_admin only:[:index]
+  before_action :check_if_admin, only:[:index]
 
   def check_if_admin
     if not current_user.admin?
