@@ -3,8 +3,8 @@ Hi <%= @seller.name %>,
 <% @offers.each do |offer| %>
 
 -<%= offer.item.title %>
-  <% if !@prices.where(:item_id => offer.item.id).last.nil?  %>
-  Price: $<%= @prices.where(:item_id => offer.item.id).last.value %>
+  <% if !offer.item.price.nil?  %>
+  Price: $<%= offer.item.price %>
   <% end %>
 <% end %>
 -------
