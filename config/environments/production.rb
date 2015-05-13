@@ -87,6 +87,7 @@ Rails.application.configure do
     :authentication => :plain,
   }
 
+# Amazon S3 settings for Paperclip uploads
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
