@@ -179,7 +179,7 @@ pictures.each do |new_picture|
   picture.item_id = new_picture[:item_id]
   picture.image = File.new(new_picture[:image])
   picture.default_picture = true
-  picture.save
+  #picture.save
 end
 
 purchases = [

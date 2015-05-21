@@ -7,7 +7,7 @@ gem 'devise' # For user management
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun' #For sending emails
 
 gem 'paperclip' # For image management
-gem 'aws-sdk'
+gem 'aws-sdk-v1'
 
 gem 'figaro' #For managing sensitive information
 
