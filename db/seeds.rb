@@ -234,5 +234,6 @@ users.each do |new_user|
   user.admin = new_user[:admin]
   user.password = "password"
   user.password_confirmation = "password"
+  user.confirmed_at = Time.now
   user.save
 end

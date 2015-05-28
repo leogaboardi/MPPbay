@@ -39,4 +39,16 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.default_url_options = { :host => "mppbay.heroku.com" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port           => 587,
+    :address        => "smtp.mailgun.org",
+    :domain         => ENV['mailer_domain'],
+    :user_name      => ENV['mailer_username'],
+    :password       => ENV['mailer_password'],
+    :authentication => :plain,
+ }
+
 end

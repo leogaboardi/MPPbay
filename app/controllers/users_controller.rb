@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
 
-
-  # TODO: make a admin user non deleatable
   # TODO: put profile picture?
-
 
   before_action :authenticate_user!
   before_action :check_if_admin, only: [ :create, :destroy, :index, :new, :show]

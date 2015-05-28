@@ -27,14 +27,17 @@
 - [ ] Static pages
  - [ ] Help & contact
  - [ ] About
+ - [ ] Change jumbotrom picture
  - [x] Home page
  - [ ] Redirect page on sign in
  - [ ] Do not forget to cite Bootstrap and glyphcons.com
  - [ ] Browse filtering / sort
 
-- [ ] Devise
-  - [ ] Setup email service
-  - [ ] Ask for username
+- [x] Devise
+  - [x] Setup email service
+  - [x] Ask for username
+  - [x] Sign up: format error messages
+  - [x] Sign up: put whitelist in the view
   - [x] format sign up page
   - [x] format sign in page
   - [x] format forgot your password page
@@ -42,13 +45,17 @@
 - [x] Destroy Condition model (use helper instead)
 - [x] Destroy Categories model (use helper instead)
 - [x] Destroy Status model (use helper instead)
-- [ ] Destroy Availability model and use helper instead.
-- [ ] Put whitelist email
+- [x] Destroy Availability model and use helper instead.
+- [x] Put whitelist email
 - [ ] Summary:
   - [ ] "Items you are selling": "edit picture button"
   - [ ] "Items you are selling": item sold
 
 # P2
+- [ ] Design devise email
+ - [ ] Confirmation instructions
+ - [ ] Reset password
+- [ ] Formatting: users/confirmation
 - [ ] Design html offer email (put css, pictures and links)
 - [ ] Offer email: send a reminder email to the seller if an offer is pending
 - [ ] Disable items after they pass the cutoff date

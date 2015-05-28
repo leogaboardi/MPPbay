@@ -27,13 +27,18 @@ module ApplicationHelper
     ]
   end
 
-  def white_list
-    [
-      {
-        :name => "Chicago Booth",
-        :email_filter => "@chicagobooth.edu"
-      }
-    ]
+  def whitelist
+    if ENV['RAILS_ENV'] == "production"
+    ["chicagobooth.edu",
+      "uchicago.edu",
+      "mppbay.com",
+      "gmail.com"]
+    else
+    ["example.com",
+      "chicagobooth.edu",
+      "uchicago.edu",
+      "mppbay.com"]
+    end
   end
 
   def us_states
