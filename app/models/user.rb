@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
 
   validates :name, :presence => true, :uniqueness => true
   validate :check_whitelist
+  after_create :send_admin_mail
+
+  def send_admin_mail
+    AdminMailer.new_user_email(User.last).deliver_now
+  end
 
   def check_whitelist
     if not whitelist.include? email.split("@").last

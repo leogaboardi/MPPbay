@@ -27,14 +27,13 @@
 - [ ] Static pages
  - [x] Help & contact
  - [x] About
- - [ ] Change jumbotrom picture
+ - [x] Change jumbotrom picture
  - [x] Home page
- - [ ] Redirect page on sign in
  - [ ] Do not forget to cite Bootstrap and glyphcons.com
- - [ ] Browse filtering / sort
 
 - [ ] Devise
   - [x] Setup email service
+  - [ ] Redirect page on sign in
   - [ ] Check the redirect when a sign up occurs
   - [x] Ask for username
   - [x] Sign up: format error messages
@@ -43,6 +42,8 @@
   - [x] format sign in page
   - [x] format forgot your password page
 
+- [ ] FB sign in
+- [ ] Browse filtering / sort
 - [x] Destroy Condition model (use helper instead)
 - [x] Destroy Categories model (use helper instead)
 - [x] Destroy Status model (use helper instead)

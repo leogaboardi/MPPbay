@@ -21,9 +21,11 @@ class UsersController < ApplicationController
     @user.admin = params[:admin]
     @user.password = "password" #params[:password]
     @user.password_confirmation = "password" #params[:password_confirmation]
+    @user.confirmed_at = Time.now
 
     if @user.save
       redirect_to "/users", :notice => "User created successfully."
+
     else
       render "new"
     end
