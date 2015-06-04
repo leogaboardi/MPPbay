@@ -3,6 +3,8 @@ class AddressesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_admin, only: [:index, :show]
 
+  # FIXME: field names (https://developers.google.com/web/fundamentals/input/form/label-and-name-inputs)
+
   #Checks if current_address is admin, and therefore can play around with the venue table
   def check_if_admin
     if not current_user.admin?

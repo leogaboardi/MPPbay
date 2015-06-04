@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   # TODO: think about specific properties for some categories (e.g. color for furniture)
+  # FIXME: leave the address dropdown blank if there are no address for this user
 
   before_action :authenticate_user!
 
