@@ -46,6 +46,7 @@
 
 - [ ] FB sign in
 - [ ] Browse filtering / sort
+- [ ] Clean to do lists within controllers
 - [x] Destroy Condition model (use helper instead)
 - [x] Destroy Categories model (use helper instead)
 - [x] Destroy Status model (use helper instead)
@@ -57,8 +58,6 @@
   - [ ] "Drafts" tab: "create new draft"
   - [ ] Images are not properly rotated on this page
   - [ ] Hide "items you have bougth" if it is zero
-
-
 
 # P2
 - [ ] Design devise email

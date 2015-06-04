@@ -10,11 +10,11 @@ class User < ActiveRecord::Base
   has_many :carts
   has_many :offers
 
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable
+  #devise :database_authenticatable, :registerable, :confirmable,
+  #       :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, :presence => true, :uniqueness => true
-  #validate :check_whitelist
+  validate :check_whitelist
   after_create :send_admin_mail
 
   def send_admin_mail
