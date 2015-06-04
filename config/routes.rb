@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get('/send_email_offer/:buyer_id/:seller_id', { :controller => 'transaction', :action => 'send_email_offer', :as => "send_email_offer"})
 
   get('/about', { :controller => 'root', :action => 'about', :as => "about"  })
+  get('/help', { :controller => 'root', :action => 'help', :as => "help"  })
   get('/buy', { :controller => 'general', :action => 'buy', :as => "buy" })
   patch('/disable/:id', { :controller => 'general', :action => 'disable' })
 

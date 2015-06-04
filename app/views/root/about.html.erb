@@ -1,5 +1,15 @@
 <div class="row">
-  <div class="col-md-12">
-    <p>About page.</p>
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Our mission</h1>
+    <p>MPPbay is a marketplace dedicated to help students buy and sell goods among each other. Buyers are constantly seeking for best deals in books, furniture and other stuff, specially when they are moving to a new town because of school. Sellers usually are looking to get rid of goods they do not need anymore after graduating and moving out of town. We intend to bring both parties together and make their life easier in terms of search for goods and close deals.</p>
+    <h1>Beta test</h1>
+    <p>We are currently in beta phase, which means that we are limiting website access while we further develop MPPbay. Currently, we are allowing sign up from the following institutions:</p>
+    <ul>
+      <li>The University of Chicago</li>
+      <li>The University of Chicago Booth School of Business</li>
+    </ul>
+    <p>If you can't sign up yet but is still want to join during beta, why dont you <%= mail_to ENV["SUPPORT_EMAIL"], "email us" %>? We are always looking for people interested in helping us building our website.</p>
+    <br>
+    <%= link_to "Go back", :back %>
   </div>
 </div>

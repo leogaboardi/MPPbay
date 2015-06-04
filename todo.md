@@ -1,5 +1,5 @@
 # P0
-- [x ] Purchase process
+- [x] Purchase process
   - [x] Build offer model
   - [x] Build cart model
   - [x] Build offer CRUD
@@ -25,16 +25,17 @@
 
 # P1
 - [ ] Static pages
- - [ ] Help & contact
- - [ ] About
+ - [x] Help & contact
+ - [x] About
  - [ ] Change jumbotrom picture
  - [x] Home page
  - [ ] Redirect page on sign in
  - [ ] Do not forget to cite Bootstrap and glyphcons.com
  - [ ] Browse filtering / sort
 
-- [x] Devise
+- [ ] Devise
   - [x] Setup email service
+  - [ ] Check the redirect when a sign up occurs
   - [x] Ask for username
   - [x] Sign up: format error messages
   - [x] Sign up: put whitelist in the view

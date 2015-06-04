@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Mppbay</title>
+  <title>MPPbay</title>
 
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
 
 
   <%= stylesheet_link_tag :all %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag  "application", :media => "all" %>
 
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -27,6 +27,18 @@
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', ENV['GOOGLE_ANALYTICS_TRACKING_ID'], 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -39,7 +51,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand">MPPbay</a>
+        <a href="/" class="navbar-brand">MPPbay<sup>BETA</sup></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,7 +62,7 @@
             <li><%= link_to "Sell", "/sell"  %></li>
             <li><%= link_to "Your account", "/summary"  %></li>
             <li><%= link_to (raw("Your cart <strong>#{@cart_size}</strong>")),"/my_cart" %></li>
-            <li><%= link_to "Help & Contact", "/" %></li>
+            <li><%= link_to "Help & Contact", help_path %></li>
             <li><%= link_to "Sign out", "/users/sign_out", :method => :delete %></li>
           <% else %>
             <li><%= link_to "Sign up", "/users/sign_up" %></li>
@@ -82,7 +94,9 @@
   <% end %>
 
   <ul class="list-inline text-center" >
-    <li><a href="/about">About</a></li>
+    <li><%= link_to "About", about_path %></li>
+    <li><%= link_to "Help & Contact", help_path %></li>
+
     <li><span>©<%= Time.now.year %> MPPbay</span></li>
   </ul>
   <% if current_user.present? and current_user.admin? %>
