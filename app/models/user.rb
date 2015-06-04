@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :carts
   has_many :offers
 
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, #:confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, :presence => true, :uniqueness => true
