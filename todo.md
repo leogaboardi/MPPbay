@@ -23,6 +23,8 @@
       -[x] Address
   - [x] Picture management
 
+  - [ ] Picture upload should not be mandatory in the create page.
+
 # P1
 - [ ] Static pages
  - [x] Help & contact
@@ -52,6 +54,11 @@
 - [ ] Summary:
   - [ ] "Items you are selling": "edit picture button"
   - [ ] "Items you are selling": item sold
+  - [ ] "Drafts" tab: "create new draft"
+  - [ ] Images are not properly rotated on this page
+  - [ ] Hide "items you have bougth" if it is zero
+
+
 
 # P2
 - [ ] Design devise email
