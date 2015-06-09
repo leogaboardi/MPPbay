@@ -36,7 +36,7 @@
 - [ ] Devise
   - [x] Setup email service
   - [ ] Redirect page on sign in
-  - [ ] Check the redirect when a sign up occurs
+  - [ ] Redirect page on sign up
   - [x] Ask for username
   - [x] Sign up: format error messages
   - [x] Sign up: put whitelist in the view
@@ -44,7 +44,10 @@
   - [x] format sign in page
   - [x] format forgot your password page
 
-- [ ] FB sign in
+- [ ] On item page, if owner AND on draft, put "put on sale" button
+- [ ] On item page, if owner AND on draft, put link to "draft" list
+- [ ] On item page, link to "other items from XYZ"
+- [ ] Item / edit form: get rid of the "photo" section of the form
 - [ ] Browse filtering / sort
 - [ ] Clean to do lists within controllers
 - [x] Destroy Condition model (use helper instead)
@@ -60,6 +63,7 @@
   - [ ] Hide "items you have bougth" if it is zero
 
 # P2
+- [ ] FB sign in?
 - [ ] Design devise email
  - [ ] Confirmation instructions
  - [ ] Reset password

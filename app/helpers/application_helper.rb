@@ -31,13 +31,13 @@ module ApplicationHelper
     if ENV['RAILS_ENV'] == "production"
     ["chicagobooth.edu",
       "uchicago.edu",
-      "mppbay.com",
-      "gmail.com"]
+      "mppbay.com"]
     else
     ["example.com",
       "chicagobooth.edu",
       "uchicago.edu",
-      "mppbay.com"]
+      "mppbay.com",
+      "gmail.com"]
     end
   end
 

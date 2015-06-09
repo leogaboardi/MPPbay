@@ -80,15 +80,15 @@
           <dt>Seller</dt>
           <dd><%= @item.user.name%></dd>
           <% if !@item.listing_duration.nil? && !@item.listing_duration.blank? %>
-            <dt>On sale until:</dt>
+            <dt>On sale until</dt>
             <dd><%= @item.listing_duration %></dd>
           <% end %>
           <% if !@item.available_at.nil? && !@item.available_at.blank? %>
-            <dt>Available for delivery:</dt>
+            <dt>Available for delivery</dt>
             <dd><%= @item.available_at %></dd>
           <% end %>
           <% if !@item.address_id.nil? %>
-            <dt>Item location: </dt>
+            <dt>Item location</dt>
             <dd><%= Address.find(@item.address_id).city %></dd>
           <% end %>
         </dl>
