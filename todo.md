@@ -47,6 +47,8 @@
 - [ ] On item page, if owner AND on draft, put "put on sale" button
 - [ ] On item page, if owner AND on draft, put link to "draft" list
 - [ ] On item page, link to "other items from XYZ"
+- [ ] Take items out of sale after date of availability
+- [ ] Put some kind of banner for items on last day of sale
 - [ ] Item / edit form: get rid of the "photo" section of the form
 - [ ] Browse filtering / sort
 - [ ] Clean to do lists within controllers

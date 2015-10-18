@@ -4,6 +4,7 @@
 
     <%= link_to "Add new item", new_item_path, :class => "btn btn-primary" %>
     <p>&nbsp</p>
+    <p>There is a total of <%= @items.count  %> registered items</p>
     <table class="table table-striped">
       <tr>
         <th>Title</th>
